@@ -6,10 +6,6 @@ import ResultFooter from "../Components/ResultFooter";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 const SetsResult = () => {
   const params = useParams();
   const [dataObj, setDataObj] = useState({
@@ -41,7 +37,7 @@ const SetsResult = () => {
     <div>
       <NavBar />
       {dataObj?.details?.name === undefined ? null : <ResultHeader dataObj={dataObj}/>}
-      {dataObj?.minifig?.count === undefined ? null : <ResultFooter dataObj={dataObj}/>}
+      {dataObj?.minifig?.count === undefined || dataObj?.minifig?.count === 0 ? null : <ResultFooter dataObj={dataObj}/>}
     </div>
   );
 };

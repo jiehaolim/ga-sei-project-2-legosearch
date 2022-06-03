@@ -6,13 +6,9 @@ import ResultFooter from "../Components/ResultFooter";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-const SetsResult = () => {
+const MinifiguresResult = () => {
   const params = useParams();
-  const [setsDataObj, setSetsDataObj] = useState({
+  const [dataObj, setDataObj] = useState({
     details: "",
     minifig: "",
   });
@@ -29,7 +25,7 @@ const SetsResult = () => {
       );
       const dataMinifig = await responseMinifig.json();
 
-      setSetsDataObj({
+      setDataObj({
         details: dataDetails,
         minifig: dataMinifig,
       });
@@ -40,10 +36,10 @@ const SetsResult = () => {
   return (
     <div>
       <NavBar />
-      {setsDataObj?.details?.count === undefined ? null : <ResultHeader setsDataObj={setsDataObj}/>}
-      {setsDataObj?.minifig?.name === undefined ? null : <ResultFooter setsDataObj={setsDataObj}/>}
+      {dataObj?.details === undefined ? null : <ResultHeader dataObj={dataObj}/>}
+      {dataObj?.minifig.count === undefined ? null : <ResultFooter dataObj={dataObj}/>}
     </div>
   );
 };
 
-export default SetsResult;
+export default MinifiguresResult;

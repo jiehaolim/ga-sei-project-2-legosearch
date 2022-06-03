@@ -1,9 +1,10 @@
 const SearchBar = ({ placeholderValue, searchInput }) => {
+
   //Callback function to uplift the state
   const userInput = (searchTerm, pageNo) => {
     searchInput(searchTerm, 1);
   };
-
+  
   return (
     <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
       <div className="mt-6 w-96 relative flex items-center">

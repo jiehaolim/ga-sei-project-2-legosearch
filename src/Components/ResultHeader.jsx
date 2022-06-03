@@ -1,4 +1,24 @@
+import { useLocation } from "react-router-dom";
+
 const ResultHeader = ({ dataObj }) => {
+  const location = useLocation()
+
+  // create variables for the text
+  const productName = dataObj?.details?.name
+  let productTitle = ""
+  let productYear = ""
+  const productPieces = dataObj?.details?.num_parts
+  const productURL = dataObj?.details?.set_img_url
+  
+  // update the text according to the page
+  if (location.pathname.startsWith("/findsets")) {
+    productTitle = dataObj?.details?.set_num + " " + productName
+    productYear = dataObj?.details?.year
+  } else if (location.pathname.startsWith("/findminifigures")) {
+    productTitle = productName
+    productYear = dataObj?.details?.set_num
+  }
+
   return (
     <div>
       <div className="max-w-2xl mx-auto py-2 px-16 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
@@ -6,22 +26,22 @@ const ResultHeader = ({ dataObj }) => {
         <div className="lg:max-w-lg lg:self-end">
           <div className="mt-4">
             <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              {dataObj?.details?.set_num + " " + dataObj?.details?.name}
+              {productTitle}
             </h1>
           </div>
 
           <section aria-labelledby="information-heading" className="mt-4">
             <div className="flex items-center">
               <p className="text-lg text-gray-900 sm:text-xl">
-                {dataObj?.details?.year}
+                {productYear}
               </p>
               <p className="text-lg text-gray-900 sm:text-xl"></p>
             </div>
 
             <div className="mt-4 space-y-6">
-              <p className="text-base text-gray-500">
-                {dataObj?.details?.num_parts} pieces
-              </p>
+              {productPieces === 0 ? null : <p className="text-base text-gray-500">
+                {productPieces} pieces
+              </p>}
             </div>
           </section>
         </div>
@@ -30,8 +50,11 @@ const ResultHeader = ({ dataObj }) => {
         <div className="mt-10 lg:mt-0 lg:col-start-2 lg:row-span-2 lg:self-center">
           <div className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
             <img
-              src={dataObj?.details?.set_img_url}
-              alt={dataObj?.details?.name}
+              src={productURL === null
+                  ? "/img/No_image_available.png"
+                  : productURL
+              }
+              alt={productName}
               className="w-full h-full object-center object-cover"
             />
           </div>

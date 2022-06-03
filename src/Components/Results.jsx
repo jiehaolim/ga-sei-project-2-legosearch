@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom";
 
 const Results = ({ results }) => {
+  const location = useLocation();
+  const params = useParams();
+
   // showing number of results
   const dataCount = results.count
   // array for mapping the data
   const dataArray = results?.results;
+
   return (
     <div className="max-w-2xl mx-auto py-6 px-2 sm:py-6 sm:px-6 lg:max-w-7xl lg:px-8">
       <div className="md:flex md:items-center md:justify-between">
@@ -12,7 +17,6 @@ const Results = ({ results }) => {
         Showing {dataCount} related {dataCount === 1 ? "result" : "results" }
         </h2>
       </div>
-
       <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
         {(dataArray ?? []).map((product) => (
           <div key={product.set_num} className="group relative">
@@ -20,7 +24,7 @@ const Results = ({ results }) => {
               <img
                 src={
                   product.set_img_url === null
-                    ? "https://rebrickable.com/static/img/nil.png"
+                    ? "/img/No_image_available.png"
                     : product.set_img_url
                 }
                 alt={product.name}
@@ -28,7 +32,7 @@ const Results = ({ results }) => {
               />
             </div>
             <h3 className="mt-4 text-sm text-gray-700">
-              <Link to={`/findsets/${product.set_num}`}>
+              <Link to={`${location.pathname}/${product.set_num}`}>
                 <span className="absolute inset-0" />
                 {product.name}
               </Link>

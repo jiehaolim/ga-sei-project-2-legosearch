@@ -5,6 +5,7 @@ import FindMinifigures from "./Pages/FindMinifigures"
 import FindSets from "./Pages/FindSets"
 import MyCollection from "./Pages/MyCollection"
 import SetsResult from "./Pages/SetsResult"
+import MinifiguresResult from "./Pages/MinifiguresResult";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
             <Route path="/findsets" element={<FindSets />} />
             <Route path="/findsets/:setnum" element={<SetsResult />} />
             <Route path="/findminifigures" element={<FindMinifigures />} /> 
-            <Route path="/findminifigures/:setnum" element={<SetsResult />} />     
+            <Route path="/findminifigures/:setnum" element={<MinifiguresResult />} />     
             <Route path="/mycollection" element={<MyCollection />} />
           </Routes>
         </BrowserRouter>
