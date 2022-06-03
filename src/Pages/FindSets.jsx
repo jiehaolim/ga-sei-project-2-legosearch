@@ -40,23 +40,9 @@ const FindSets = () => {
   return (
     <div>
       <NavBar />
-      <SearchBar
-        placeholderValue={placeholderValue}
-        searchInput={searchInput}
-      />
-      {results?.count === 0 ? (
-        <NoResultsFound />
-      ) : searchObj.search !== "" ? (
-        <Results results={results} />
-      ) : null}
-      {results?.count === 0 ? null : results !== "" ? (
-        <Pagination
-          results={results}
-          pageSize={pageSize}
-          searchObj={searchObj}
-          changePage={changePage}
-        />
-      ) : null}
+      <SearchBar placeholderValue={placeholderValue} searchInput={searchInput}/>
+      {results?.count === 0 ? (<NoResultsFound />) : searchObj.search !== "" ? (<Results results={results} />) : null}
+      {results?.count === 0 ? null : results !== "" ? (<Pagination results={results} pageSize={pageSize} searchObj={searchObj} changePage={changePage}/>) : null}
     </div>
   );
 };

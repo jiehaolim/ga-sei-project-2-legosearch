@@ -1,12 +1,12 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const navigation = [
   { name: "Home", to: "/"},
-  { name: "Find Sets", to: "/FindSets"},
-  { name: "Find Minifigures", to: "/FindMinifigures"},
-  { name: "My Collection", to: "/MyCollection"},
+  { name: "Find Sets", to: "/findsets"},
+  { name: "Find Minifigures", to: "/findminifigures"},
+  { name: "My Collection", to: "/mycollection"},
 ];
 
 function classNames(...classes) {
@@ -15,7 +15,6 @@ function classNames(...classes) {
 
 const NavBar = () => {
   const location = useLocation()
-
   return (
     <Disclosure as="nav" className="bg-red-600">
       {({ open }) => (
@@ -24,7 +23,7 @@ const NavBar = () => {
             <div className="relative flex items-center justify-between h-16">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -38,12 +37,12 @@ const NavBar = () => {
                   <img
                     className="block lg:hidden h-10 w-auto"
                     src="./img/smileylogo.png"
-                    alt="Workflow"
+                    alt="lego search logo"
                   />
                   <img
                     className="hidden lg:block h-10 w-auto"
                     src="./img/smileylogo.png"
-                    alt="Workflow"
+                    alt="lego search logo"
                   />
                 </div>
                 <div className="hidden sm:block sm:ml-6">
