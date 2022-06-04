@@ -4,13 +4,12 @@ const SearchBar = ({ searchInput }) => {
   const location = useLocation()
 
   //Callback function to uplift the state
-  const userInput = (searchTerm, pageNo) => {
-    searchInput(searchTerm, 1);
+  const userInput = (searchTerm) => {
+    searchInput(searchTerm);
   };
   
-  let placeholderValue = ""
-  
   // update the text according to the page
+  let placeholderValue = ""
   if (location.pathname.startsWith("/findsets")) {
     placeholderValue = "LEGO Sets...";
   } else if (location.pathname.startsWith("/findminifigures")) {

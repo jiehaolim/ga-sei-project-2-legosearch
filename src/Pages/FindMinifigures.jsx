@@ -15,7 +15,7 @@ const FindMinifigures = () => {
   });
   const [results, setResults] = useState("");
 
-  const searchInput = (searchTerm, pageNum) => {
+  const searchInput = (searchTerm) => {
     setSearchObj({ ...searchObj, search: searchTerm, pageNo: 1 });
   };
 
