@@ -1,6 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 
-const ResultFooter = ({ dataObj }) => {
+const SubResult = ({ dataObj }) => {
   const location = useLocation()
 
   // create variables for the text
@@ -30,7 +30,7 @@ const ResultFooter = ({ dataObj }) => {
   // per tested most of the products number does not contain letters after the second dash "-"
   for (const product of productArray) {
     if (product.set_num.indexOf("-") !== product.set_num.lastIndexOf("-")) {
-      product.set_num = product.set_num.substring(0,(product.set_num.lastIndexOf("-")))
+      productArray.splice(productArray.indexOf(product),1)
     }
   }
 
@@ -72,4 +72,4 @@ const ResultFooter = ({ dataObj }) => {
   );
 };
 
-export default ResultFooter;
+export default SubResult;

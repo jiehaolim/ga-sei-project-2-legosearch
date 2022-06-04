@@ -5,7 +5,6 @@ import Pagination from "../Components/Pagination";
 import NoResultsFound from "../Components/NoResultsFound";
 import { useEffect, useState } from "react";
 
-const placeholderValue = "LEGO Sets...";
 const API_KEY = import.meta.env.VITE_API_KEY;
 const pageSize = 32;
 
@@ -40,7 +39,7 @@ const FindSets = () => {
   return (
     <div>
       <NavBar />
-      <SearchBar placeholderValue={placeholderValue} searchInput={searchInput}/>
+      <SearchBar searchInput={searchInput}/>
       {results?.count === 0 ? (<NoResultsFound />) : searchObj.search !== "" ? (<Results results={results} />) : null}
       {results?.count === 0 ? null : results !== "" ? (<Pagination results={results} pageSize={pageSize} searchObj={searchObj} changePage={changePage}/>) : null}
     </div>

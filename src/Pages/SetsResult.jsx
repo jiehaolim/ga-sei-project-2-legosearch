@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "../Components/NavBar";
-import ResultHeader from "../Components/ResultHeader";
-import ResultFooter from "../Components/ResultFooter";
+import MainResult from "../Components/MainResult";
+import SubResult from "../Components/SubResult";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -36,8 +36,8 @@ const SetsResult = () => {
   return (
     <div>
       <NavBar />
-      {dataObj?.details?.name === undefined ? null : <ResultHeader dataObj={dataObj}/>}
-      {dataObj?.minifig?.count === undefined || dataObj?.minifig?.count === 0 ? null : <ResultFooter dataObj={dataObj}/>}
+      {dataObj?.details?.name === undefined ? null : <MainResult dataObj={dataObj}/>}
+      {dataObj?.minifig?.count === undefined || dataObj?.minifig?.count === 0 ? null : <SubResult dataObj={dataObj}/>}
     </div>
   );
 };

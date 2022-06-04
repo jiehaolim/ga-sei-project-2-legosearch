@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-const ResultHeader = ({ dataObj }) => {
+const MainResult = ({ dataObj }) => {
   const location = useLocation()
 
   // create variables for the text
@@ -76,4 +76,4 @@ const ResultHeader = ({ dataObj }) => {
   );
 };
 
-export default ResultHeader;
+export default MainResult;

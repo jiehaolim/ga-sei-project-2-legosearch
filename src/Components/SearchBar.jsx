@@ -1,10 +1,22 @@
-const SearchBar = ({ placeholderValue, searchInput }) => {
+import { useLocation } from "react-router-dom";
+
+const SearchBar = ({ searchInput }) => {
+  const location = useLocation()
 
   //Callback function to uplift the state
   const userInput = (searchTerm, pageNo) => {
     searchInput(searchTerm, 1);
   };
   
+  let placeholderValue = ""
+  
+  // update the text according to the page
+  if (location.pathname.startsWith("/findsets")) {
+    placeholderValue = "LEGO Sets...";
+  } else if (location.pathname.startsWith("/findminifigures")) {
+    placeholderValue = "LEGO Minifigures..."
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
       <div className="mt-6 w-96 relative flex items-center">
