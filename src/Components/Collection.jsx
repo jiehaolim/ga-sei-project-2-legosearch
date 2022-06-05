@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 
 const Collection = ({ titleName, collectionObj }) => {
-  console.log(collectionObj)
   
   // create variables for the text
   let title = titleName
@@ -20,7 +19,6 @@ const Collection = ({ titleName, collectionObj }) => {
       </div>
       <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
         {(productArray ?? []).map((product) => (
-        <div key={product.set_num} className="mt-2 flex flex-col justify-between">
           <div key={product[productName]} className="group relative">
             <div className="mt-4 w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
               <img
@@ -44,7 +42,6 @@ const Collection = ({ titleName, collectionObj }) => {
               Quantity: {product[productQty]}
             </p>)}
           </div>
-        </div>
         ))}
       </div>
     </div>

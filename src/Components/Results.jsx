@@ -25,7 +25,6 @@ const Results = ({ results, addDetailsToCollection }) => {
       let minifigArray = [];
       // fetch minfigures from the set
       let minifigDetails = await fetchData(id);
-      console.log(minifigDetails.results)
       // make minfigures data into an array
       if (minifigDetails.count === 0) {
       } else {

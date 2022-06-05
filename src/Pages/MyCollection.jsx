@@ -41,8 +41,6 @@ const MyCollection = ({collectionObj}) => {
       }
     }
   }
-  console.log(computedMinifigs)
-  console.log(computedSets)
 
   // title for 2 components
   const titleSets = computedSets.length === 1 && computedSets[0].qty === 1 ? "LEGO set collected" : "LEGO sets collected"

@@ -17,7 +17,7 @@ const Home = () => {
                       LEGO means play well.
                     </p>
                     <p className="mt-4 text-xl text-gray-600">
-                      Start searching by sets or minifigures.
+                      Start searching LEGO by sets or minifigures.
                     </p>
                     <p className="mt-4 text-xl text-gray-600">
                       You can also create your own collection.
