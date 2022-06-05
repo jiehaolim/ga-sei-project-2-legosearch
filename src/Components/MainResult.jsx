@@ -1,10 +1,11 @@
 import { useLocation } from "react-router-dom";
 
-const MainResult = ({ dataObj }) => {
+const MainResult = ({ dataObj, addDetailsToCollection }) => {
   const location = useLocation()
 
   // create variables for the text
   const productName = dataObj?.details?.name
+  const productNum = dataObj?.details?.set_num
   let productTitle = ""
   let productYear = ""
   const productPieces = dataObj?.details?.num_parts
@@ -12,11 +13,16 @@ const MainResult = ({ dataObj }) => {
   
   // update the text according to the page
   if (location.pathname.startsWith("/findsets")) {
-    productTitle = dataObj?.details?.set_num + " " + productName
+    productTitle = productNum + " " + productName
     productYear = dataObj?.details?.year
   } else if (location.pathname.startsWith("/findminifigures")) {
     productTitle = productName
-    productYear = dataObj?.details?.set_num
+    productYear = productNum
+  }
+
+  // callback function trigger the button
+  const addToCollection = () => {
+    addDetailsToCollection()
   }
 
   return (
@@ -50,10 +56,7 @@ const MainResult = ({ dataObj }) => {
         <div className="mt-10 lg:mt-0 lg:col-start-2 lg:row-span-2 lg:self-center">
           <div className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
             <img
-              src={productURL === null
-                  ? "/img/No_image_available.png"
-                  : productURL
-              }
+              src={productURL === null ? "/img/No_image_available.png" : productURL}
               alt={productName}
               className="w-full h-full object-center object-cover"
             />
@@ -64,10 +67,11 @@ const MainResult = ({ dataObj }) => {
         <form>
           <div className="mt-6">
             <button
-              type="submit"
+              type="button"
               className="w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"
-            >
-              Add to my collection
+              onClick={(event) => {addToCollection();}}
+              >
+              Add to My Collection
             </button>
           </div>
         </form>

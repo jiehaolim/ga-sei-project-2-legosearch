@@ -28,6 +28,7 @@ const SubResult = ({ dataObj }) => {
 
   // find the second dash "-" in the productNum to ensure both minifigures and set API are linked up properly
   // per tested most of the products number does not contain letters after the second dash "-"
+  // splice is ok in the scenario as it splices the current product in the array -> ownself splice ownself
   for (const product of productArray) {
     if (product.set_num.indexOf("-") !== product.set_num.lastIndexOf("-")) {
       productArray.splice(productArray.indexOf(product),1)

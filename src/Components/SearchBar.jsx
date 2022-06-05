@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 const SearchBar = ({ searchInput }) => {
   const location = useLocation()
 
-  //Callback function to uplift the state
+  // callback function to uplift the state
   const userInput = (searchTerm) => {
     searchInput(searchTerm);
   };
@@ -17,7 +17,7 @@ const SearchBar = ({ searchInput }) => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
+    <div className="max-w-2xl mx-auto py-2 px-2 sm:py-2 sm:px-6 lg:max-w-7xl lg:px-8">
       <div className="mt-6 w-96 relative flex items-center">
         <input
           type="text"

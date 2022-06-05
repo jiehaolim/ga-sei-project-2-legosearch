@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 const API_KEY = import.meta.env.VITE_API_KEY;
 const pageSize = 32;
 
-const FindMinifigures = () => {
+const FindMinifigures = ({addItemToCollection}) => {
   const [searchObj, setSearchObj] = useState({
     search: "",
     pageNo: 1,
@@ -36,11 +36,15 @@ const FindMinifigures = () => {
     }
   }, [searchObj]);
 
+  const addDetailsToCollection = (item) => {
+    addItemToCollection(item)
+  }
+
   return (
     <div>
       <NavBar />
       <SearchBar searchInput={searchInput}/>
-      {results?.count === 0 ? (<NoResultsFound />) : searchObj.search !== "" ? (<Results results={results} />) : null}
+      {results?.count === 0 ? (<NoResultsFound />) : searchObj.search !== "" ? (<Results results={results} addDetailsToCollection={addDetailsToCollection} />) : null}
       {results?.count === 0 ? null : results !== "" ? (<Pagination results={results} pageSize={pageSize} searchObj={searchObj} changePage={changePage}/>) : null}
     </div>
   );

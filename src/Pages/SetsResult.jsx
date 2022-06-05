@@ -6,7 +6,7 @@ import SubResult from "../Components/SubResult";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const SetsResult = () => {
+const SetsResult = ({addItemToCollection}) => {
   const params = useParams();
   const [dataObj, setDataObj] = useState({
     details: "",
@@ -32,11 +32,23 @@ const SetsResult = () => {
     };
     fetchData();
   }, []);
-
+  
+  const addDetailsToCollection = () => {
+    let minifigArray = [];
+    for (const element of dataObj.minifig.results) {
+      minifigArray.push({id: element.set_num, name: element.set_name, imageURL: element.set_img_url, qty: element.quantity,});
+    }
+    let item = [
+      { sets: [{ id: dataObj.details.set_num, name: dataObj.details.name, imageURL: dataObj.details.set_img_url, qty: 1 }] },
+      { minifigs: minifigArray },
+    ];
+    addItemToCollection(item)
+  }
+  
   return (
     <div>
       <NavBar />
-      {dataObj?.details?.name === undefined ? null : <MainResult dataObj={dataObj}/>}
+      {dataObj?.details?.name === undefined ? null : <MainResult dataObj={dataObj} addDetailsToCollection={addDetailsToCollection}/>}
       {dataObj?.minifig?.count === undefined || dataObj?.minifig?.count === 0 ? null : <SubResult dataObj={dataObj}/>}
     </div>
   );

@@ -51,9 +51,7 @@ const NavBar = () => {
                       <Link
                         key={item.name}
                         className={classNames(
-                          item.to === location.pathname
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-yellow-400 hover:text-white",
+                          item.to === location.pathname ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-yellow-400 hover:text-white",
                           "px-3 py-2 rounded-md text-sm font-medium"
                         )}
                         aria-current={item.to === location.pathname ? "page" : undefined}
@@ -74,9 +72,7 @@ const NavBar = () => {
                 <Disclosure.Button
                   key={item.name}
                   className={classNames(
-                    item.to === location.pathname
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-yellow-400 hover:text-white",
+                    item.to === location.pathname ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-yellow-400 hover:text-white",
                     "block px-3 py-2 rounded-md text-base font-medium"
                   )}
                   aria-current={item.to === location.pathname ? "page" : undefined}
