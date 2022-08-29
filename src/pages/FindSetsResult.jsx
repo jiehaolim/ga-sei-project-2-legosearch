@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NavBar from "../Components/NavBar";
-import MainResult from "../Components/MainResult";
-import SubResult from "../Components/SubResult";
+import ResultMain from "../components/ResultMain";
+import ResultSub from "../components/ResultSub";
+import NavBar from "../components-layout/NavBar";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const SetsResult = ({addItemToCollection}) => {
+const FindSetsResult = ({addItemToCollection}) => {
   const params = useParams();
   const [dataObj, setDataObj] = useState({
     details: "",
@@ -48,10 +48,10 @@ const SetsResult = ({addItemToCollection}) => {
   return (
     <div>
       <NavBar />
-      {dataObj?.details?.name === undefined ? null : <MainResult dataObj={dataObj} addDetailsToCollection={addDetailsToCollection}/>}
-      {dataObj?.minifig?.count === undefined || dataObj?.minifig?.count === 0 ? null : <SubResult dataObj={dataObj}/>}
+      {dataObj?.details?.name === undefined ? null : <ResultMain dataObj={dataObj} addDetailsToCollection={addDetailsToCollection}/>}
+      {dataObj?.minifig?.count === undefined || dataObj?.minifig?.count === 0 ? null : <ResultSub dataObj={dataObj}/>}
     </div>
   );
 };
 
-export default SetsResult;
+export default FindSetsResult;

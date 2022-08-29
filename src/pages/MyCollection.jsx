@@ -1,5 +1,5 @@
-import NavBar from "../Components/NavBar";
-import Collection from "../destroy/Collection";
+import Collection from "../components/Collection";
+import NavBar from "../components-layout/NavBar";
 
 const MyCollection = ({collectionObj}) => {
   // compute the unique sets and unqiue minifigures in the state

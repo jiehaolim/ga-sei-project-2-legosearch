@@ -1,12 +1,12 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
-import Home from "./Pages/Home";
-import FindMinifigures from "./destroy/FindMinifigures";
-import FindSets from "./Pages/FindSets";
-import MyCollection from "./Pages/MyCollection";
-import SetsResult from "./Pages/SetsResult";
-import MinifiguresResult from "./Pages/MinifiguresResult";
+import Home from "./pages/Home";
+import FindMinifigures from "./pages/FindMinifigures";
+import FindMinifiguresResult from "./pages/FindMinifiguresResult";
+import FindSets from "./pages/FindSets";
+import FindSetsResult from "./pages/FindSetsResult";
+import MyCollection from "./pages/MyCollection";
 import { Fragment} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/outline'
@@ -49,9 +49,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/findsets" element={<FindSets addItemToCollection={addItemToCollection} />}/>
-          <Route path="/findsets/:setnum" element={<SetsResult addItemToCollection={addItemToCollection} />}/>
+          <Route path="/findsets/:setnum" element={<FindSetsResult addItemToCollection={addItemToCollection} />}/>
           <Route path="/findminifigures" element={<FindMinifigures addItemToCollection={addItemToCollection} />}/>
-          <Route path="/findminifigures/:setnum" element={<MinifiguresResult addItemToCollection={addItemToCollection} />}/>
+          <Route path="/findminifigures/:setnum" element={<FindMinifiguresResult addItemToCollection={addItemToCollection} />}/>
           <Route path="/mycollection" element={<MyCollection collectionObj={collectionObj} />}/>
         </Routes>
       </BrowserRouter>

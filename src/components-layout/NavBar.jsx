@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import smileyLogo from "../img/smileylogo.png"
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
@@ -36,12 +37,12 @@ const NavBar = () => {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-10 w-auto"
-                    src= "/img/smileylogo.png"
+                    src= {smileyLogo}
                     alt="lego search logo"
                   />
                   <img
                     className="hidden lg:block h-10 w-auto"
-                    src="/img/smileylogo.png"
+                    src= {smileyLogo}
                     alt="lego search logo"
                   />
                 </div>

@@ -1,6 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
+import noImageAvail from "../img/no-image-avail.png"
 
-const SubResult = ({ dataObj }) => {
+const ResultSub = ({ dataObj }) => {
   const location = useLocation()
 
   // create variables for the text
@@ -49,7 +50,7 @@ const SubResult = ({ dataObj }) => {
               <img
                 src={
                   product[productURL] === null
-                    ? "/img/No_image_available.png"
+                    ? noImageAvail
                     : product[productURL]
                 }
                 alt={product[productName]}
@@ -73,4 +74,4 @@ const SubResult = ({ dataObj }) => {
   );
 };
 
-export default SubResult;
+export default ResultSub;

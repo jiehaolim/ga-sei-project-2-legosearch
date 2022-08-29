@@ -1,8 +1,8 @@
-import NavBar from "../Components/NavBar";
-import SearchBar from "../Components/SearchBar";
-import Results from "../Components/Results";
-import Pagination from "../Components/Pagination";
-import NoResultsFound from "../Components/NoResultsFound";
+import SearchBar from "../components/SearchBar";
+import SearchResults from "../components/SearchResults";
+import NavBar from "../components-layout/NavBar";
+import Pagination from "../components-layout/Pagination";
+import NoResultsFound from "../components/NoResultsFound";
 import { useEffect, useState } from "react";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -44,7 +44,7 @@ const FindSets = ({addItemToCollection}) => {
     <div>
       <NavBar />
       <SearchBar searchInput={searchInput}/>
-      {results?.count === 0 ? (<NoResultsFound />) : searchObj.search !== "" ? (<Results results={results} addDetailsToCollection={addDetailsToCollection}/>) : null}
+      {results?.count === 0 ? (<NoResultsFound />) : searchObj.search !== "" ? (<SearchResults results={results} addDetailsToCollection={addDetailsToCollection}/>) : null}
       {results?.count === 0 ? null : results !== "" ? (<Pagination results={results} pageSize={pageSize} searchObj={searchObj} changePage={changePage}/>) : null}
     </div>
   );

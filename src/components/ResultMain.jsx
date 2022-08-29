@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
+import noImageAvail from "../img/no-image-avail.png"
 
-const MainResult = ({ dataObj, addDetailsToCollection }) => {
+const ResultMain = ({ dataObj, addDetailsToCollection }) => {
   const location = useLocation()
 
   // create variables for the text
@@ -56,7 +57,7 @@ const MainResult = ({ dataObj, addDetailsToCollection }) => {
         <div className="mt-10 lg:mt-0 lg:col-start-2 lg:row-span-2 lg:self-center">
           <div className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
             <img
-              src={productURL === null ? "/img/No_image_available.png" : productURL}
+              src={productURL === null ? noImageAvail : productURL}
               alt={productName}
               className="w-full h-full object-center object-cover"
             />
@@ -80,4 +81,4 @@ const MainResult = ({ dataObj, addDetailsToCollection }) => {
   );
 };
 
-export default MainResult;
+export default ResultMain;

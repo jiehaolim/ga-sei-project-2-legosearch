@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import noImageAvail from "../img/no-image-avail.png"
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const Results = ({ results, addDetailsToCollection }) => {
+const SearchResults = ({ results, addDetailsToCollection }) => {
   const location = useLocation();
 
   // showing number of results
@@ -64,7 +64,7 @@ const Results = ({ results, addDetailsToCollection }) => {
                 <img
                   src={
                     product.set_img_url === null
-                      ? "/img/No_image_available.png"
+                      ? noImageAvail
                       : product.set_img_url
                   }
                   alt={product.name}
@@ -101,4 +101,4 @@ const Results = ({ results, addDetailsToCollection }) => {
   );
 };
 
-export default Results;
+export default SearchResults;
