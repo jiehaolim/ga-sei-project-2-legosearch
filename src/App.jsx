@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Home from "./Pages/Home";
-import FindMinifigures from "./Pages/FindMinifigures";
+import FindMinifigures from "./destroy/FindMinifigures";
 import FindSets from "./Pages/FindSets";
 import MyCollection from "./Pages/MyCollection";
 import SetsResult from "./Pages/SetsResult";
