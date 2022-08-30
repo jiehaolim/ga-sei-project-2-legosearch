@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ResultMain from "../components/ResultMain";
 import ResultSub from "../components/ResultSub";
-import NavBar from "../components-layout/NavBar";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -47,7 +46,6 @@ const FindSetsResult = ({addItemToCollection}) => {
   
   return (
     <div>
-      <NavBar />
       {dataObj?.details?.name === undefined ? null : <ResultMain dataObj={dataObj} addDetailsToCollection={addDetailsToCollection}/>}
       {dataObj?.minifig?.count === undefined || dataObj?.minifig?.count === 0 ? null : <ResultSub dataObj={dataObj}/>}
     </div>

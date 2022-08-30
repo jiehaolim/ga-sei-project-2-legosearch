@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
 import SearchResultsNotFound from "../components/SearchResultsNotFound";
-import NavBar from "../components-layout/NavBar";
 import Pagination from "../components-layout/Pagination";
 
 
@@ -43,7 +42,6 @@ const FindMinifigures = ({addItemToCollection}) => {
 
   return (
     <div>
-      <NavBar />
       <SearchBar searchInput={searchInput}/>
       {results?.count === 0 ? (<SearchResultsNotFound />) : searchObj.search !== "" ? (<SearchResults results={results} addDetailsToCollection={addDetailsToCollection} />) : null}
       {results?.count === 0 ? null : results !== "" ? (<Pagination results={results} pageSize={pageSize} searchObj={searchObj} changePage={changePage}/>) : null}

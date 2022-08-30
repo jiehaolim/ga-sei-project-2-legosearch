@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NavBar from "./pages/NavBar";
 import Home from "./pages/Home";
 import FindMinifigures from "./pages/FindMinifigures";
 import FindMinifiguresResult from "./pages/FindMinifiguresResult";
@@ -49,12 +50,14 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/findsets" element={<FindSets addItemToCollection={addItemToCollection} />}/>
-          <Route path="/findsets/:setnum" element={<FindSetsResult addItemToCollection={addItemToCollection} />}/>
-          <Route path="/findminifigures" element={<FindMinifigures addItemToCollection={addItemToCollection} />}/>
-          <Route path="/findminifigures/:setnum" element={<FindMinifiguresResult addItemToCollection={addItemToCollection} />}/>
-          <Route path="/mycollection" element={<MyCollection collectionObj={collectionObj} />}/>
+          <Route path="/" element={<NavBar />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/findsets" element={<FindSets addItemToCollection={addItemToCollection} />}/>
+            <Route path="/findsets/:setnum" element={<FindSetsResult addItemToCollection={addItemToCollection} />}/>
+            <Route path="/findminifigures" element={<FindMinifigures addItemToCollection={addItemToCollection} />}/>
+            <Route path="/findminifigures/:setnum" element={<FindMinifiguresResult addItemToCollection={addItemToCollection} />}/>
+            <Route path="/mycollection" element={<MyCollection collectionObj={collectionObj} />}/>
+          </Route>
         </Routes>
       </BrowserRouter>
       <Modal open={open} setOpen={setOpen} offModalApp={offModalApp}/>

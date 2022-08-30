@@ -1,9 +1,6 @@
-import NavBar from "../components-layout/NavBar";
-
 const Home = () => {
   return (
     <div>
-      <NavBar />
       <div className="relative">
             <div aria-hidden="true" className="hidden absolute w-1/2 h-full lg:block" />
             <div className="relative bg-gray-100 lg:bg-transparent">

@@ -1,5 +1,4 @@
 import Collection from "../components/Collection";
-import NavBar from "../components-layout/NavBar";
 
 const MyCollection = ({collectionObj}) => {
   // compute the unique sets and unqiue minifigures in the state
@@ -48,7 +47,6 @@ const MyCollection = ({collectionObj}) => {
 
   return (
     <div>
-      <NavBar />
       {computedSets.length === 0 ? null : <Collection titleName={titleSets} collectionObj={computedSets} />}
       {computedMinifigs.length === 0 ? null : <Collection titleName={titleMinifigs} collectionObj={computedMinifigs} />}
     </div>
