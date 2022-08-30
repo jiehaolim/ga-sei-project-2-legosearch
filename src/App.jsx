@@ -1,6 +1,6 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import FindMinifigures from "./pages/FindMinifigures";
 import FindMinifiguresResult from "./pages/FindMinifiguresResult";

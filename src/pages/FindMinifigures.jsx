@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
+import SearchResultsNotFound from "../components/SearchResultsNotFound";
 import NavBar from "../components-layout/NavBar";
 import Pagination from "../components-layout/Pagination";
-import NoResultsFound from "../components/NoResultsFound";
+
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const pageSize = 32;
@@ -44,7 +45,7 @@ const FindMinifigures = ({addItemToCollection}) => {
     <div>
       <NavBar />
       <SearchBar searchInput={searchInput}/>
-      {results?.count === 0 ? (<NoResultsFound />) : searchObj.search !== "" ? (<SearchResults results={results} addDetailsToCollection={addDetailsToCollection} />) : null}
+      {results?.count === 0 ? (<SearchResultsNotFound />) : searchObj.search !== "" ? (<SearchResults results={results} addDetailsToCollection={addDetailsToCollection} />) : null}
       {results?.count === 0 ? null : results !== "" ? (<Pagination results={results} pageSize={pageSize} searchObj={searchObj} changePage={changePage}/>) : null}
     </div>
   );

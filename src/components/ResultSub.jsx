@@ -1,5 +1,5 @@
 import { useLocation, Link } from "react-router-dom";
-import noImageAvail from "../img/no-image-avail.png"
+import noImageAvail from "../img/noimgavail.png"
 
 const ResultSub = ({ dataObj }) => {
   const location = useLocation()
