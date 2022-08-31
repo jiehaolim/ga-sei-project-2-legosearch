@@ -14,7 +14,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const NavBarComponent = () => {
+const NavBar = () => {
   const location = useLocation()
   return (
     <Disclosure as="nav" className="bg-red-600">
@@ -89,4 +89,4 @@ const NavBarComponent = () => {
   );
 };
 
-export default NavBarComponent;
+export default NavBar;
