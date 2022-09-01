@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import SearchGrp from "../../components/SearchGrp";
 
 const SetsHome = () => {
   return (
     <>
-      <h2>Set Home</h2>
+      <SearchGrp />
       <Outlet />
     </>
   );
