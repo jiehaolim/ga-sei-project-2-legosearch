@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 const API_KEY = import.meta.env.VITE_API_KEY
 
-const DropDownList = () => {
+const ThemeDropDownList = () => {
   const [themes, setThemes] = useState([])
+  const [theme, setTheme] = useState("Theme")
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,10 +22,10 @@ const DropDownList = () => {
   
   return (
     <select name="themes" id="themes">
-      <option value="theme" key="theme">Theme</option>
+      <option value="theme" key="theme">{theme}</option>
       {themes.map((theme, index) => <option value={theme.name} key={index}>{theme.name}</option>)} 
     </select>
   );
 };
 
-export default DropDownList
+export default ThemeDropDownList

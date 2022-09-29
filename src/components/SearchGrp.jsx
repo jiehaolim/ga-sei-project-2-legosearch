@@ -1,4 +1,4 @@
-import DropDownList from "../components-layout/DropDownList";
+import SearchBar from "../components-layout/SearchBar"
 
 const SearchGrp = () => {
   
@@ -10,15 +10,7 @@ const SearchGrp = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <input
-            type="text"
-            placeholder="Search for LEGO sets"
-            name="search"
-            id="search"
-            value=""
-            onChange={() => handleChange(event, "search")}
-          />
-          <DropDownList />
+          <SearchBar />
           <br />
           <button>Search</button>
         </fieldset>
