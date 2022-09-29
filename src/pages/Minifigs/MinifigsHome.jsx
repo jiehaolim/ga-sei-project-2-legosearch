@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import SearchGrp from "../../components/SearchGrp";
 
 const MinifigsHome = () => {
   return (
     <>
-      <h2>Minifigures Home</h2>
+      <SearchGrp />
       <Outlet />
     </>
   );
