@@ -1,7 +1,7 @@
 const SetsHome = () => {
   return (
     <>
-      <div>home body</div>
+      <div>sets body</div>
     </>
   );
 };

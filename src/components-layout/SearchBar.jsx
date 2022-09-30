@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 
 const SearchBar = ({ searchObj, handleChange }) => {
   const location = useLocation();
-  
+
   // update the text according to the page
   let placeholderValue = "";
   if (location.pathname.startsWith("/sets")) {
@@ -13,13 +13,15 @@ const SearchBar = ({ searchObj, handleChange }) => {
 
   return (
     <>
-      <input type="text" 
-      id="search" 
-      name="search" 
-      required 
-      placeholder={"Search for " + placeholderValue} 
-      value={searchObj.term}
-      onChange={() => handleChange("term", event.target.value)}></input>
+      <input
+        type="text"
+        id="search"
+        name="search"
+        required
+        placeholder={"Search for " + placeholderValue}
+        value={searchObj.term}
+        onChange={() => handleChange("term", event.target.value)}
+      ></input>
     </>
   );
 };
