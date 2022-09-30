@@ -25,14 +25,14 @@ function App() {
             {/* Sets */}
             <Route path="/sets" element={<SetsHome />}>
               <Route path="/sets" element={<SetsHomeBody />} />
-              <Route path="/sets/search=:searchterm/page=:pagenum" element={<SetsResults />} />
+                <Route path="search=:searchterm/theme=:theme/year=:year" element={<SetsResults />} />
             </Route>
             <Route path="/sets/result/:setnum" element={<SetsSingleResult />}/>
             
             {/* Minifigures */}
             <Route path="/minifigures" element={<MinifigsHome />}>
               <Route path="/minifigures" element={<MinifigsHomeBody />} />
-              <Route path="/minifigures/search=:searchterm/page=:pagenum" element={<MinifigsResults />} />
+                <Route path="search=:searchterm/page=:pagenum" element={<MinifigsResults />} />
             </Route>
             <Route path="/minifigures/result/:setnum" element={<MinifigsSingleResults />}/>
             

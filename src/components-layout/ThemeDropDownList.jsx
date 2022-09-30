@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react"
 
-const API_KEY = import.meta.env.VITE_API_KEY
-
-const ThemeDropDownList = () => {
+const ThemeDropDownList = ({ handleChange }) => {
+  const API_KEY = import.meta.env.VITE_API_KEY
   const [themes, setThemes] = useState([])
   const [theme, setTheme] = useState("Theme")
 
   useEffect(() => {
     const fetchData = async () => {
-    // max data pull is 1000 but lego only have 446 themes as now 1-Sep-22
+    // max data pull is 1000 but lego only have < 500 themes as now 30-Sep-22
     const pageSize = 1000;
     const response = await fetch(
       `https://rebrickable.com/api/v3/lego/themes/?key=${API_KEY}&page_size=${pageSize}`
@@ -22,9 +21,9 @@ const ThemeDropDownList = () => {
   }, [])
   
   return (
-    <select name="themes" id="themes">
-      <option value="theme" key="theme">{theme}</option>
-      {themes.map((theme, index) => <option value={theme.name} key={index}>{theme.name}</option>)} 
+    <select name="themes" onChange={() => handleChange("theme", event.target.value)}>
+      <option value="" key="theme">{theme}</option>
+      {themes.map((theme, index) => <option value={theme.id} key={index}>{theme.name}</option>)} 
     </select>
   );
 };

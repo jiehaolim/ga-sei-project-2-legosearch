@@ -11,10 +11,6 @@ const SearchBar = ({ searchObj, handleChange }) => {
     placeholderValue = "LEGO Minifigures...";
   }
 
-  const handleChangeSB = (key, event) => {
-    handleChange(key, event)
-  }
-  
   return (
     <>
       <input type="text" 
@@ -23,7 +19,7 @@ const SearchBar = ({ searchObj, handleChange }) => {
       required 
       placeholder={"Search for " + placeholderValue} 
       value={searchObj.term}
-      onChange={() => handleChangeSB("term", event)}></input>
+      onChange={() => handleChange("term", event.target.value)}></input>
     </>
   );
 };
