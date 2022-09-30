@@ -19,12 +19,12 @@ const SetsSearch = () => {
 
     // fetch data
     const fetchData = async () => {
-
       const response = await fetch(
         `https://rebrickable.com/api/v3/lego/sets/?key=${API_KEY}&search=${searchTerm}&theme_id=${searchTheme}&min_year=${searchYear}&max_year=${searchYear}&page_size=${pageSize}`
       )
       const data = await response.json();
-      console.log(data)}
+      console.log(data)
+      setResult(data)}
       fetchData()
   },[searchParams])
  
@@ -32,6 +32,14 @@ const SetsSearch = () => {
   return (
     <>
       <div>main results</div>
+      {result.results.map((element) => <div key={element.set_num}>
+        <div>{element.set_num}</div>
+        <div>{element.name}</div>
+        <div>{element.year}</div>
+        <div>{element.num_parts}</div>
+        <div>{element.set_img_url}</div>
+        <br />
+        </div>)}
     </>
   );
 };
