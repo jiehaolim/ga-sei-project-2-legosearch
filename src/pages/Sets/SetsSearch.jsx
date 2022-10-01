@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { useOutletContext, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const SetsSearch = () => {
   const API_KEY = import.meta.env.VITE_API_KEY
   const [searchParams, setSearchParams] = useSearchParams()
-  const [searchObj, setSearchObj] = useOutletContext()
-  const [result, setResult] = useState([])
+  const [result, setResult] = useState({results:[]})
 
   // obtain the search params
   const searchTerm = searchParams.get("term")
@@ -14,10 +13,6 @@ const SetsSearch = () => {
   const pageSize = 40;
 
   useEffect (() => {
-    // set search params in URL
-    setSearchParams(searchObj)
-
-    // fetch data
     const fetchData = async () => {
       const response = await fetch(
         `https://rebrickable.com/api/v3/lego/sets/?key=${API_KEY}&search=${searchTerm}&theme_id=${searchTheme}&min_year=${searchYear}&max_year=${searchYear}&page_size=${pageSize}`
@@ -28,7 +23,6 @@ const SetsSearch = () => {
       fetchData()
   },[searchParams])
  
-
   return (
     <>
       <div>main results</div>

@@ -32,10 +32,10 @@ function App() {
             
             {/* Minifigures */}
             <Route path="minifigures" element={<MinifigsHome />}>
-              <Route path="minifigures" element={<MinifigsHomeBody />} />
-                <Route path="search=:searchterm/page=:pagenum" element={<MinifigsSearch />} />
+              <Route path="" element={<MinifigsHomeBody />} />
+              <Route path="search" element={<MinifigsSearch />} />
+              <Route path="result/:setnum" element={<MinifigsSingleResults />}/>
             </Route>
-            <Route path="minifigures/result/:setnum" element={<MinifigsSingleResults />}/>
             
             {/* Wishlist */}
             <Route path="wishlist" element={<WishlistHome />} />
