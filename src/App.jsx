@@ -26,16 +26,16 @@ function App() {
             <Route path="sets" element={<SetsHome />}>
               <Route path="" element={<SetsHomeBody />} />
               <Route path="search" element={<SetsSearch />} />
-              <Route path="result/:setnum" element={<SetsSingleResult />}/>
             </Route>
+            <Route path="sets/result/:setnum" element={<SetsSingleResult />}/>
             
             
             {/* Minifigures */}
             <Route path="minifigures" element={<MinifigsHome />}>
               <Route path="" element={<MinifigsHomeBody />} />
               <Route path="search" element={<MinifigsSearch />} />
-              <Route path="result/:setnum" element={<MinifigsSingleResults />}/>
             </Route>
+            <Route path="minifigures/result/:setnum" element={<MinifigsSingleResults />}/>
             
             {/* Wishlist */}
             <Route path="wishlist" element={<WishlistHome />} />

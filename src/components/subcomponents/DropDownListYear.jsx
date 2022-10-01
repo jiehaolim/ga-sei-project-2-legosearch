@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const YearDropDownList = ({ handleChange }) => {
+const DropDownListYear = ({ handleChange }) => {
   const [year, setYear] = useState("Year")
   
   // year lego started
@@ -22,4 +22,4 @@ const YearDropDownList = ({ handleChange }) => {
   );
 };
 
-export default YearDropDownList
+export default DropDownListYear

@@ -17,7 +17,6 @@ const SearchBar = ({ searchObj, handleChange }) => {
         type="text"
         id="search"
         name="search"
-        required
         placeholder={"Search for " + placeholderValue}
         value={searchObj.term}
         onChange={() => handleChange("term", event.target.value)}

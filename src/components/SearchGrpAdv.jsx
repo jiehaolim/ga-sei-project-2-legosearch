@@ -1,9 +1,10 @@
 import { useLocation, useNavigate, createSearchParams } from "react-router-dom";
 import SearchBar from "./subcomponents/SearchBar";
 import DropDownListTheme from "./subcomponents/DropDownListTheme"
-import DropDownListYear from "./subcomponents/DropDownListYear"
+import RangeYears from "./subcomponents/RangeYears"
+import RangeParts from "./subcomponents/RangeParts"
 
-const SearchGrp = ({ searchObj, handleChange, handleSearchType }) => {
+const SearchGrpAdv = ({ searchObj, handleChange, handleSearchType }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -22,15 +23,19 @@ const SearchGrp = ({ searchObj, handleChange, handleSearchType }) => {
         <fieldset>
           <SearchBar searchObj={searchObj} handleChange={handleChange} />
           <DropDownListTheme searchObj={searchObj} handleChange={handleChange} />
-          <DropDownListYear handleChange={handleChange} />
+          <br />
+          <RangeYears />
+          <br />
+          <RangeParts />
+          <br />
           <button>Search</button>
         </fieldset>
       </form>
       <br />
-      <button onClick={() => handleSearchType(false)}>+ Advanced Search</button>
+      <button onClick={() => handleSearchType(true)}>- Advanced Search</button>
       <br />
     </div>
   );
 };
 
-export default SearchGrp;
+export default SearchGrpAdv;

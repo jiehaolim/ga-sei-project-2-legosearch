@@ -7,15 +7,16 @@ const SetsSearch = () => {
   const [result, setResult] = useState({results:[]})
 
   // obtain the search params
-  const searchTerm = searchParams.get("term")
-  const searchTheme = searchParams.get("theme") === null ? "" : searchParams.get("theme")
-  const searchYear = searchParams.get("year") === null ? "" : searchParams.get("year")
+  const term = searchParams.get("term")
+  const theme = searchParams.get("theme")
+  const minYear = searchParams.get("minYear") === null ? searchParams.get("year") : searchParams.get("minYear")
+  const maxYear = searchParams.get("maxYear") === null ? searchParams.get("year") : searchParams.get("maxYear")
   const pageSize = 40;
 
   useEffect (() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://rebrickable.com/api/v3/lego/sets/?key=${API_KEY}&search=${searchTerm}&theme_id=${searchTheme}&min_year=${searchYear}&max_year=${searchYear}&page_size=${pageSize}`
+        `https://rebrickable.com/api/v3/lego/sets/?key=${API_KEY}&search=${term}&theme_id=${theme}&min_year=${minYear}&max_year=${maxYear}&page_size=${pageSize}`
       )
       const data = await response.json();
       console.log(data)
