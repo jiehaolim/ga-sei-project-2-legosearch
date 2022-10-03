@@ -1,3 +1,5 @@
+import "toolcool-range-slider"
+
 const RangeYears = () => {
   return (
     <>
