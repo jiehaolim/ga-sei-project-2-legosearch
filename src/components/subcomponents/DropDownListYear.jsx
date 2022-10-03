@@ -3,7 +3,7 @@ import { useState } from "react"
 const DropDownListYear = ({ handleChange }) => {
   const [year, setYear] = useState("Year")
   
-  // year lego started
+  // year lego releases their first set
   const minYear = "1949"
   const date = new Date()
   const maxYear = date.getFullYear()

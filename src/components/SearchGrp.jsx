@@ -2,6 +2,7 @@ import { useLocation, useNavigate, createSearchParams } from "react-router-dom";
 import SearchBar from "./subcomponents/SearchBar";
 import DropDownListTheme from "./subcomponents/DropDownListTheme"
 import DropDownListYear from "./subcomponents/DropDownListYear"
+import RangeYears from "./subcomponents/RangeYears"
 
 const SearchGrp = ({ searchObj, handleChange, handleSearchType }) => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const SearchGrp = ({ searchObj, handleChange, handleSearchType }) => {
           <SearchBar searchObj={searchObj} handleChange={handleChange} />
           <DropDownListTheme searchObj={searchObj} handleChange={handleChange} />
           <DropDownListYear handleChange={handleChange} />
+          <RangeYears />
           <button>Search</button>
         </fieldset>
       </form>

@@ -1,13 +1,15 @@
 const RangeYears = () => {
   return (
     <>
-      <label>
-        <br />
-        <span>Year of Release</span>
-        <span>From minyear to maxyear</span>
-        <br />
-        <input type="range" id="volume" name="volume" min="0" max="11"></input>
-      </label>
+      <br />
+      <br />
+      <br />
+      <tc-range-slider value-label="#value-1"></tc-range-slider>
+      <div id="value-1"></div>
+      <br />
+      <br />
+      <br />
+
     </>
   );
 };
