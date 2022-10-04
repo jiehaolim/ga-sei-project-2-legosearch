@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const RangeYears = ({ handleChange }) => {
+const RangeYears = ({ searchObj, handleChange }) => {
   const sliderRef = useRef(null);
   
   // year lego releases their first set
@@ -16,18 +16,18 @@ const RangeYears = ({ handleChange }) => {
     };
     slider?.addEventListener("change", onChange);
     return () => {slider?.removeEventListener("change", onChange)};
-  }, []);
+  }, [searchObj]);
 
   return (
     <>
       <br />
       <br />
       <br />
-      <p>Year of Release from <span className="value-1"></span> : <span className="value-2"></span></p>
+      <p>Year of Release from <span className="yearvalue-1"></span> : <span className="yearvalue-2"></span></p>
       <tc-range-slider min={minYear} max={maxYear}
-      value1={minYear} value2={maxYear}
-      ref={sliderRef} round="0"
-      generate-labels="true" value1-label=".value-1" value2-label=".value-2"></tc-range-slider>
+      value1={searchObj.minYear} value2={searchObj.maxYear}
+      ref={sliderRef} round="0" range-dragging="true"
+      generate-labels="true" value1-label=".yearvalue-1" value2-label=".yearvalue-2"></tc-range-slider>
       <br />
       <br />
       <br />

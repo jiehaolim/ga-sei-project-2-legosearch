@@ -4,6 +4,10 @@ import SearchGrp from "../../components/SearchGrp";
 import SearchGrpAdv from "../../components/SearchGrpAdv";
 
 const SetsHome = () => {
+  // current year
+  const date = new Date()
+  const maxYear = date.getFullYear()
+
   // true === simple search, false === advanced search
   const [searchType, setSearchType] = useState(true);
   const [searchObj, setSearchObj] = useState({
@@ -14,10 +18,10 @@ const SetsHome = () => {
   const [searchAdvObj, setSearchAdvObj] = useState({
     term: "",
     theme: "",
-    minYear: "",
-    maxYear: "",
-    minParts: "",
-    maxParts: "",
+    minYear: "1949",
+    maxYear: maxYear,
+    minParts: "0",
+    maxParts: "15000",
   });
 
   const handleChange = (key, value1, value2) => {
@@ -27,7 +31,9 @@ const SetsHome = () => {
     } else if (key === "year") {
       setSearchObj({ ...searchObj, [key]: value1 });
     } else if (key === "rangeYears") {
-      setSearchAdvObj({...searchObj, ["minYear"]: value1, ["maxYear"]: value2})
+      setSearchAdvObj({...searchAdvObj, ["minYear"]: value1, ["maxYear"]: value2 })
+    } else if (key === "rangeParts") {
+      setSearchAdvObj({...searchAdvObj, ["minParts"]: value1, ["maxParts"]: value2 })
     } else {
       setSearchAdvObj({ ...searchAdvObj, [key]: value1 });
     }

@@ -24,9 +24,9 @@ const SearchGrpAdv = ({ searchObj, handleChange, handleSearchType }) => {
           <SearchBar searchObj={searchObj} handleChange={handleChange} />
           <DropDownListTheme searchObj={searchObj} handleChange={handleChange} />
           <br />
-          <RangeYears handleChange={handleChange}/>
+          <RangeYears searchObj={searchObj} handleChange={handleChange}/>
           <br />
-          <RangeParts />
+          <RangeParts searchObj={searchObj} handleChange={handleChange}/>
           <br />
           <button>Search</button>
         </fieldset>
