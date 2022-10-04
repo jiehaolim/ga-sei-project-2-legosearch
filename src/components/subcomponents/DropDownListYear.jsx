@@ -15,7 +15,7 @@ const DropDownListYear = ({ handleChange }) => {
   }
   
   return (
-    <select name="years" onChange={() => handleChange("year", event.target.value)}>
+    <select name="years" onChange={() => handleChange("year", event.target.value, "")}>
       <option value="" key="year">{year}</option>
       {arrayYear.map((year, index) => <option value={year} key={index}>{year}</option>)} 
     </select>

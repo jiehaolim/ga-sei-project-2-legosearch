@@ -24,7 +24,6 @@ const SearchGrp = ({ searchObj, handleChange, handleSearchType }) => {
           <SearchBar searchObj={searchObj} handleChange={handleChange} />
           <DropDownListTheme searchObj={searchObj} handleChange={handleChange} />
           <DropDownListYear handleChange={handleChange} />
-          <RangeYears />
           <button>Search</button>
         </fieldset>
       </form>

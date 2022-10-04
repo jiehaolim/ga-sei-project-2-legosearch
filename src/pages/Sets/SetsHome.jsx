@@ -20,14 +20,16 @@ const SetsHome = () => {
     maxParts: "",
   });
 
-  const handleChange = (key, value) => {
+  const handleChange = (key, value1, value2) => {
     if (key === "term" || key === "theme") {
-      setSearchObj({ ...searchObj, [key]: value });
-      setSearchAdvObj({ ...searchAdvObj, [key]: value });
-    } if (key === "year") {
-      setSearchObj({ ...searchObj, [key]: value });
+      setSearchObj({ ...searchObj, [key]: value1 });
+      setSearchAdvObj({ ...searchAdvObj, [key]: value1 });
+    } else if (key === "year") {
+      setSearchObj({ ...searchObj, [key]: value1 });
+    } else if (key === "rangeYears") {
+      setSearchAdvObj({...searchObj, ["minYear"]: value1, ["maxYear"]: value2})
     } else {
-      setSearchAdvObj({ ...searchAdvObj, [key]: value });
+      setSearchAdvObj({ ...searchAdvObj, [key]: value1 });
     }
   };
 

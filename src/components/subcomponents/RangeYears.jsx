@@ -1,21 +1,21 @@
 import { useEffect, useRef } from "react";
 
-const RangeYears = () => {
+const RangeYears = ({ handleChange }) => {
   const sliderRef = useRef(null);
-  const minYear = "1949";
-  const maxYear = "2022";
+  
+  // year lego releases their first set
+  const minYear = "1949"
+  const date = new Date()
+  const maxYear = date.getFullYear()
 
   useEffect(() => {
     const slider = sliderRef.current;
 
     const onChange = (event) => {
-      console.log(event.detail.value);
-      console.log(event.detail.value2);
+      handleChange("rangeYears", event.target.value1, event.target.value2)
     };
     slider?.addEventListener("change", onChange);
-    return () => {
-      slider?.removeEventListener("change", onChange);
-    };
+    return () => {slider?.removeEventListener("change", onChange)};
   }, []);
 
   return (
@@ -23,7 +23,7 @@ const RangeYears = () => {
       <br />
       <br />
       <br />
-      <p>Year of Release from <span className="value-1"></span>: <span className="value-2"></span></p>
+      <p>Year of Release from <span className="value-1"></span> : <span className="value-2"></span></p>
       <tc-range-slider min={minYear} max={maxYear}
       value1={minYear} value2={maxYear}
       ref={sliderRef} round="0"

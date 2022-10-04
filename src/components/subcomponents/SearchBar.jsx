@@ -19,7 +19,7 @@ const SearchBar = ({ searchObj, handleChange }) => {
         name="search"
         placeholder={"Search for " + placeholderValue}
         value={searchObj.term}
-        onChange={() => handleChange("term", event.target.value)}
+        onChange={() => handleChange("term", event.target.value, "")}
       ></input>
     </>
   );

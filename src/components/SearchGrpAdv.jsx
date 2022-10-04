@@ -24,7 +24,7 @@ const SearchGrpAdv = ({ searchObj, handleChange, handleSearchType }) => {
           <SearchBar searchObj={searchObj} handleChange={handleChange} />
           <DropDownListTheme searchObj={searchObj} handleChange={handleChange} />
           <br />
-          <RangeYears />
+          <RangeYears handleChange={handleChange}/>
           <br />
           <RangeParts />
           <br />
