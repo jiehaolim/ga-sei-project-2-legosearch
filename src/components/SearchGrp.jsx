@@ -1,8 +1,7 @@
 import { useLocation, useNavigate, createSearchParams } from "react-router-dom";
-import SearchBar from "./subcomponents/SearchBar";
-import DropDownListTheme from "./subcomponents/DropDownListTheme"
-import DropDownListYear from "./subcomponents/DropDownListYear"
-import RangeYears from "./subcomponents/RangeYears"
+import SearchBar from "./search-components/SearchBar";
+import DropDownListTheme from "./search-components/DropDownListTheme"
+import DropDownListYear from "./search-components/DropDownListYear"
 
 const SearchGrp = ({ searchObj, handleChange, handleSearchType }) => {
   const navigate = useNavigate();
