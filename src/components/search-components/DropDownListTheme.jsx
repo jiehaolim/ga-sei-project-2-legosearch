@@ -20,7 +20,7 @@ const DropDownListTheme = ({ searchObj, handleChange }) => {
   }, [])
   
   return (
-    <select name="themes" value={searchObj.theme} onChange={() => {handleChange("theme", event.target.value, "")}}>
+    <select name="theme" value={searchObj.theme} onChange={() => {handleChange("theme", event.target.value, "")}}>
       <option value="" key="theme">Theme</option>
       {themes.map((theme, index) => <option value={theme.id} key={index}>{theme.name}</option>)} 
     </select>

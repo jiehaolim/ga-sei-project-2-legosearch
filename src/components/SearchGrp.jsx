@@ -25,9 +25,8 @@ const SearchGrp = ({ searchObj, handleChange, handleSearchType }) => {
           <DropDownListYear handleChange={handleChange} />
           <button>Search</button>
         </fieldset>
+        <button onClick={() => handleSearchType(false)}>+ Advanced Search</button>
       </form>
-      <br />
-      <button onClick={() => handleSearchType(false)}>+ Advanced Search</button>
       <br />
     </div>
   );
