@@ -1,11 +1,21 @@
 import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 
 const RangeParts = ({ searchObj, handleChange }) => {
   const sliderRef = useRef(null);
   
-  const minParts = "0"
-  // largest lego set so far is 11695 parts
-  const maxParts = "15000"
+  // switch the number of minParts per location route
+  // update the URL per location
+  if (location.pathname.startsWith("/sets")) {
+    const minParts = "0"
+    // largest lego set so far is 148 parts
+    const maxParts = "250"
+  } else if (location.pathname.startsWith("/minifigures")) {
+    const minParts = "0"
+    // largest lego set so far is 11695 parts
+    const maxParts = "15000"
+  }
+
 
   useEffect(() => {
     const slider = sliderRef.current;
