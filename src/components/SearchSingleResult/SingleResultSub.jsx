@@ -41,6 +41,7 @@ const SingleResultSub = ({ resultObj }) => {
       {productArray.map((product) => (
         <Link to={productlink + product[productNum]} key={product[productName]}>
           <div>{product[productName]}</div>
+          <div>{product[productNum]}</div>
           <div>{product[productQty]}</div>
           <div>{product[productURL]}</div>
         </Link>
