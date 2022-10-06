@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 
 const RangeParts = ({ searchObj, handleChange }) => {
   const sliderRef = useRef(null);
+  const location = useLocation()
   
   // switch the number of minParts per location route
   // update the URL per location
