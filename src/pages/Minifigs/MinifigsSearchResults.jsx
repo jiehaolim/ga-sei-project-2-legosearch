@@ -7,7 +7,7 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 
 const MinifigsSearchResults = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [results, setResults] = useState({ results: [] });
+  const [resultsObj, setResultsObj] = useState({ results: [] });
   const navigate = useNavigate()
 
   // obtain the search params from original search
@@ -33,7 +33,7 @@ const MinifigsSearchResults = () => {
           navObj.sortBy}${navObj.sortOrdering}&page_size=${navObj.pageSize}&page=${navObj.pageNo}`
       );
       const data = await response.json();
-      setResults(data);
+      setResultsObj(data);
     };
     fetchData();
   }, [searchParams]);
@@ -41,8 +41,8 @@ const MinifigsSearchResults = () => {
   return (
     <>
       <SearchNavGrp navObj={navObj} />
-      <SearchResults results={results} />
-      <SearchResultsPagination results={results} navObj={navObj} />
+      <SearchResults resultsObj={resultsObj} />
+      <SearchResultsPagination resultsObj={resultsObj} navObj={navObj} />
     </>
   );
 };

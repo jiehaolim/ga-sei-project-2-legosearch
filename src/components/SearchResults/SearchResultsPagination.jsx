@@ -1,6 +1,6 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 
-const SearchResultsPagination = ({ results, navObj }) => {
+const SearchResultsPagination = ({ resultsObj, navObj }) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
   
@@ -9,13 +9,13 @@ const SearchResultsPagination = ({ results, navObj }) => {
   const pageNo = parseInt(navObj.pageNo)
   const pageSize = parseInt(navObj.pageSize)
   // number of results
-  const totalResults = results?.count;
+  const totalResults = resultsObj?.count;
   // page number array
   const pageNoArray = [];
   // maximum page number 7
   let pageNoArrayLength = 7;
   // max number of pages
-  const maxPageNo = Math.ceil(results?.count / pageSize);
+  const maxPageNo = Math.ceil(resultsObj?.count / pageSize);
 
   // calculation of the page number if < 7
   if (maxPageNo < 7) {
@@ -96,7 +96,7 @@ const SearchResultsPagination = ({ results, navObj }) => {
     <>
       <div>showing {firstNum} of {secondNum} results</div>
       {pageNo === 1 ? null : <button onClick={handleSubmitPrev}>&#60;</button>}
-      { maxPageNo === 1 ? null : pageNoArray.map((element, index) => (
+      {maxPageNo === 1 ? null : pageNoArray.map((element, index) => (
         <div key={index}>
           <button onClick={handleSubmit} value={element}>{element}</button>
         </div>

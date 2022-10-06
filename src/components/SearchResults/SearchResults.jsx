@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-const SearchResults = ({ results }) => {
+const SearchResults = ({ resultsObj }) => {
   const location = useLocation()
   let path = ""
   // update the URL per location
@@ -12,8 +12,8 @@ const SearchResults = ({ results }) => {
 
   return (
     <>
-      <div>main results of {results?.count}</div>
-      {results.results.map((element) => (
+      <div>main results of {resultsObj?.count}</div>
+      {resultsObj.results.map((element) => (
         <Link key={element.set_num} to={`${path}${element.set_num}`}>
               <div>{element.set_num}</div>
               <div>{element.name}</div>
