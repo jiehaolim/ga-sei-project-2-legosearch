@@ -1,7 +1,7 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 import DropDownList from "./navigation-components/DropDownList";
 
-const SearchNavGrp = () => {
+const SearchNavGrp = ({ navObj }) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
 
@@ -33,9 +33,9 @@ const SearchNavGrp = () => {
   
   return (
     <>
-      <DropDownList sortObj={sortOrderObj} handleSubmit={handleSubmit} />
-      <DropDownList sortObj={sortByObj} handleSubmit={handleSubmit} />
-      <DropDownList sortObj={pageSizeObj} handleSubmit={handleSubmit} />
+      <DropDownList sortObj={sortOrderObj} navObj={navObj} handleSubmit={handleSubmit} />
+      <DropDownList sortObj={sortByObj} navObj={navObj} handleSubmit={handleSubmit} />
+      <DropDownList sortObj={pageSizeObj} navObj={navObj} handleSubmit={handleSubmit} />
     </>
   );
 };
