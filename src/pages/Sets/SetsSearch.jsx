@@ -3,9 +3,9 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import SearchNavGrp from "../../components/Search/SearchNavGrp";
 import SearchResults from "../../components/Search/SearchResults";
 import SearchResultsPagination from "../../components/Search/SearchResultsPagination"
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 const SetsSearch = () => {
-  const API_KEY = import.meta.env.VITE_API_KEY;
   const [searchParams, setSearchParams] = useSearchParams();
   const [results, setResults] = useState({ results: [] });
   const navigate = useNavigate()

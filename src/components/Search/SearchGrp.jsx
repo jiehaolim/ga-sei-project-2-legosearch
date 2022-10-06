@@ -22,7 +22,7 @@ const SearchGrp = ({ searchObj, handleChange, handleSearchType }) => {
         <fieldset>
           <SearchBar searchObj={searchObj} handleChange={handleChange} />
           <DropDownListTheme searchObj={searchObj} handleChange={handleChange} />
-          <DropDownListYear handleChange={handleChange} />
+          {location.pathname.startsWith("/sets") ? <DropDownListYear handleChange={handleChange} /> : null}
           <button>Search</button>
         </fieldset>
         <button onClick={() => handleSearchType(false)}>+ Advanced Search</button>

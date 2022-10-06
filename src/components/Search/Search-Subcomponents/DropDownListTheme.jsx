@@ -19,7 +19,7 @@ const DropDownListTheme = ({ searchObj, handleChange }) => {
       if (theme.parent_id === null) {
         mainThemes.push({id: theme.id, name:theme.name})
       } else {
-        // with parent theme, find parent theme name and put into subtheme name
+        // with parent theme, find parent theme name and put together wiith subtheme name
         const parentTheme = data.results.find((element) => element.id === theme.parent_id)
         mainThemes.push({id: theme.id, name: `${parentTheme.name} > ${theme.name}`})
       }

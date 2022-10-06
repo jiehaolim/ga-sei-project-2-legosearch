@@ -22,9 +22,9 @@ const SearchGrpAdv = ({ searchObj, handleChange, handleSearchType }) => {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <SearchBar searchObj={searchObj} handleChange={handleChange} />
-          <DropDownListTheme searchObj={searchObj} handleChange={handleChange} />
+          <DropDownListTheme searchObj={searchObj} handleChange={handleChange} /> 
           <br />
-          <RangeYears searchObj={searchObj} handleChange={handleChange}/>
+          {location.pathname.startsWith("/sets") ? <RangeYears searchObj={searchObj} handleChange={handleChange}/> : null}
           <br />
           <RangeParts searchObj={searchObj} handleChange={handleChange}/>
           <br />

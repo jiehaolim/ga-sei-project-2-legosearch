@@ -5,21 +5,22 @@ const SearchResults = ({ results }) => {
   let path = ""
   // update the URL per location
   if (location.pathname.startsWith("/sets")) {
-    path = "/sets/result"
+    path = "/sets/result/"
   } else if (location.pathname.startsWith("/minifigures")) {
-    path = "/minifigures/result"
+    path = "/minifigures/result/"
   }
 
   return (
     <>
       <div>main results of {results?.count}</div>
       {results.results.map((element) => (
-        <Link key={element.set_num} to={`/sets/result/${element.set_num}`}>
+        <Link key={element.set_num} to={`${path}${element.set_num}`}>
               <div>{element.set_num}</div>
               <div>{element.name}</div>
               <div>{element.year}</div>
               <div>{element.num_parts}</div>
               <div>{element.set_img_url}</div>
+              <div>{element.set_url}</div>
               <br/>
               <br/>
           </Link>

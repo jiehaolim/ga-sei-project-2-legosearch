@@ -20,6 +20,11 @@ const SearchNavGrp = ({ navObj }) => {
     { name: "40", value: "40" },
   ]};
 
+  // to remove the year option from minifigs
+  if (location.pathname.startsWith("/minifigures")) {
+    sortOrderObj.sortOrdering = sortOrderObj.sortOrdering.filter((element) => element.name !== "Year")
+  }
+
   const handleSubmit = (key, value) => {
     event.preventDefault();
     searchParams.set("pageNo", 1)
