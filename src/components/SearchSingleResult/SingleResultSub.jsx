@@ -1,4 +1,4 @@
-const SingleResultSub = () => {
+const SingleResultSub = ({ resultObj }) => {
     return (
         <>
         </>

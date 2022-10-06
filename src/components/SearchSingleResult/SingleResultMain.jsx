@@ -1,4 +1,5 @@
-const SingleResultMain = () => {
+const SingleResultMain = ({ resultObj }) => {
+    console.log()
     return (
         <>
         </>
