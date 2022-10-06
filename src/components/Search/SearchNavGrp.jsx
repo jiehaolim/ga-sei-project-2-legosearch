@@ -1,5 +1,5 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
-import DropDownList from "./navigation-components/DropDownList";
+import DropDownList from "./Navigation-Subcomponents/DropDownList"
 
 const SearchNavGrp = ({ navObj }) => {
   const [searchParams, setSearchParams] = useSearchParams()

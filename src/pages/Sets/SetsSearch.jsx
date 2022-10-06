@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import SearchNavGrp from "../../components/SearchNavGrp";
-import SearchResults from "../../components/SearchResults";
+import SearchNavGrp from "../../components/Search/SearchNavGrp";
+import SearchResults from "../../components/Search/SearchResults";
 
 const SetsSearch = () => {
   const API_KEY = import.meta.env.VITE_API_KEY;
