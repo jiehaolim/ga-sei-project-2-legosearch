@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const DropDownListTheme = ({ searchObj, handleChange, themesStateUplift }) => {
+const DropDownListTheme = ({ searchObj, handleChange }) => {
   const API_KEY = import.meta.env.VITE_API_KEY
   const [themes, setThemes] = useState([])
 
@@ -26,7 +26,6 @@ const DropDownListTheme = ({ searchObj, handleChange, themesStateUplift }) => {
     }
     mainThemes.sort((a ,b) => (a.name > b.name) ? 1 : -1)
     setThemes(mainThemes)
-    themesStateUplift(mainThemes)
     }
     fetchData()
   }, [])

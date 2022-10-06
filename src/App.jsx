@@ -14,13 +14,6 @@ import MinifigsSingleResults from "./pages/Minifigs/MinifigsSingleResult";
 import WishlistHome from "./pages/Wishlist/WishlistHome";
 
 function App() {
-  // original state from DropDownListTheme
-  const [themes, setThemes] = useState([])
-
-  const themesStateUplift = (themesArray) => {
-    setThemes(themesArray)
-  }
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -31,11 +24,11 @@ function App() {
             <Route path="/" element={<HomePage />} />
             
             {/* Sets */}
-            <Route path="sets" element={<SetsHome themesStateUplift={themesStateUplift} />}>
+            <Route path="sets" element={<SetsHome />}>
               <Route path="" element={<SetsHomeBody />} />
               <Route path="search" element={<SetsSearchResults />} />
             </Route>
-            <Route path="sets/result/:setnum" element={<SetsSingleResult themes={themes} />}/>
+            <Route path="sets/result/:setnum" element={<SetsSingleResult />}/>
             
             {/* Minifigures */}
             <Route path="minifigures" element={<MinifigsHome />}>

@@ -1,5 +1,5 @@
-const SetsSingleResult = ({ themes }) => {
-  console.log(themes)
+const SetsSingleResult = () => {
+  
   return (
     <>
       <div>Single result</div>

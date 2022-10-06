@@ -3,7 +3,7 @@ import SearchBar from "./Search-Subcomponents/SearchBar";
 import DropDownListTheme from "./Search-Subcomponents/DropDownListTheme"
 import DropDownListYear from "./Search-Subcomponents/DropDownListYear"
 
-const SearchGrp = ({ searchObj, handleChange, handleSearchType, themesStateUplift }) => {
+const SearchGrp = ({ searchObj, handleChange, handleSearchType }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -21,7 +21,7 @@ const SearchGrp = ({ searchObj, handleChange, handleSearchType, themesStateUplif
       <form onSubmit={handleSubmit}>
         <fieldset>
           <SearchBar searchObj={searchObj} handleChange={handleChange} />
-          <DropDownListTheme searchObj={searchObj} handleChange={handleChange} themesStateUplift={themesStateUplift} />
+          <DropDownListTheme searchObj={searchObj} handleChange={handleChange} />
           {location.pathname.startsWith("/sets") ? <DropDownListYear handleChange={handleChange} /> : null}
           <button>Search</button>
         </fieldset>

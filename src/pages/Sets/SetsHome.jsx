@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import SearchGrp from "../../components/Search/SearchGrp";
 import SearchGrpAdv from "../../components/Search/SearchGrpAdv";
 
-const SetsHome = ({ themesStateUplift }) => {
+const SetsHome = () => {
   // current year
   const date = new Date();
   const maxYear = date.getFullYear();
@@ -45,7 +45,7 @@ const SetsHome = ({ themesStateUplift }) => {
 
   return (
     <>
-      {searchType ? (<SearchGrp searchObj={searchObj} handleChange={handleChange} handleSearchType={handleSearchType} themesStateUplift={themesStateUplift} />) 
+      {searchType ? (<SearchGrp searchObj={searchObj} handleChange={handleChange} handleSearchType={handleSearchType} />) 
       : (<SearchGrpAdv searchObj={searchAdvObj} handleChange={handleChange} handleSearchType={handleSearchType}/>)}
       <Outlet />
     </>
