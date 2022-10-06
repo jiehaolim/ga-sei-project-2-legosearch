@@ -12,8 +12,19 @@ const DropDownListTheme = ({ searchObj, handleChange }) => {
       `https://rebrickable.com/api/v3/lego/themes/?key=${API_KEY}&page_size=${pageSize}`
     )
     const data = await response.json();
-    // only show the main themes, filter away sub themes with parent_id null
-    const mainThemes = data.results.filter((element) => element.parent_id === null).sort((a, b) => (a.name > b.name) ? 1 : -1)
+    // to show parent theme name with sub theme name
+    const mainThemes = []
+    for (const theme of data.results) {
+      // no parent theme just push into array
+      if (theme.parent_id === null) {
+        mainThemes.push({id: theme.id, name:theme.name})
+      } else {
+        // with parent theme, find parent theme name and put into subtheme name
+        const parentTheme = data.results.find((element) => element.id === theme.parent_id)
+        mainThemes.push({id: theme.id, name: `${parentTheme.name} > ${theme.name}`})
+      }
+    }
+    mainThemes.sort((a ,b) => (a.name > b.name) ? 1 : -1)
     setThemes(mainThemes)
     }
     fetchData()

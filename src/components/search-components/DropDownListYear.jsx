@@ -1,5 +1,5 @@
 const DropDownListYear = ({ handleChange }) => {
-    // year lego releases their first set
+  // year lego releases their first set
   const minYear = "1949"
   const date = new Date()
   const maxYear = date.getFullYear()
