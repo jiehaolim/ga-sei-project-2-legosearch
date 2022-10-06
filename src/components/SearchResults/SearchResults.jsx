@@ -17,7 +17,7 @@ const SearchResults = ({ results }) => {
         <Link key={element.set_num} to={`${path}${element.set_num}`}>
               <div>{element.set_num}</div>
               <div>{element.name}</div>
-              <div>{element.year}</div>
+              {location.pathname.startsWith("/sets") ? <div>{element.year}</div> : null}
               <div>{element.num_parts}</div>
               <div>{element.set_img_url}</div>
               <div>{element.set_url}</div>
@@ -25,12 +25,11 @@ const SearchResults = ({ results }) => {
               <br/>
           </Link>
       ))}
-
     </>
   );
 };
 
 export default SearchResults;
 
-// minifigs - set_num, name, num_parts, set_img_url, set_url
 // sets - set_num, name, num parts, set_img_url, set_url, year, theme_id (last 2 uncommon)
+// minifigs - set_num, name, num_parts, set_img_url, set_url

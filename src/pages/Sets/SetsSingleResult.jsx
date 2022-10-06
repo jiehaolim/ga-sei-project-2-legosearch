@@ -34,8 +34,8 @@ const SetsSingleResult = () => {
   return (
     <>
       <div>Single result</div>
-      {resultObj?.sets?.name === undefined ? null : <SingleResultMain resultObj={resultObj} />}
-      {resultObj?.minifigs?.count === undefined || resultObj?.minifigs?.count === 0 ? null : <SingleResultSub resultObj={resultObj} />}
+      {resultObj?.sets?.name === undefined ? null : <SingleResultMain resultObj={resultObj.sets} />}
+      {resultObj?.minifigs?.count === undefined || resultObj?.minifigs?.count === 0 ? null : <SingleResultSub resultObj={resultObj.minifigs} />}
     </>
   );
 };

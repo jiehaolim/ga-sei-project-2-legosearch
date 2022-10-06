@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
+const API_KEY = import.meta.env.VITE_API_KEY
 
 const DropDownListTheme = ({ searchObj, handleChange }) => {
-  const API_KEY = import.meta.env.VITE_API_KEY
   const [themes, setThemes] = useState([])
 
   useEffect(() => {

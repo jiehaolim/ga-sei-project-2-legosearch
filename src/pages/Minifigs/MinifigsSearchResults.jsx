@@ -33,7 +33,6 @@ const MinifigsSearchResults = () => {
           navObj.sortBy}${navObj.sortOrdering}&page_size=${navObj.pageSize}&page=${navObj.pageNo}`
       );
       const data = await response.json();
-      console.log(data)
       setResults(data);
     };
     fetchData();

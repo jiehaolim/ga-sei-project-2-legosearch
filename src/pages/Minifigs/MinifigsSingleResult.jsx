@@ -34,8 +34,8 @@ const MinifigsSingleResults = () => {
   return (
     <>
       <h2>Minifigures Single Results</h2>
-      {resultObj?.minifigs?.name === undefined ? null : <SingleResultMain resultObj={resultObj} />}
-      {resultObj?.sets?.count === undefined || resultObj?.sets?.count === 0 ? null : <SingleResultSub resultObj={resultObj} />}
+      {resultObj?.minifigs?.name === undefined ? null : <SingleResultMain resultObj={resultObj.minifigs} />}
+      {resultObj?.sets?.count === undefined || resultObj?.sets?.count === 0 ? null : <SingleResultSub resultObj={resultObj.sets} />}
     </>
   );
 };
