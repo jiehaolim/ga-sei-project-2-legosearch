@@ -1,4 +1,4 @@
-const SearchSingleResult = ({ themes }) => {
+const SearchSingleResult = () => {
     return (
         <>
         </>

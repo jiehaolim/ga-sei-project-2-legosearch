@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import SearchGrp from "../../components/Search/SearchGrp";
-import SearchGrpAdv from "../../components/Search/SearchGrpAdv";
+import SearchGrp from "../../components/HomeSearch/SearchGrp";
+import SearchGrpAdv from "../../components/HomeSearch/SearchGrpAdv";
 
 const SetsHome = () => {
   // current year
