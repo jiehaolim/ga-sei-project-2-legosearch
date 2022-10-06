@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import SearchNavGrp from "../../components/Search/SearchNavGrp";
 import SearchResults from "../../components/Search/SearchResults";
+import SearchResultsPagination from "../../components/Search/SearchResultsPagination"
 
 const SetsSearch = () => {
   const API_KEY = import.meta.env.VITE_API_KEY;
   const [searchParams, setSearchParams] = useSearchParams();
-  const [result, setResult] = useState({ results: [] });
+  const [results, setResults] = useState({ results: [] });
   const navigate = useNavigate()
 
   // obtain the search params from original search
@@ -35,7 +36,7 @@ const SetsSearch = () => {
       );
       const data = await response.json();
       console.log(data)
-      setResult(data);
+      setResults(data);
     };
     fetchData();
   }, [searchParams]);
@@ -43,7 +44,8 @@ const SetsSearch = () => {
   return (
     <>
       <SearchNavGrp navObj={navObj} />
-      <SearchResults result={result} />
+      <SearchResults results={results} />
+      <SearchResultsPagination results={results} navObj={navObj} />
     </>
   );
 };

@@ -22,6 +22,9 @@ const SearchNavGrp = ({ navObj }) => {
 
   const handleSubmit = (key, value) => {
     event.preventDefault();
+    if (key === "pageSize") {
+      searchParams.set("pageNo", 1)
+    }
     searchParams.set(key, value)
     // update the URL per location
     if (location.pathname.startsWith("/sets")) {
