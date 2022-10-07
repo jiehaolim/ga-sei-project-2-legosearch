@@ -14,16 +14,20 @@ const SearchResults = ({ resultsObj }) => {
     <>
       <div>main results of {resultsObj?.count}</div>
       {resultsObj.results.map((element) => (
-        <Link key={element.set_num} to={`${path}${element.set_num}`}>
+        <div key={element.set_num}>
+          <Link to={`${path}${element.set_num}`}>
               <div>{element.set_num}</div>
               <div>{element.name}</div>
               {location.pathname.startsWith("/sets") ? <div>{element.year}</div> : null}
               <div>{element.num_parts}</div>
               <div>{element.set_img_url}</div>
               <div>{element.set_url}</div>
-              <br/>
-              <br/>
           </Link>
+          <br/>
+          <button>Add to Wishlist</button>
+          <br/>
+          <br/>
+          </div>
       ))}
     </>
   );

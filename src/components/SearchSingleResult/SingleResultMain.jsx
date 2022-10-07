@@ -62,6 +62,7 @@ const SingleResultMain = ({ resultObj }) => {
       <div>{productPieces}</div>
       <div>{productURL}</div>
       <div>{productRebrickableURL}</div>
+      <button>Add to Wishlist</button>
     </>
   );
 };
