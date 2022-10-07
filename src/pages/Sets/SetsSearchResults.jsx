@@ -5,7 +5,7 @@ import SearchResults from "../../components/SearchResults/SearchResults";
 import SearchResultsPagination from "../../components/SearchResults/SearchResultsPagination"
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const SetsSearchResults = () => {
+const SetsSearchResults = ({ addToWishlist }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [resultsObj, setResultsObj] = useState({ results: [] });
   const navigate = useNavigate()
@@ -43,7 +43,7 @@ const SetsSearchResults = () => {
   return (
     <>
       <SearchNavGrp navObj={navObj} />
-      <SearchResults resultsObj={resultsObj} />
+      <SearchResults resultsObj={resultsObj} addToWishlist={addToWishlist} />
       <SearchResultsPagination resultsObj={resultsObj} navObj={navObj} />
     </>
   );

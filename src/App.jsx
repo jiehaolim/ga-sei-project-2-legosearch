@@ -14,6 +14,13 @@ import MinifigsSingleResults from "./pages/Minifigs/MinifigsSingleResult";
 import WishlistHome from "./pages/Wishlist/WishlistHome";
 
 function App() {
+  const [modal, setModal] = useState(false)
+  const [wishlist, setWishlist] = useState([])
+
+  const addToWishlist = () => {
+    console.log("addToWishlist")
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -26,19 +33,19 @@ function App() {
             {/* Sets */}
             <Route path="sets" element={<SetsHome />}>
               <Route path="" element={<SetsHomeBody />} />
-              <Route path="search" element={<SetsSearchResults />} />
+              <Route path="search" element={<SetsSearchResults addToWishlist={addToWishlist} />} />
             </Route>
-            <Route path="sets/result/:setnum" element={<SetsSingleResult />}/>
+            <Route path="sets/result/:setnum" element={<SetsSingleResult addToWishlist={addToWishlist} />}/>
             
             {/* Minifigures */}
             <Route path="minifigures" element={<MinifigsHome />}>
               <Route path="" element={<MinifigsHomeBody />} />
-              <Route path="search" element={<MinifigsSearchResults />} />
+              <Route path="search" element={<MinifigsSearchResults addToWishlist={addToWishlist} />} />
             </Route>
-            <Route path="minifigures/result/:setnum" element={<MinifigsSingleResults />}/>
+            <Route path="minifigures/result/:setnum" element={<MinifigsSingleResults addToWishlist={addToWishlist} />}/>
             
             {/* Wishlist */}
-            <Route path="wishlist" element={<WishlistHome />} />
+            <Route path="wishlist" element={<WishlistHome wishlist={wishlist} />} />
             
           </Route>
         </Routes>

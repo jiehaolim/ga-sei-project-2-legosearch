@@ -33,7 +33,7 @@ const SingleResultSub = ({ resultObj }) => {
       productArray.splice(productArray.indexOf(product), 1);
     }
   }
-  
+
   return (
     <>
       <br />

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom";
 const API_KEY = import.meta.env.VITE_API_KEY
 
-const SingleResultMain = ({ resultObj }) => {
+const SingleResultMain = ({ resultObj, addToWishlist }) => {
   const location = useLocation();
   const [theme, setTheme] = useState()
 
@@ -62,7 +62,7 @@ const SingleResultMain = ({ resultObj }) => {
       <div>{productPieces}</div>
       <div>{productURL}</div>
       <div>{productRebrickableURL}</div>
-      <button>Add to Wishlist</button>
+      <button onClick={() => addToWishlist()}>Add to Wishlist</button>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-const SearchResults = ({ resultsObj }) => {
+const SearchResults = ({ resultsObj, addToWishlist }) => {
   const location = useLocation()
   let path = ""
   // update the URL per location
@@ -24,10 +24,10 @@ const SearchResults = ({ resultsObj }) => {
               <div>{element.set_url}</div>
           </Link>
           <br/>
-          <button>Add to Wishlist</button>
+          <button onClick={() => addToWishlist()}>Add to Wishlist</button>
           <br/>
           <br/>
-          </div>
+        </div>
       ))}
     </>
   );

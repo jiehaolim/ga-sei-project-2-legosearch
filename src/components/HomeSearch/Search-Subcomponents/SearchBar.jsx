@@ -14,11 +14,8 @@ const SearchBar = ({ searchObj, handleChange }) => {
   return (
     <>
       <input
-        type="text"
-        id="search"
-        name="search"
-        placeholder={"Search for " + placeholderValue}
-        value={searchObj.term}
+        type="text" id="search" name="search"
+        placeholder={"Search for " + placeholderValue} value={searchObj.term}
         onChange={() => handleChange("term", event.target.value, "")}
       ></input>
     </>

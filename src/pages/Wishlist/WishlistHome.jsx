@@ -1,11 +1,11 @@
 import WishlistDetails from "../../components/Wishlist/WishlistDetails";
 
-const WishlistHome = () => {
+const WishlistHome = ({ wishlist }) => {
   return (
     <>
       <h2>Wishlist Home</h2>
-      <WishlistDetails />
-      <WishlistDetails />
+      <WishlistDetails wishlist={wishlist} />
+      <WishlistDetails wishlist={wishlist} />
     </>
   );
 };

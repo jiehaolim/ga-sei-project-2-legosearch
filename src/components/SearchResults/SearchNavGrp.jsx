@@ -1,5 +1,5 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
-import DropDownList from "./Navigation-Subcomponents/DropDownList"
+import DropDownList from "../Common-Subcomponents/DropDownList";
 
 const SearchNavGrp = ({ navObj }) => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -25,7 +25,7 @@ const SearchNavGrp = ({ navObj }) => {
     sortOrderObj.sortOrdering = sortOrderObj.sortOrdering.filter((element) => element.name !== "Year")
   }
 
-  const handleSubmit = (key, value) => {
+  const handleChange = (key, value) => {
     event.preventDefault();
     searchParams.set("pageNo", 1)
     searchParams.set(key, value)
@@ -39,9 +39,9 @@ const SearchNavGrp = ({ navObj }) => {
   
   return (
     <>
-      <DropDownList sortObj={sortOrderObj} navObj={navObj} handleSubmit={handleSubmit} />
-      <DropDownList sortObj={sortByObj} navObj={navObj} handleSubmit={handleSubmit} />
-      <DropDownList sortObj={pageSizeObj} navObj={navObj} handleSubmit={handleSubmit} />
+      <DropDownList stateObj={navObj} selectObj={sortOrderObj} handleChange={handleChange} />
+      <DropDownList stateObj={navObj} selectObj={sortByObj} handleChange={handleChange} />
+      <DropDownList stateObj={navObj} selectObj={pageSizeObj} handleChange={handleChange} />
     </>
   );
 };

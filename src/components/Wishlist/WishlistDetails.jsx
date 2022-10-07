@@ -1,4 +1,4 @@
-const WishlistDetails = () => {
+const WishlistDetails = ({ wishlist }) => {
     return (
         <>
         <div>Wishlist details</div>
