@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, useOutletContext } from "react-router-dom";
 import SearchNavGrp from "../../components/SearchResults/SearchNavGrp";
 import SearchResults from "../../components/SearchResults/SearchResults";
 import SearchResultsPagination from "../../components/SearchResults/SearchResultsPagination"
@@ -9,6 +9,7 @@ const MinifigsSearchResults = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [resultsObj, setResultsObj] = useState({ results: [] });
   const navigate = useNavigate()
+  const [themes, setThemes] = useOutletContext()
 
   // obtain the search params from original search
   const searchObj = {

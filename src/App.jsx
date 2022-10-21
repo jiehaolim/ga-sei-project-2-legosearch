@@ -15,7 +15,10 @@ import WishlistHome from "./pages/Wishlist/WishlistHome";
 
 function App() {
   const [modal, setModal] = useState(false)
-  const [wishlist, setWishlist] = useState([])
+  const [wishlistObj, setWishlistObj] = useState({
+    sets: [],
+    minifigs: [],
+  });
 
   const addToWishlist = () => {
     console.log("addToWishlist")
@@ -45,7 +48,7 @@ function App() {
             <Route path="minifigures/result/:setnum" element={<MinifigsSingleResults addToWishlist={addToWishlist} />}/>
             
             {/* Wishlist */}
-            <Route path="wishlist" element={<WishlistHome wishlist={wishlist} />} />
+            <Route path="wishlist" element={<WishlistHome wishlistObj={wishlistObj} />} />
             
           </Route>
         </Routes>
