@@ -5,72 +5,58 @@ const SearchResultsPagination = ({ resultsObj, navObj }) => {
   const navigate = useNavigate()
   
   // declaration of variables
-  // convert string to numbers
-  const pageNo = parseInt(navObj.pageNo)
-  const pageSize = parseInt(navObj.pageSize)
-  // number of results
-  const totalResults = resultsObj?.count;
-  // page number array
-  const pageNoArray = [];
-  // maximum page number 7
-  let pageNoArrayLength = 7;
-  // max number of pages
-  const maxPageNo = Math.ceil(resultsObj?.count / pageSize);
-
-  // calculation of the page number if < 7
-  if (maxPageNo < 7) {
-    pageNoArrayLength = maxPageNo;
+  const pagination = {
+    pageNo: parseInt(navObj.pageNo), // convert string to numbers
+    pageSize: parseInt(navObj.pageSize), // convert string to numbers
+    totalResults: resultsObj?.count, // number of results
+    get maxPageNo() {return Math.ceil(resultsObj?.count / this.pageSize)}, // max number of pages
+    get pageNoArrayLength() {return this.maxPageNo < 7 ? this.maxPageNo : 7}, // calculation of the page number if < 7 else maximum page number 7
+    pageNoArray: [], // page number array
+    get remainingPage() {return this.maxPageNo - this.pageNo},
+    get decreasePageNo() {return this.pageNo - 1}, // button on the left
+    get increasePageNo() {return this.pageNo + 1}, // button on the right
+    get firstNum() {return this.pageNo === 1 ? 1 : 1 + (this.pageNo - 1) * this.pageSize}, // calculate the number of results shown per page number and page size
+    get secondNum() {return this.pageNo !== this.maxPageNo ? this.firstNum - 1 + this.pageSize : this.totalResults}, // calculate the number of results shown per page number and page size
   }
-
+  
   // to generate page number array in the length of 7 or less and make 7 the middle of the array if the array length > 7
-  // declaration of variables
-  const remainingPage = maxPageNo - pageNo;
-  // button on the left
-  let decreasePageNo = pageNo - 1;
-  // button on the right
-  let increasePageNo = pageNo + 1;
-
   // generating the page no array
-  if (pageNo < 7) {
-    for (let i = 0; i < pageNoArrayLength; i++) {
-      pageNoArray.push(i + 1);
+  if (pagination.pageNo < 7) {
+    for (let i = 0; i < pagination.pageNoArrayLength; i++) {
+      pagination.pageNoArray.push(i + 1);
     }
-  } else if (remainingPage < 3) {
+  } else if (pagination.remainingPage < 3) {
     // button on the left
-    for (let i = 0; i < 6 - remainingPage; i++) {
-      pageNoArray.unshift(decreasePageNo);
-      decreasePageNo -= 1;
+    for (let i = 0; i < 6 - pagination.remainingPage; i++) {
+      pagination.pageNoArray.unshift(pagination.decreasePageNo);
+      pagination.decreasePageNo -= 1;
     }
     // middle button
-    pageNoArray.push(pageNo);
+    pagination.pageNoArray.push(pageNo);
     // button on the right
-    for (let i = 0; i < remainingPage; i++) {
-      pageNoArray.push(increasePageNo);
-      increasePageNo += 1;
+    for (let i = 0; i < pagination.remainingPage; i++) {
+      pagination.pageNoArray.push(pagination.increasePageNo);
+      pagination.increasePageNo += 1;
     }
   } else {
     // button on the left
     for (let i = 0; i < 3; i++) {
-      pageNoArray.unshift(decreasePageNo);
-      decreasePageNo -= 1;
+      pagination.pageNoArray.unshift(pagination.decreasePageNo);
+      pagination.decreasePageNo -= 1;
     }
     // middle button
-    pageNoArray.push(pageNo);
+    pagination.pageNoArray.push(pagination.pageNo);
 
     // button on the right
     for (let i = 0; i < 3; i++) {
-      pageNoArray.push(increasePageNo);
-      increasePageNo += 1;
+      pagination.pageNoArray.push(pagination.increasePageNo);
+      pagination.increasePageNo += 1;
     }
   }
 
-  // calculate the number of results shown per page number and page size
-  let firstNum = pageNo === 1 ? 1 : 1 + (pageNo - 1) * pageSize;
-  let secondNum = pageNo !== maxPageNo ? firstNum - 1 + pageSize : totalResults;
-  
   // function to change pageNo
   const handleSubmitPrev = () => {
-    searchParams.set("pageNo", pageNo - 1)
+    searchParams.set("pageNo", pagination.pageNo - 1)
     navigateToPage()
   }
 
@@ -79,7 +65,7 @@ const SearchResultsPagination = ({ resultsObj, navObj }) => {
     navigateToPage()
   }
   const handleSubmitNext = () => {
-    searchParams.set("pageNo", pageNo + 1)
+    searchParams.set("pageNo", pagination.pageNo + 1)
     navigateToPage()
   }
 
@@ -91,17 +77,17 @@ const SearchResultsPagination = ({ resultsObj, navObj }) => {
         navigate({ pathname: "/minifigures/search", search: "?" + searchParams.toString()});
     }
   }
-
+  
   return (
     <>
-      <div>showing {firstNum} of {secondNum} results</div>
-      {pageNo === 1 ? null : <button onClick={handleSubmitPrev}>&#60;</button>}
-      {maxPageNo === 1 ? null : pageNoArray.map((element, index) => (
+      <div>showing {pagination.firstNum} of {pagination.secondNum} results</div>
+      {pagination.pageNo === 1 ? null : <button onClick={handleSubmitPrev}>&#60;</button>}
+      {pagination.maxPageNo === 1 ? null : pagination.pageNoArray.map((element, index) => (
         <div key={index}>
           <button onClick={handleSubmit} value={element}>{element}</button>
         </div>
       ))}
-      {pageNo === maxPageNo ? null :<button onClick={handleSubmitNext}>&#62;</button>}
+      {pagination.pageNo === pagination.maxPageNo ? null :<button onClick={handleSubmitNext}>&#62;</button>}
     </>
   );
 };
