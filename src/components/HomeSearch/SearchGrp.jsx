@@ -17,13 +17,15 @@ const SearchGrp = ({ searchObj, themes, handleChange, handleSearchType }) => {
 
   // data for year drop down list
   // year lego releases their first set
-  const minYear = "1949"
   const date = new Date()
-  const maxYear = date.getFullYear()
+  const year = {
+    min: "1949",
+    max: date.getFullYear()
+  }
   
   // generate an array of year for the drop down list
   const arrayYear = { "year":[{ "name":"Year", "value":"" }] }
-  for (let i = maxYear; i >= minYear; i--) {
+  for (let i = year.max; i >= year.min; i--) {
     arrayYear.year.push({"name":i, "value":i})
   }
 

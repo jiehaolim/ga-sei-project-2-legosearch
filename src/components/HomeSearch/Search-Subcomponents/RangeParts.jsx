@@ -5,18 +5,26 @@ const RangeParts = ({ searchObj, handleChange }) => {
   const sliderRef = useRef(null);
   const location = useLocation()
   
-  let minParts = ""
-  let maxParts = ""
+  // object for parts
+  const parts = {
+    min: "",
+    max: "",
+    step: "",
+  }
   // switch the number of minParts per location route
   // update the URL per location
   if (location.pathname.startsWith("/sets")) {
-    minParts = "0"
+    parts.min = "0"
     // largest lego set so far is 11695 parts
-    maxParts = "15000"
+    parts.max = "15000"
+    // step
+    parts.step = "100"
   } else if (location.pathname.startsWith("/minifigures")) {
-    minParts = "0"
+    parts.min = "0"
     // largest lego set so far is 148 parts
-    maxParts = "250"
+    parts.max = "250"
+    // step
+    parts.step = "50"
   }
 
   useEffect(() => {
@@ -27,6 +35,7 @@ const RangeParts = ({ searchObj, handleChange }) => {
     };
     slider?.addEventListener("change", onChange);
     return () => {slider?.removeEventListener("change", onChange)};
+
   }, [searchObj]);
 
   return (
@@ -35,9 +44,9 @@ const RangeParts = ({ searchObj, handleChange }) => {
       <br />
       <br />
       <p>Number of Parts from <span className="partsvalue-1"></span> : <span className="partsvalue-2"></span></p>
-      <tc-range-slider min={minParts} max={maxParts}
+      <tc-range-slider min={parts.min} max={parts.max}
       value1={searchObj.minParts} value2={searchObj.maxParts}
-      ref={sliderRef} round="0" step="100" range-dragging="true"
+      ref={sliderRef} round="0" step={parts.step} range-dragging="true"
       generate-labels="true" value1-label=".partsvalue-1" value2-label=".partsvalue-2"></tc-range-slider>
       <br />
       <br />
