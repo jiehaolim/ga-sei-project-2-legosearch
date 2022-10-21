@@ -7,21 +7,23 @@ const SingleResultMain = ({ resultObj, addToWishlist }) => {
   const [theme, setTheme] = useState()
 
   // create variables for the text
-  const productName = resultObj?.name;
-  const productNum = resultObj?.set_num;
-  let productTitle = "";
-  let productYear = "";
-  const productPieces = resultObj?.num_parts;
-  const productURL = resultObj?.set_img_url;
-  const productRebrickableURL = resultObj?.set_url;
+  const product = {
+    name: resultObj?.name,
+    num: resultObj?.set_num,
+    title: "",
+    year: "",
+    pieces: resultObj?.num_parts,
+    imgURL: resultObj?.set_img_url,
+    rebrickableURL: resultObj?.set_url,
+  }
 
   // update the text according to the page
   if (location.pathname.startsWith("/sets")) {
-    productTitle = productNum + " " + productName;
-    productYear = resultObj?.year;
+    product.title = product.num + " " + product.name;
+    product.year = resultObj?.year;
   } else if (location.pathname.startsWith("/minifigures")) {
-    productTitle = productName;
-    productYear = productNum;
+    product.title = product.name;
+    product.year = product.num;
   }
 
   // fetch themes to return the theme
@@ -56,12 +58,12 @@ const SingleResultMain = ({ resultObj, addToWishlist }) => {
     <>
       <br />
       <br />
-      <div>{productTitle}</div>
-      <div>{productYear}</div>
+      <div>{product.title}</div>
+      <div>{product.year}</div>
       {location.pathname.startsWith("/sets") ? <div>{theme}</div> : null}
-      <div>{productPieces}</div>
-      <div>{productURL}</div>
-      <div>{productRebrickableURL}</div>
+      <div>{product.pieces}</div>
+      <div>{product.imgURL}</div>
+      <div>{product.rebrickableURL}</div>
       <button onClick={() => addToWishlist()}>Add to Wishlist</button>
     </>
   );

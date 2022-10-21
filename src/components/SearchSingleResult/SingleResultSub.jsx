@@ -5,32 +5,34 @@ const SingleResultSub = ({ resultObj }) => {
 
   // create variables for the text
   let title = "";
-  let productArray = resultObj?.results;
-  const productURL = "set_img_url";
-  const productNum = "set_num";
-  let productName = "";
-  let productQty = "";
-  let productlink = "";
+  const product = {
+    array: resultObj?.results,
+    imgURL: "set_img_url",
+    num: "set_num",
+    name: "",
+    qty: "",
+    link: "",
+  }
 
   // update the text according to the page
   if (location.pathname.startsWith("/sets")) {
     resultObj?.count === 1 ? (title = "Minifigure in this set") : (title = "Minifigures in this set");
-    productName = "set_name";
-    productQty = "quantity";
-    productlink = "/minifigures/result/";
+    product.name = "set_name";
+    product.qty = "quantity";
+    product.link = "/minifigures/result/";
   } else if (location.pathname.startsWith("/minifigures")) {
     resultObj?.count === 1 ? (title = "Minifigure appeared in the following set") : (title = "Minifigure appeared in the following sets");
-    productName = "name";
-    productQty = "";
-    productlink = "/sets/result/";
+    product.name = "name";
+    product.qty = "";
+    product.link = "/sets/result/";
   }
 
-  // find the second dash "-" in the productNum to ensure both minifigures and set API are linked up properly
+  // find the second dash "-" in the product.num to ensure both minifigures and set API are linked up properly
   // per tested most of the products number does not contain letters after the second dash "-"
   // splice is ok in the scenario as it splices the current product in the array -> ownself splice ownself
-  for (const product of productArray) {
-    if (product.set_num.indexOf("-") !== product.set_num.lastIndexOf("-")) {
-      productArray.splice(productArray.indexOf(product), 1);
+  for (const element of product.array) {
+    if (element.set_num.indexOf("-") !== element.set_num.lastIndexOf("-")) {
+      product.array.splice(product.array.indexOf(product), 1);
     }
   }
 
@@ -38,12 +40,12 @@ const SingleResultSub = ({ resultObj }) => {
     <>
       <br />
       <br />
-      {productArray.map((product) => (
-        <Link to={productlink + product[productNum]} key={product[productName]}>
-          <div>{product[productName]}</div>
-          <div>{product[productNum]}</div>
-          <div>{product[productQty]}</div>
-          <div>{product[productURL]}</div>
+      {product.array.map((element) => (
+        <Link to={product.link + element[product.num]} key={element[product.name]}>
+          <div>{element[product.name]}</div>
+          <div>{element[product.num]}</div>
+          <div>{element[product.qty]}</div>
+          <div>{element[product.imgURL]}</div>
         </Link>
       ))}
     </>
