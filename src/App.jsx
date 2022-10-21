@@ -37,15 +37,17 @@ function App() {
             <Route path="sets" element={<SetsHome />}>
               <Route path="" element={<SetsHomeBody />} />
               <Route path="search" element={<SetsSearchResults addToWishlist={addToWishlist} />} />
+              <Route path="result/:setnum" element={<SetsSingleResult addToWishlist={addToWishlist} />}/>
             </Route>
-            <Route path="sets/result/:setnum" element={<SetsSingleResult addToWishlist={addToWishlist} />}/>
+            
             
             {/* Minifigures */}
             <Route path="minifigures" element={<MinifigsHome />}>
               <Route path="" element={<MinifigsHomeBody />} />
               <Route path="search" element={<MinifigsSearchResults addToWishlist={addToWishlist} />} />
+              <Route path="result/:setnum" element={<MinifigsSingleResults addToWishlist={addToWishlist} />}/>
             </Route>
-            <Route path="minifigures/result/:setnum" element={<MinifigsSingleResults addToWishlist={addToWishlist} />}/>
+            
             
             {/* Wishlist */}
             <Route path="wishlist" element={<WishlistHome wishlistObj={wishlistObj} />} />

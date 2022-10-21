@@ -75,7 +75,7 @@ const SetsHome = () => {
     <>
       {searchType ? (<SearchGrp searchObj={searchObj} themes={themes} handleChange={handleChange} handleSearchType={handleSearchType} />) 
       : (<SearchGrpAdv searchObj={searchAdvObj} themes={themes} handleChange={handleChange} handleSearchType={handleSearchType}/>)}
-      <Outlet context={[themes, setThemes]} />
+      <Outlet />
     </>
   );
 };
