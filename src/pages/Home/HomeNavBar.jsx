@@ -1,13 +1,6 @@
-import { Outlet } from "react-router-dom";
-import NavBar from "../../components/Home/NavBar";
-
 const HomeNavBar = () => {
-  return (
-    <>
-      <NavBar />
-      <Outlet />
-    </>
-  );
+  return;
+  <div>Home NavBar</div>;
 };
 
 export default HomeNavBar;
