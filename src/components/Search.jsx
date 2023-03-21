@@ -27,9 +27,9 @@ const Search = ({ searchTitle }) => {
                 className="peer relative col-start-1 row-start-1 border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                 placeholder={"Search for LEGO " + searchTitle}
               />
-              <div className="col-start-2 row-start-1 flex items-center">
+              <div className="col-start-2 row-start-1 flex items-center bg-indigo-600 rounded-md">
                 <MagnifyingGlassIcon
-                  className="h-5 w-5 mr-3 text-gray-400 group-hover:text-gray-500"
+                  className="h-5 w-5 ml-3 mr-3 text-gray-400 group-hover:text-gray-500"
                   aria-hidden="true"
                 />
               </div>
