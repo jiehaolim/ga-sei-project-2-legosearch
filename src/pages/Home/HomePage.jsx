@@ -1,7 +1,11 @@
+import MainSearch from "../../components/Home/MainSearch";
+
 const HomePage = () => {
-    return (
-    <div>Home Page</div>
-    )
-  };
-  
-  export default HomePage
+  return (
+    <>
+      <MainSearch />
+    </>
+  );
+};
+
+export default HomePage;

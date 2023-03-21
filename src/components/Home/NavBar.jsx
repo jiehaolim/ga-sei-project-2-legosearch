@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import smileyLogo from "../img/smileylogo.png";
+import smileyLogo from "../../img/smileylogo.png";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
