@@ -1,4 +1,4 @@
-import recommendedThemes from "../data/recommendedThemes";
+import recommendedThemes from "../data/recommendedThemes.js"
 
 const RecommendedGrid = () => {
   return (
