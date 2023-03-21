@@ -19,12 +19,8 @@ function App() {
           <Route path="/" element={<HomeNavBar />}>
             {/* Home */}
             <Route path="/" element={<HomePage />} />
-
-            {/* Sets */}
-            <Route path="sets" element={<SetsHome />}>
-              <Route path="search" element={<SetsSearchResults />} />
-              <Route path="result/:setnum" element={<SetsSingleResult />} />
-            </Route>
+            <Route path="search" element={<SetsSearchResults />} />
+            <Route path="result/:setnum" element={<SetsSingleResult />} />
 
             {/* Minifigs */}
             <Route path="minifigs" element={<MinifigsHome />}>
