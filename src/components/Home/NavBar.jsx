@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import smileyLogo from "../../img/smileylogo.png";
@@ -44,9 +44,9 @@ const NavBar = () => {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.to}
+                        to={item.to}
                         className={
                           item.to === location.pathname
                             ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
@@ -55,7 +55,7 @@ const NavBar = () => {
                         aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
