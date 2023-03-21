@@ -1,5 +1,5 @@
 import Search from "../../components/Search";
-import Recommended from "../../components/recommended";
+import RecommendedGrid from "../../components/RecommendedGrid";
 
 const searchTitle = "minifigures"
 
@@ -8,7 +8,7 @@ const MinifigsHome = () => {
     return (
         <>
             <Search searchTitle={searchTitle} />
-            <Recommended />
+            <RecommendedGrid />
         </>
     )
   };

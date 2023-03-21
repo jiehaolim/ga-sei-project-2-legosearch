@@ -1,6 +1,6 @@
 import recommendedThemes from "../data/recommendedThemes";
 
-const Recommended = () => {
+const RecommendedGrid = () => {
   return (
     <>
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -44,4 +44,4 @@ const Recommended = () => {
   );
 };
 
-export default Recommended;
+export default RecommendedGrid;

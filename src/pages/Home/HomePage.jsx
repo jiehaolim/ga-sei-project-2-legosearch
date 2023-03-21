@@ -1,5 +1,5 @@
 import Search from "../../components/Search";
-import Recommended from "../../components/recommended";
+import RecommendedGrid from "../../components/RecommendedGrid";
 
 const searchTitle = "sets"
 
@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
     <>
       <Search searchTitle={searchTitle} />
-      <Recommended />
+      <RecommendedGrid />
     </>
   );
 };
