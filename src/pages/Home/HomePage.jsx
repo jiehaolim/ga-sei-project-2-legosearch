@@ -1,9 +1,13 @@
-import MainSearch from "../../components/Home/MainSearch";
+import Search from "../../components/Search";
+import Recommended from "../../components/recommended";
+
+const searchTitle = "sets"
 
 const HomePage = () => {
   return (
     <>
-      <MainSearch />
+      <Search searchTitle={searchTitle} />
+      <Recommended />
     </>
   );
 };

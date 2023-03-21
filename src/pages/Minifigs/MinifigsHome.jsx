@@ -1,6 +1,15 @@
+import Search from "../../components/Search";
+import Recommended from "../../components/recommended";
+
+const searchTitle = "minifigures"
+
 const MinifigsHome = () => {
+    
     return (
-        <div>Minifigs Home</div>
+        <>
+            <Search searchTitle={searchTitle} />
+            <Recommended />
+        </>
     )
   };
   
