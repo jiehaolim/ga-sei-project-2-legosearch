@@ -1,5 +1,5 @@
-import Search from "../../components/Search";
-import RecommendedGrid from "../../components/RecommendedGrid";
+import Search from "../../components/Shared/Search";
+import RecommendedGrid from "../../components/Shared/RecommendedGrid";
 
 const searchTitle = "sets"
 

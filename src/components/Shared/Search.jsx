@@ -1,4 +1,4 @@
-import legoSearchLogo from "../img/legosearchlogo.png";
+import legoSearchLogo from "../../img/legosearchlogo.png";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 const Search = ({ searchTitle }) => {
@@ -37,30 +37,6 @@ const Search = ({ searchTitle }) => {
                 className="col-start-1 col-end-3 row-start-1 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 peer-focus:ring-2 peer-focus:ring-indigo-600"
                 aria-hidden="true"
               />
-            </div>
-            <div className="mt-3 sm:mt-0 sm:w-1/6 sm:ml-4 sm:flex-shrink-0">
-              <select
-                id="location"
-                name="location"
-                className="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 bg-transparent text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                defaultValue="Canada"
-              >
-                <option>United States United States</option>
-                <option>Canada</option>
-                <option>Mexico</option>
-              </select>
-            </div>
-            <div className="mt-3 sm:mt-0 sm:ml-4 sm:w-1/6 sm:flex-shrink-0">
-              <select
-                id="location"
-                name="location"
-                className="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 bg-transparent text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                defaultValue="Canada"
-              >
-                <option>United States</option>
-                <option>Canada</option>
-                <option>Mexico</option>
-              </select>
             </div>
           </form>
         </div>

@@ -2,9 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomeNavBar from "./pages/Home/HomeNavBar";
 import HomePage from "./pages/Home/HomePage";
-import SetsHome from "./pages/Sets/SetsHome";
-import SetsSearchResults from "./pages/Sets/SetsSearchResults";
-import SetsSingleResult from "./pages/Sets/SetsSingleResult";
+import HomeSearchResults from "./pages/Home/HomeSearchResults";
+import HomeSingleResult from "./pages/Home/HomeSingleResult";
 import MinifigsHome from "./pages/Minifigs/MinifigsHome";
 import MinifigsSearchResults from "./pages/Minifigs/MinifigsSearchResults";
 import MinifigsSingleResult from "./pages/Minifigs/MinifigsSingleResult";
@@ -19,8 +18,8 @@ function App() {
           <Route path="/" element={<HomeNavBar />}>
             {/* Home */}
             <Route path="/" element={<HomePage />} />
-            <Route path="search" element={<SetsSearchResults />} />
-            <Route path="result/:setnum" element={<SetsSingleResult />} />
+            <Route path="search" element={<HomeSearchResults />} />
+            <Route path="result/:setnum" element={<HomeSingleResult />} />
 
             {/* Minifigs */}
             <Route path="minifigs" element={<MinifigsHome />}>
