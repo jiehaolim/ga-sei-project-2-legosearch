@@ -1,7 +1,13 @@
+import SearchGrp from "../../components/Shared/SearchGrp";
+import Results from "../../components/Shared/Results";
+
 const HomeSearchResults = () => {
-    return (
-        <div>Sets Search Results</div>
-    )
-  };
-  
-  export default HomeSearchResults
+  return (
+    <>
+      <SearchGrp />
+      <Results />
+    </>
+  );
+};
+
+export default HomeSearchResults;
