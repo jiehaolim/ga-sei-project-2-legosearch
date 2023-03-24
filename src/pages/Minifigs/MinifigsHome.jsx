@@ -1,3 +1,4 @@
+import recommendedMinifigThemes from "../../data/recommendedMinifigThemes";
 import Search from "../../components/Shared/Search";
 import RecommendedGrid from "../../components/Shared/RecommendedGrid";
 
@@ -8,7 +9,7 @@ const MinifigsHome = () => {
     return (
         <>
             <Search searchTitle={searchTitle} />
-            <RecommendedGrid />
+            <RecommendedGrid recommendedThemes={recommendedMinifigThemes}/>
         </>
     )
   };

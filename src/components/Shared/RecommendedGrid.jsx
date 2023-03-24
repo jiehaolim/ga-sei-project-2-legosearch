@@ -1,12 +1,10 @@
-import recommendedThemes from "../../data/recommendedThemes";
-
-const RecommendedGrid = () => {
+const RecommendedGrid = ({recommendedThemes}) => {
   return (
     <>
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-md sm:max-w-3xl">
           <div className="mt-6">
-            <h3 className="text-sm font-medium text-gray-500">
+            <h3 className="text-sm font-medium text-gray-900">
               Recommended LEGO Themes
             </h3>
             <ul

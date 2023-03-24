@@ -1,4 +1,4 @@
-const recommendedThemes = [
+const recommendedMinifigThemes = [
     {
       name: 'Architecture',
       imageUrl:
@@ -61,4 +61,4 @@ const recommendedThemes = [
     },
   ]
 
-  export default recommendedThemes
+  export default recommendedMinifigThemes
