@@ -19,24 +19,22 @@ const Search = ({ searchTitle }) => {
             <label htmlFor="search" className="sr-only">
               Search
             </label>
-            <div className="grid grid-cols-1 sm:flex-auto">
-              <input
-                type="text"
-                name="search"
-                id="search"
-                className="peer relative col-start-1 row-start-1 border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                placeholder={"Search for LEGO " + searchTitle}
-              />
-              <div className="col-start-2 row-start-1 flex items-center bg-indigo-600 rounded-md">
-                <MagnifyingGlassIcon
-                  className="h-5 w-5 ml-3 mr-3 text-gray-400 group-hover:text-gray-500"
-                  aria-hidden="true"
+            <div className="mt-2 flex rounded-md shadow-sm w-full">
+              <div className="relative flex flex-grow items-stretch focus-within:z-10">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <MagnifyingGlassIcon
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                </div>
+                <input
+                  type="text"
+                  name="search"
+                  id="search"
+                  className="block w-full rounded-md border-0 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  placeholder={"Search for LEGO " + searchTitle}
                 />
               </div>
-              <div
-                className="col-start-1 col-end-3 row-start-1 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 peer-focus:ring-2 peer-focus:ring-indigo-600"
-                aria-hidden="true"
-              />
             </div>
           </form>
         </div>
@@ -46,3 +44,8 @@ const Search = ({ searchTitle }) => {
 };
 
 export default Search;
+
+<div
+  className="col-start-1 col-end-3 row-start-1 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 peer-focus:ring-2 peer-focus:ring-indigo-600"
+  aria-hidden="true"
+/>;
