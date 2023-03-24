@@ -1,4 +1,20 @@
-const RecommendedGrid = ({recommendedThemes}) => {
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+
+const RecommendedGrid = ({ recommendedThemes }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleSubmit = (key, value) => {
+    searchParams.set(key, value);
+    if (location.pathname === "/") {
+      navigate({ pathname: "/search", search: "?" + searchParams.toString() });
+    } else {
+      navigate({ pathname: "/minifigs/search", search: "?" + searchParams.toString() });
+    }
+    
+  };
+
   return (
     <>
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -16,6 +32,9 @@ const RecommendedGrid = ({recommendedThemes}) => {
                   <button
                     type="button"
                     className="group flex w-full items-center justify-between space-x-3 rounded-lg border border-gray-300 p-2 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    onClick={() => {
+                      handleSubmit("theme", themes.id);
+                    }}
                   >
                     <span className="flex min-w-0 flex-1 items-center space-x-3">
                       <span className="block flex-shrink-0">

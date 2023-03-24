@@ -43,9 +43,9 @@ const NavBar = () => {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {navigation.map((item, itemID) => (
                       <Link
-                        key={item.name}
+                        key={itemID}
                         to={item.to}
                         className={
                           item.to === location.pathname
@@ -65,10 +65,9 @@ const NavBar = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3">
-              {navigation.map((item) => (
-                <Link to={item.to}>
+              {navigation.map((item, itemID) => (
+                <Link to={item.to} key={itemID}>
                   <Disclosure.Button
-                    key={item.name}
                     as="a"
                     className={
                       item.to === location.pathname

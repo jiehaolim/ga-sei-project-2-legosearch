@@ -1,7 +1,22 @@
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import legoSearchLogo from "../../img/legosearchlogo.png";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
-const Search = ({ searchTitle }) => {
+const Search = ({ searchTitle, query, handleChange }) => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    searchParams.set("term", query)
+    if (location.pathname === "/") {
+      navigate({ pathname: "/search", search: "?" + searchParams.toString() });
+    } else {
+      navigate({ pathname: "/minifigs/search", search: "?" + searchParams.toString() });
+    }
+  }
+
   return (
     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div className="mt-8 mx-auto max-w-md sm:mt-16 sm:max-w-3xl">
@@ -15,7 +30,7 @@ const Search = ({ searchTitle }) => {
               />
             </div>
           </div>
-          <form className="mt-6 sm:flex sm:items-center" action="#">
+          <form className="mt-6 sm:flex sm:items-center" action="#" onSubmit={handleSubmit}>
             <label htmlFor="search" className="sr-only">
               Search
             </label>
@@ -33,6 +48,7 @@ const Search = ({ searchTitle }) => {
                   id="search"
                   className="block w-full rounded-md border-0 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   placeholder={"Search for LEGO " + searchTitle}
+                  onChange={() => {handleChange(event.target.value)}}
                 />
               </div>
             </div>
