@@ -28,7 +28,7 @@ const RecommendedGrid = () => {
                         />
                       </span>
                       <span className="block min-w-0 flex-1">
-                        <span className="block truncate text-sm font-medium text-gray-900">
+                        <span className="block text-sm font-medium text-gray-900">
                           {themes.name}
                         </span>
                       </span>
