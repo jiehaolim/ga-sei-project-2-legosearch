@@ -9,7 +9,7 @@ import ninjagoImg from "../img/themes/sets/ninjago.png";
 import starwarsImg from "../img/themes/sets/starwars.png";
 import superheroesdcImg from "../img/themes/sets/superheroesdc.png";
 import superheroesmarvelImg from "../img/themes/sets/superheroesmarvel.png";
-import tehcnicImg from "../img/themes/sets/technic.png";
+import technicImg from "../img/themes/sets/technic.png";
 
 const recommendedSetThemes = [
   {
@@ -69,7 +69,7 @@ const recommendedSetThemes = [
   },
   {
     name: "Technic",
-    imageUrl: tehcnicImg,
+    imageUrl: technicImg,
     id: "1",
   },
 ];
