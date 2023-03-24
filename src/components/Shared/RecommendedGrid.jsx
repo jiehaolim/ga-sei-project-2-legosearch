@@ -11,18 +11,18 @@ const RecommendedGrid = () => {
             </h3>
             <ul
               role="list"
-              className="mt-4 mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2"
+              className="mt-4 mb-4 grid grid-cols-2 gap-4 sm:grid-cols-3"
             >
               {recommendedThemes.map((themes, themesIdx) => (
                 <li key={themesIdx}>
                   <button
                     type="button"
-                    className="group flex w-full items-center justify-between space-x-3 rounded-full border border-gray-300 p-2 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="group flex w-full items-center justify-between space-x-3 rounded-lg border border-gray-300 p-2 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     <span className="flex min-w-0 flex-1 items-center space-x-3">
                       <span className="block flex-shrink-0">
                         <img
-                          className="h-10 w-10 rounded-full"
+                          className="h-16 w-16 rounded-lg"
                           src={themes.imageUrl}
                           alt=""
                         />

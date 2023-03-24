@@ -44,8 +44,3 @@ const Search = ({ searchTitle }) => {
 };
 
 export default Search;
-
-<div
-  className="col-start-1 col-end-3 row-start-1 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 peer-focus:ring-2 peer-focus:ring-indigo-600"
-  aria-hidden="true"
-/>;
