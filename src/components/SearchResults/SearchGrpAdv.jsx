@@ -70,7 +70,7 @@ const SearchGrpAdv = () => {
       </div>
       <button
         type="button"
-        className="flex mt-2 float-right rounded-md text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+        className="flex mt-2 float-right py-2 rounded-md text-sm font-semibold text-indigo-600 hover:text-indigo-500"
       >
         <ArrowUpIcon className="w-5 h-5" aria-hidden="true" />
         Basic Search
