@@ -1,10 +1,12 @@
-import SearchGrp from "../../components/Shared/SearchGrp";
-import Results from "../../components/Shared/Results";
+import SearchGrp from "../../components/SearchResults/SearchGrp";
+import SearchGrpAdv from "../../components/SearchResults/SearchGrpAdv";
+import Results from "../../components/SearchResults/Results";
 
 const HomeSearchResults = () => {
   return (
     <>
       <SearchGrp />
+      <SearchGrpAdv />
       <Results />
     </>
   );

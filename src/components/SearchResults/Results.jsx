@@ -58,8 +58,7 @@ const products = [
 
 const Results = () => {
   return (
-    <div className="bg-white">
-      <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-2xl py-10 px-4 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="text-xl font-bold text-gray-900">
           Customers also bought
         </h2>
@@ -94,7 +93,7 @@ const Results = () => {
               <div className="mt-6">
                 <a
                   href={product.href}
-                  className="relative flex items-center justify-center rounded-md border border-transparent bg-gray-100 py-2 px-8 text-sm font-medium text-gray-900 hover:bg-gray-200"
+                  className="relative flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-8 text-sm font-medium text-white hover:bg-gray-200"
                 >
                   Add to bag<span className="sr-only">, {product.name}</span>
                 </a>
@@ -103,7 +102,6 @@ const Results = () => {
           ))}
         </div>
       </div>
-    </div>
   );
 };
 

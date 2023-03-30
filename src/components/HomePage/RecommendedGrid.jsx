@@ -12,7 +12,6 @@ const RecommendedGrid = ({ recommendedThemes }) => {
     } else {
       navigate({ pathname: "/minifigs/search", search: "?" + searchParams.toString() });
     }
-    
   };
 
   return (

@@ -4,7 +4,7 @@ import HomeNavBar from "./pages/Home/HomeNavBar";
 import HomePage from "./pages/Home/HomePage";
 import HomeSearchResults from "./pages/Home/HomeSearchResults";
 import HomeSingleResult from "./pages/Home/HomeSingleResult";
-import MinifigsHome from "./pages/Minifigs/MinifigsHome";
+import MinifigsHomePage from "./pages/Minifigs/MinifigsHomePage";
 import MinifigsSearchResults from "./pages/Minifigs/MinifigsSearchResults";
 import MinifigsSingleResult from "./pages/Minifigs/MinifigsSingleResult";
 import MyCollection from "./pages/MyCollection/MyCollection";
@@ -22,7 +22,7 @@ function App() {
             <Route path="result/:setnum" element={<HomeSingleResult />} />
 
             {/* Minifigs */}
-            <Route path="minifigs" element={<MinifigsHome />} />
+            <Route path="minifigs" element={<MinifigsHomePage />} />
             <Route path="minifigs/search" element={<MinifigsSearchResults />} />
             <Route path="minifigs/result/:setnum" element={<MinifigsSingleResult />} />
 

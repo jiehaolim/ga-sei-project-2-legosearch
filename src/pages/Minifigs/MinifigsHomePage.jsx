@@ -1,11 +1,9 @@
 import { useState } from "react";
 import recommendedMinifigThemes from "../../data/recommendedMinifigThemes";
-import Search from "../../components/Shared/Search";
-import RecommendedGrid from "../../components/Shared/RecommendedGrid";
+import Search from "../../components/HomePage/Search";
+import RecommendedGrid from "../../components/HomePage/RecommendedGrid";
 
-const searchTitle = "minifigures"
-
-const MinifigsHome = () => {    
+const MinifigsHomePage = () => {    
     const [query, setQuery] = useState("")
 
     const handleChange = (string) => {
@@ -14,10 +12,10 @@ const MinifigsHome = () => {
 
     return (
         <>
-            <Search searchTitle={searchTitle} query={query} handleChange={handleChange} />
+            <Search query={query} handleChange={handleChange} />
             <RecommendedGrid recommendedThemes={recommendedMinifigThemes} />
         </>
     )
   };
   
-  export default MinifigsHome
+  export default MinifigsHomePage

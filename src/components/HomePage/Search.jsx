@@ -2,10 +2,12 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import legoSearchLogo from "../../img/legosearchlogo.png";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
-const Search = ({ searchTitle, query, handleChange }) => {
+const Search = ({ query, handleChange }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
+
+  const searchTitle = location.pathname === "/" ? "sets" : "minifigures"
 
   const handleSubmit = (event) => {
     event.preventDefault()

@@ -1,9 +1,7 @@
 import { useState } from "react";
 import recommendedSetThemes from "../../data/recommendedSetThemes";
-import Search from "../../components/Shared/Search";
-import RecommendedGrid from "../../components/Shared/RecommendedGrid";
-
-const searchTitle = "sets"
+import Search from "../../components/HomePage/Search";
+import RecommendedGrid from "../../components/HomePage/RecommendedGrid";
 
 const HomePage = () => {
   const [query, setQuery] = useState("")
@@ -14,7 +12,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Search searchTitle={searchTitle} query={query} handleChange={handleChange} />
+      <Search query={query} handleChange={handleChange} />
       <RecommendedGrid recommendedThemes={recommendedSetThemes} />
     </>
   );
