@@ -29,9 +29,6 @@ const RangeYears = ({}) => {
         <span className="yearvalue-2"></span>
       </p>
       <tc-range-slider
-        slider-width="100%"
-        slider-height="8px"
-        slider-bg-fill="rgb(79 70 229)"
         min={year.min}
         max={year.max}
         value1={year.min}
@@ -42,6 +39,9 @@ const RangeYears = ({}) => {
         generate-labels="false"
         value1-label=".yearvalue-1"
         value2-label=".yearvalue-2"
+        slider-width="100%"
+        slider-height="8px"
+        slider-bg-fill="rgb(79 70 229)"
       ></tc-range-slider>
     </>
   );

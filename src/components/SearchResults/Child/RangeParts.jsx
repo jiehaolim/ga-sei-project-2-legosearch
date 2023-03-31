@@ -47,9 +47,6 @@ const RangeParts = ({}) => {
         <span className="partsvalue-2"></span>
       </p>
         <tc-range-slider
-          slider-width="100%"
-          slider-height="8px"
-          slider-bg-fill="rgb(79 70 229)"
           min={parts.min}
           max={parts.max}
           value1={parts.min}
@@ -61,6 +58,9 @@ const RangeParts = ({}) => {
           generate-labels="false"
           value1-label=".partsvalue-1"
           value2-label=".partsvalue-2"
+          slider-width="100%"
+          slider-height="8px"
+          slider-bg-fill="rgb(79 70 229)"
         ></tc-range-slider>
     </>
   );
