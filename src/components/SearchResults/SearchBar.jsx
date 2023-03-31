@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon, ArrowDownIcon } from "@heroicons/react/20/solid";
 
-const SearchBar = () => {
+const SearchBar = ({ setAdvSearch }) => {
   return (
     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div className="mt-8 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
@@ -29,8 +29,9 @@ const SearchBar = () => {
           </div>
         </div>
         <div className="sm:col-start-5 sm:col-span-2">
-          <button
+          <button 
             type="button"
+            onClick={() => {setAdvSearch(true)}}
             className="flex py-2 float-right rounded-md text-sm font-semibold text-indigo-600 hover:text-indigo-500"
           >
             <ArrowDownIcon className="w-5 h-5" aria-hidden="true" />
