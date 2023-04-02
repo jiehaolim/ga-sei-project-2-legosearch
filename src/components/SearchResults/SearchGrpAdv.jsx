@@ -7,7 +7,7 @@ const SearchGrpAdv = ({ setAdvSearch }) => {
   return (
     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div className="mt-8">
-        <div className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 border-0 rounded-md ring-2 shadow-sm ring-gray-300 px-3 py-2">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 rounded-md ring-1 shadow-sm ring-gray-300 px-3 py-2">
           <div className="sm:col-span-4 mt-1">
             <label
               htmlFor="first-name"

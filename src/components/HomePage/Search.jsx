@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import legoSearchLogo from "../../img/legosearchlogo.png";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
-const Search = ({ query, handleChange }) => {
+const Search = () => {
   const location = useLocation()
   const navigate = useNavigate()
+  const [query, setQuery] = useState("")
   const [searchParams, setSearchParams] = useSearchParams()
 
   const searchTitle = location.pathname === "/" ? "sets" : "minifigures"
@@ -50,7 +52,7 @@ const Search = ({ query, handleChange }) => {
                   id="search"
                   className="block w-full rounded-md border-0 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   placeholder={"Search for LEGO " + searchTitle}
-                  onChange={() => {handleChange(event.target.value)}}
+                  onChange={() => {setQuery(event.target.value)}}
                 />
               </div>
             </div>
