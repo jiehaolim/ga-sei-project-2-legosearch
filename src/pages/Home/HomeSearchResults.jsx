@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import SearchBar from "../../components/SearchResults/SearchBar";
+import SearchGrpBasic from "../../components/SearchResults/SearchGrpBasic";
 import SearchGrpAdv from "../../components/SearchResults/SearchGrpAdv";
 import NavGrp from "../../components/SearchResults/NavGrp";
 import Results from "../../components/SearchResults/Results";
@@ -14,7 +14,7 @@ const HomeSearchResults = () => {
   }
   return (
     <>
-      {advSearch ? <SearchGrpAdv setAdvSearch={setAdvSearch} /> : <SearchBar setAdvSearch={setAdvSearch} />}
+      {advSearch ? <SearchGrpAdv setAdvSearch={setAdvSearch} /> : <SearchGrpBasic setAdvSearch={setAdvSearch} />}
       <NavGrp />
       <Results />
       <Pagination />

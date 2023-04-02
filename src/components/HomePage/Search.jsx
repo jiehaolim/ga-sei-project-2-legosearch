@@ -17,7 +17,7 @@ const Search = () => {
     if (location.pathname === "/") {
       navigate({ pathname: "/search", search: "?" + searchParams.toString() });
     } else {
-      navigate({ pathname: "/minifigs/search", search: "?" + searchParams.toString() });
+      navigate({ pathname: "/minifigures/search", search: "?" + searchParams.toString() });
     }
   }
 

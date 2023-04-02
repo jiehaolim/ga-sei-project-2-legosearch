@@ -2,8 +2,8 @@ import SelectMenu from "./Child/SelectMenu";
 
 const NavGrp = () => {
   return (
-    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div className="mt-4 grid grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-3 lg:grid-cols-4">
+    <div className="mt-4 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-3 lg:grid-cols-4">
         <div className="col-span-1">
           <label
             htmlFor="last-name"

@@ -50,7 +50,7 @@ const SearchGrpAdv = ({ setAdvSearch }) => {
           <div className="sm:col-span-3 mt-1 p-2">
             <RangeYears />
           </div>
-          <div className="sm:col-start-5 sm:col-span-2 mt-3 mb-2">
+          <div className="sm:col-start-5 sm:col-span-2 mt-3 mb-1">
             <button
               type="button"
               className="block w-full sm:w-5/6 float-right rounded-md bg-indigo-600 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

@@ -22,9 +22,9 @@ function App() {
             <Route path="result/:setnum" element={<HomeSingleResult />} />
 
             {/* Minifigs */}
-            <Route path="minifigs" element={<MinifigsHomePage />} />
-            <Route path="minifigs/search" element={<MinifigsSearchResults />} />
-            <Route path="minifigs/result/:setnum" element={<MinifigsSingleResult />} />
+            <Route path="minifigures" element={<MinifigsHomePage />} />
+            <Route path="minifigures/search" element={<MinifigsSearchResults />} />
+            <Route path="minifigures/result/:setnum" element={<MinifigsSingleResult />} />
 
             {/* My Collection */}
             <Route path="mycollection" element={<MyCollection />} />
