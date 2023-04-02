@@ -8,16 +8,15 @@ const Search = () => {
   const navigate = useNavigate()
   const [query, setQuery] = useState("")
   const [searchParams, setSearchParams] = useSearchParams()
-
   const searchTitle = location.pathname === "/" ? "sets" : "minifigures"
 
   const handleSubmit = (event) => {
     event.preventDefault()
     searchParams.set("term", query)
-    if (location.pathname === "/") {
-      navigate({ pathname: "/search", search: "?" + searchParams.toString() });
-    } else {
+    if (location.pathname.startsWith("/minifigure")) {
       navigate({ pathname: "/minifigures/search", search: "?" + searchParams.toString() });
+    } else {
+      navigate({ pathname: "/search", search: "?" + searchParams.toString() });
     }
   }
 

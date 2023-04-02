@@ -1,9 +1,13 @@
+import { useLocation } from "react-router-dom";
 import { MagnifyingGlassIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
 import SelectMenu from "./Child/SelectMenu";
 import RangeParts from "./Child/RangeParts";
 import RangeYears from "./Child/RangeYears";
 
-const SearchGrpAdv = ({ setAdvSearch }) => {
+const SearchGrpAdv = ({ handleSearchType, searchObj, handleChangeSearchObj }) => {
+  const location = useLocation()
+  const searchTitle = location.pathname.startsWith() === "/minifigures" ? "minifigures" : "sets"  
+
   return (
     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div className="mt-8">
@@ -61,7 +65,7 @@ const SearchGrpAdv = ({ setAdvSearch }) => {
         </div>
         <div className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
           <button
-            onClick={()=> {setAdvSearch(false)}}
+            onClick={()=> {handleSearchType(false)}}
             type="button"
             className="col-start-7 flex mt-1 py-2 rounded-md text-sm font-semibold text-indigo-600 hover:text-indigo-500"
           >
