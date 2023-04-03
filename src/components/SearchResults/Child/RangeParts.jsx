@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
-const RangeParts = ({}) => {
+const RangeParts = ({ advSearchObj, handleChangeSearchObj }) => {
   const sliderRef = useRef(null);
   const location = useLocation();
 
@@ -13,32 +13,30 @@ const RangeParts = ({}) => {
   };
   // switch the number of minParts per location route
   // update the URL per location
-  if (location.pathname.startsWith("/")) {
-    parts.min = "0";
-    // largest lego set so far is 11695 parts
-    parts.max = "15000";
-    // step
-    parts.step = "100";
-  } else if (location.pathname.startsWith("/minifigures")) {
-    parts.min = "0";
+  if (location.pathname.startsWith("/minifigures")) {
+    parts.min = 0;
     // largest lego set so far is 148 parts
-    parts.max = "250";
+    parts.max = 250;
     // step
-    parts.step = "50";
-  }
+    parts.step = 50;
+  } else {
+    parts.min = 0;
+    // largest lego set so far is 11695 parts
+    parts.max = 15000;
+    // step
+    parts.step = 100;
+  } 
 
   useEffect(() => {
     const slider = sliderRef.current;
 
     const onChange = (event) => {
-      handleChange("rangeParts", event.target.value1, event.target.value2);
+      handleChangeSearchObj("rangeParts", event.target.value1, event.target.value2);
     };
 
     slider?.addEventListener("change", onChange);
-    return () => {
-      slider?.removeEventListener("change", onChange);
-    };
-  }, []);
+    return () => {slider?.removeEventListener("change", onChange)};
+  }, [advSearchObj]);
 
   return (
     <>
@@ -49,8 +47,8 @@ const RangeParts = ({}) => {
         <tc-range-slider
           min={parts.min}
           max={parts.max}
-          value1={parts.min}
-          value2={parts.max}
+          value1={advSearchObj.minParts}
+          value2={advSearchObj.maxParts}
           ref={sliderRef}
           round="0"
           step={parts.step}

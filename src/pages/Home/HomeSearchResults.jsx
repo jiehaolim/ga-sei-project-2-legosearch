@@ -9,28 +9,37 @@ import Pagination from "../../components/SearchResults/Pagination";
 const HomeSearchResults = ({ themes }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [advSearch, setAdvSearch] = useState(false);
+  // current year
+  const date = new Date();
+  const maxYear = date.getFullYear();
   const [searchObj, setSearchObj] = useState({
-    term: searchParams.get("term") ? searchParams.get("term") : null,
-    theme: searchParams.get("theme") ? searchParams.get("theme") : null,
-    minParts: searchParams.get("minParts") ? searchParams.get("minParts") : null,
-    maxParts: searchParams.get("maxParts") ? searchParams.get("maxParts") : null,
-    minYear: searchParams.get("minYear") ? searchParams.get("minYear") : null,
-    maxYear: searchParams.get("maxYear") ? searchParams.get("maxYear") : null,
+    term: searchParams.get("term") ? searchParams.get("term") : "",
+    theme: searchParams.get("theme") ? searchParams.get("theme") : "",
   });
+  const [advSearchObj, setAdvSearchObj] = useState({
+    minParts: searchParams.get("minParts") ? searchParams.get("minParts") : 0,
+    maxParts: searchParams.get("maxParts") ? searchParams.get("maxParts") : 15000, // largest lego set so far is 11695 parts
+    minYear: searchParams.get("minYear") ? searchParams.get("minYear") : 1949, // year lego started
+    maxYear: searchParams.get("maxYear") ? searchParams.get("maxYear") : maxYear, // current year
+  })
 
   const handleSearchType = (boolean) => {
     setAdvSearch(boolean)
   }
 
-  const handleChangeSearchObj = (key, value) => {
-    setSearchObj({...searchObj, [key]: value})
+  const handleChangeSearchObj = (key, value1, value2) => {
+    if (key === "rangeParts") {
+      setAdvSearchObj({...advSearchObj, ["minParts"]: value1, ["maxParts"]: value2})
+    } else if (key === "rangeYears") {
+      setAdvSearchObj({...advSearchObj, ["minYear"]: value1, ["maxYear"]: value2})
+    } else {
+      setSearchObj({...searchObj, [key]: value1})
+    }
   }
-
-  console.log(searchObj)
 
   return (
     <>
-      {advSearch ? (<SearchGrpAdv themes={themes} handleSearchType={handleSearchType} searchObj={searchObj} handleChangeSearchObj={handleChangeSearchObj} /> 
+      {advSearch ? (<SearchGrpAdv themes={themes} handleSearchType={handleSearchType} searchObj={searchObj} advSearchObj={advSearchObj} handleChangeSearchObj={handleChangeSearchObj} /> 
       ) : ( <SearchGrpBasic themes={themes} handleSearchType={handleSearchType} searchObj={searchObj} handleChangeSearchObj={handleChangeSearchObj}/>)}
       {/* <NavGrp /> */}
       <Results />
