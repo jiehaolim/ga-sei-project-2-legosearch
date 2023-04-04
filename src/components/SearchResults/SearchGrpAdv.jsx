@@ -4,26 +4,31 @@ import RangeParts from "./Child/RangeParts";
 import RangeYears from "./Child/RangeYears";
 import { MagnifyingGlassIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
 
-const SearchGrpAdv = ({themes, handleSearchType, searchObj, advSearchObj, handleChangeSearchObj}) => {
+const SearchGrpAdv = ({ themes, handleSearchType, searchObj, handleChange }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchTitle = location.pathname.startsWith() === "/minifigures" ? "minifigures" : "sets";
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // combine both basic and adv search obj
-    const combinedSearchObj = { ...searchObj, ...advSearchObj }
-    // navigate to new search terms
+    const finalSearchObj = {
+      term: searchObj.term,
+      theme : searchObj.theme,
+      minParts : searchObj.minParts,
+      maxParts : searchObj.maxParts,
+      minYear : searchObj.minYear,
+      maxYear : searchObj.maxYear,
+    }
     if (location.pathname.startsWith("/minifigures")) {
-      navigate({ pathname: "/minifigures/search", search: "?" + createSearchParams(combinedSearchObj) });
+      navigate({ pathname: "/minifigures/search", search: "?" + createSearchParams(finalSearchObj) });
     } else {
-      navigate({ pathname: "/search", search: "?" + createSearchParams(combinedSearchObj) });
+      navigate({ pathname: "/search", search: "?" + createSearchParams(finalSearchObj) });
     }
   }
 
   return (
     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div className="mt-8">
+      <form className="mt-8" action="#" onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 rounded-md ring-1 shadow-sm ring-gray-300 px-3 py-2">
           <div className="sm:col-span-4 mt-1">
             <label
@@ -41,13 +46,12 @@ const SearchGrpAdv = ({themes, handleSearchType, searchObj, advSearchObj, handle
               </div>
               <input
                 type="text"
-                name="first-name"
-                id="first-name"
-                autoComplete="given-name"
+                name="search"
+                id="search"
                 className="block w-full rounded-md border-0 py-1.5 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 placeholder={"Search for LEGO " + searchTitle}
                 value={searchObj.term}
-                onChange={() => {handleChangeSearchObj("term", event.target.value, "")}}
+                onChange={() => {handleChange("term", event.target.value, "")}}
               />
             </div>
           </div>
@@ -59,15 +63,15 @@ const SearchGrpAdv = ({themes, handleSearchType, searchObj, advSearchObj, handle
             >
               Theme
             </label>
-            <SelectMenu selectObj={themes} searchObj={searchObj} handleChangeSearchObj={handleChangeSearchObj} />
+            <SelectMenu selectObj={themes} stateObj={searchObj} handleChange={handleChange} />
           </div>
 
           <div className="sm:col-span-3 mt-1 p-2">
-            <RangeParts advSearchObj={advSearchObj} handleChangeSearchObj={handleChangeSearchObj} />
+            <RangeParts searchObj={searchObj} handleChange={handleChange} />
           </div>
 
           <div className="sm:col-span-3 mt-1 p-2">
-            <RangeYears advSearchObj={advSearchObj} handleChangeSearchObj={handleChangeSearchObj} />
+            <RangeYears searchObj={searchObj} handleChange={handleChange} />
           </div>
           <div className="sm:col-start-5 sm:col-span-2 mt-3 mb-1">
             <button
@@ -89,7 +93,7 @@ const SearchGrpAdv = ({themes, handleSearchType, searchObj, advSearchObj, handle
             Basic Search
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

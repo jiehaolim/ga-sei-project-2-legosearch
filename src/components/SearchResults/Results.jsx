@@ -1,172 +1,62 @@
-const products = [
-  {
-    id: 1,
-    name: "Organize Basic Set (Walnut)",
-    price: "$149",
-    rating: 5,
-    reviewCount: 38,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-01.jpg",
-    imageAlt: "TODO",
-    href: "#",
-  },
-  {
-    id: 2,
-    name: "Organize Pen Holder",
-    price: "$15",
-    rating: 5,
-    reviewCount: 18,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-02.jpg",
-    imageAlt: "TODO",
-    href: "#",
-  },
-  {
-    id: 3,
-    name: "Organize Sticky Note Holder",
-    price: "$15",
-    rating: 5,
-    reviewCount: 14,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-03.jpg",
-    imageAlt: "TODO",
-    href: "#",
-  },
-  {
-    id: 4,
-    name: "Organize Phone Holder",
-    price: "$15",
-    rating: 4,
-    reviewCount: 21,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-04.jpg",
-    imageAlt: "TODO",
-    href: "#",
-  },
-  {
-    id: 5,
-    name: "Organize Phone Holder",
-    price: "$15",
-    rating: 4,
-    reviewCount: 21,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-04.jpg",
-    imageAlt: "TODO",
-    href: "#",
-  },
-  {
-    id: 6,
-    name: "Organize Phone Holder",
-    price: "$15",
-    rating: 4,
-    reviewCount: 21,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-04.jpg",
-    imageAlt: "TODO",
-    href: "#",
-  },
-  {
-    id: 7,
-    name: "Organize Phone Holder",
-    price: "$15",
-    rating: 4,
-    reviewCount: 21,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-04.jpg",
-    imageAlt: "TODO",
-    href: "#",
-  },
-  {
-    id: 8,
-    name: "Organize Phone Holder",
-    price: "$15",
-    rating: 4,
-    reviewCount: 21,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-04.jpg",
-    imageAlt: "TODO",
-    href: "#",
-  },
-  {
-    id: 9,
-    name: "Organize Phone Holder",
-    price: "$15",
-    rating: 4,
-    reviewCount: 21,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-04.jpg",
-    imageAlt: "TODO",
-    href: "#",
-  },
-  {
-    id: 10,
-    name: "Organize Phone Holder",
-    price: "$15",
-    rating: 4,
-    reviewCount: 21,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-04.jpg",
-    imageAlt: "TODO",
-    href: "#",
-  },
-  {
-    id: 11,
-    name: "Organize Phone Holder",
-    price: "$15",
-    rating: 4,
-    reviewCount: 21,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-04.jpg",
-    imageAlt: "TODO",
-    href: "#",
-  },
-  {
-    id: 12,
-    name: "Organize Phone Holder",
-    price: "$15",
-    rating: 4,
-    reviewCount: 21,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-04.jpg",
-    imageAlt: "TODO",
-    href: "#",
-  },
-  // More products...
-];
+import { Link } from "react-router-dom";
 
-const Results = () => {
+const Results = ({ resultsObj }) => {
+  const productIMG = "set_img_url";
+  const productTitle = "name";
+  const productNo = "set_num";
+  const productParts = "num_parts";
+  const productTheme = "theme";
+  const productYear = "year";
+  const productURL = "set_url";
+
   return (
     <div className="mt-8 mx-auto max-w-7xl overflow-hidden px-2 sm:px-6 lg:px-8">
-      <h2 className="sr-only">Products</h2>
-      <div className="mx-px grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4 gap-2">
-        {products.map((product) => (
+      <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+      Showing {resultsObj.count} related {resultsObj.count === 1 ? "result" : "results"}
+      </h2>
+      <div className="mt-8 mx-px grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {resultsObj.results.map((result) => (
           <div
-            key={product.id}
-            className="group border border-gray-300 rounded-lg relative p-4 sm:p-6"
+            key={result[productNo]}
+            className="bg-white border border-gray-300 rounded-lg relative p-4"
           >
-            <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
-              <img
-                src={product.imageSrc}
-                alt={product.imageAlt}
-                className="h-full w-full object-cover object-center"
-              />
-            </div>
-            <div className="pb-4 pt-10 text-center">
-              <h3 className="text-sm font-medium text-gray-900">
-                <a href={product.href}>
-                  <span aria-hidden="true" className="absolute inset-0" />
-                  {product.name}
-                </a>
-              </h3>
-              <div className="mt-3 flex flex-col items-center">
-                <p className="mt-1 text-sm text-gray-500">
-                  {product.reviewCount} reviews
-                </p>
+            <div className="group relative">
+              <div className="w-full h-48 sm:h-64 lg:h-64 xl:h-72 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
+                <img
+                  src={result[productIMG]}
+                  alt={result[productTitle]}
+                  className="h-full w-full object-cover object-center"
+                />
               </div>
-              <p className="mt-4 text-base font-medium text-gray-900">
-                {product.price}
-              </p>
+              <div className="pb-4 pt-4">
+                <h3 className="text-sm font-medium text-gray-900 truncate">
+                  <Link to={result[productURL]}>
+                    <span aria-hidden="true" className="absolute inset-0" />
+                    {result[productTitle]}
+                  </Link>
+                </h3>
+                <div className="mt-1 flex justify-between gap-x-4">
+                  <p className="text-sm text-gray-500 truncate">
+                    {result[productNo]}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    {result[productParts]} parts
+                  </p>
+                </div>
+                <div className="mt-1 flex justify-between gap-x-4">
+                  <p className="text-sm text-gray-500 truncate">
+                    {result[productTheme]}
+                  </p>
+                  <p className="text-sm text-gray-500">{result[productYear]}</p>
+                </div>
+              </div>
             </div>
+            <button
+              type="button"
+              className="w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Add to my collection
+            </button>
           </div>
         ))}
       </div>

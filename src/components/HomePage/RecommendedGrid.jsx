@@ -30,7 +30,7 @@ const RecommendedGrid = ({ recommendedThemes }) => {
                 <li key={themesIdx}>
                   <button
                     type="button"
-                    className="group flex w-full items-center justify-between space-x-3 rounded-lg border border-gray-300 p-2 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="bg-white group flex w-full items-center justify-between space-x-3 rounded-lg border border-gray-300 p-2 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     onClick={() => {
                       handleSubmit("theme", themes.id);
                     }}

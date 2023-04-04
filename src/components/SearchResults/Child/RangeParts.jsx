@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
-const RangeParts = ({ advSearchObj, handleChangeSearchObj }) => {
+const RangeParts = ({ searchObj, handleChange }) => {
   const sliderRef = useRef(null);
   const location = useLocation();
 
@@ -31,12 +31,12 @@ const RangeParts = ({ advSearchObj, handleChangeSearchObj }) => {
     const slider = sliderRef.current;
 
     const onChange = (event) => {
-      handleChangeSearchObj("rangeParts", event.target.value1, event.target.value2);
+      handleChange("rangeParts", event.target.value1, event.target.value2);
     };
 
     slider?.addEventListener("change", onChange);
     return () => {slider?.removeEventListener("change", onChange)};
-  }, [advSearchObj]);
+  }, [searchObj]);
 
   return (
     <>
@@ -47,8 +47,8 @@ const RangeParts = ({ advSearchObj, handleChangeSearchObj }) => {
         <tc-range-slider
           min={parts.min}
           max={parts.max}
-          value1={advSearchObj.minParts}
-          value2={advSearchObj.maxParts}
+          value1={searchObj.minParts}
+          value2={searchObj.maxParts}
           ref={sliderRef}
           round="0"
           step={parts.step}
