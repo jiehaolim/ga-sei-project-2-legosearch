@@ -73,7 +73,7 @@ const HomeSearchResults = () => {
         pageNo : currentSearchParams.pageNo,
         pageSize : currentSearchParams.pageSize,
       }
-      setSearchObj({...searchObj, ...currentSearchObj})
+      setSearchObj(currentSearchObj)
       setAdvSearch(false)
     } else {
       const currentSearchObj = {
@@ -88,7 +88,7 @@ const HomeSearchResults = () => {
         pageNo : currentSearchParams.pageNo,
         pageSize : currentSearchParams.pageSize,
       }
-      setSearchObj({...searchObj, ...currentSearchObj})
+      setSearchObj(currentSearchObj)
       setAdvSearch(true)
     }
     
