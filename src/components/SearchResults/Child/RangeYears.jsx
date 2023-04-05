@@ -35,7 +35,6 @@ const RangeYears = ({ searchObj, handleChange }) => {
         value2={searchObj.maxYear}
         ref={sliderRef}
         round="0"
-        range-dragging="true"
         generate-labels="false"
         value1-label=".yearvalue-1"
         value2-label=".yearvalue-2"

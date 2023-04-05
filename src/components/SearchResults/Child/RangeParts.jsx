@@ -52,7 +52,6 @@ const RangeParts = ({ searchObj, handleChange }) => {
           ref={sliderRef}
           round="0"
           step={parts.step}
-          range-dragging="true"
           generate-labels="false"
           value1-label=".partsvalue-1"
           value2-label=".partsvalue-2"
