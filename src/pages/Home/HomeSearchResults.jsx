@@ -8,10 +8,9 @@ import NoResults from "../../components/SearchResults/NoResults";
 import Pagination from "../../components/SearchResults/Pagination";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const HomeSearchResults = () => {
+const HomeSearchResults = ({ themes }) => {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams();
-  const [themes, setThemes] = useState({ "theme": [{ "id":"", "name":"Theme" }] })
   // object to store the current search params
   const currentSearchParams = {
     term: searchParams.get("term") ? searchParams.get("term") : "",
@@ -93,28 +92,6 @@ const HomeSearchResults = () => {
     }
     
     const fetchData = async () => {
-      // fetch theme data
-      // max data pull is 1000 but lego only have < 500 themes as now 3-April-23
-      const pageSize = 1000;
-      const response = await fetch(
-        `https://rebrickable.com/api/v3/lego/themes/?key=${API_KEY}&page_size=${pageSize}`
-      )
-      const data = await response.json();
-      // to show parent theme name with sub theme name
-      const mainThemes = []
-      for (const theme of data.results) {
-        // no parent theme just push into array
-        if (theme.parent_id === null) {
-          mainThemes.push({id: theme.id, name:theme.name})
-        } else {
-          // with parent theme, find parent theme name and put together wiith subtheme name
-          const parentTheme = data.results.find((element) => element.id === theme.parent_id)
-          mainThemes.push({id: theme.id, name: `${parentTheme.name} > ${theme.name}`})
-        }
-      }
-      mainThemes.sort((a ,b) => (a.name > b.name) ? 1 : -1)
-      setThemes({theme: [...themes.theme, ...mainThemes]})
-      
       // fetch set data
       const responseSets = await fetch(
           `https://rebrickable.com/api/v3/lego/sets/?key=${API_KEY}&search=${currentSearchParams.term}&theme_id=${currentSearchParams.theme}&min_year=${currentSearchParams.minYear}&max_year=${currentSearchParams.maxYear}&min_parts=${currentSearchParams.minParts}&max_parts=${currentSearchParams.maxParts}&ordering=
@@ -124,7 +101,7 @@ const HomeSearchResults = () => {
 
         // add theme to data set
         for (const sets of dataSets.results) {
-          const themeForSets = mainThemes.find((element) => element.id === sets.theme_id);
+          const themeForSets = themes.theme.find((element) => element.id === sets.theme_id);
           sets.theme = themeForSets?.name;
         }
         setResultsObj(dataSets);
