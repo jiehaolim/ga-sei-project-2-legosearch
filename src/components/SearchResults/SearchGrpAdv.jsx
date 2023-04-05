@@ -19,10 +19,7 @@ const SearchGrpAdv = ({ themes, handleSearchType, searchObj, handleChange }) => 
       minYear : searchObj.minYear,
       maxYear : searchObj.maxYear,
     }
-    searchObj.sortBy = "set_num"
-    searchObj.sortOrder = ""
-    searchObj.pageSize = 20
-    searchObj.pageNo = 1
+    handleChange("resetNavGrp","","")
     if (location.pathname.startsWith("/minifigures")) {
       navigate({ pathname: "/minifigures/search", search: "?" + createSearchParams(finalSearchObj) });
     } else {

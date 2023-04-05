@@ -148,6 +148,8 @@ const HomeSearchResults = () => {
       setSearchObj({ ...searchObj, ["minYear"]: value1, ["maxYear"]: value2 });
     } else if (key === "term" || key === "theme") {
       setSearchObj({ ...searchObj, [key]: value1 });
+    } else if (key === "resetNavGrp") {
+      setSearchObj({...searchObj, ["sortBy"] : "set_num", ["sortOrder"] : "", ["pageSize"] : 20, ["pageNo"] : 1})
     } else {
       setSearchObj({ ...searchObj, [key]: value1 });
       const currentSearchObj = {}
