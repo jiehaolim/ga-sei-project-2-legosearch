@@ -40,7 +40,7 @@ const Results = ({ resultsObj }) => {
                     {result[productNo]}
                   </p>
                   <p className="text-sm text-gray-500">
-                    {result[productParts]} parts
+                    {result[productParts]} {result[productParts] <= 1 ? "part" : "parts"}
                   </p>
                 </div>
                 <div className="mt-1 flex justify-between gap-x-4">
