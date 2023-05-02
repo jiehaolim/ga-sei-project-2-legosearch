@@ -30,10 +30,10 @@ const Results = ({ resultsObj }) => {
               </div>
               <div className="pb-4 pt-4">
                 <h3 className="text-sm font-medium text-gray-900 truncate">
-                  <Link to={result[productURL]}>
+                  <a href={result[productURL]}>
                     <span aria-hidden="true" className="absolute inset-0" />
                     {result[productTitle]}
-                  </Link>
+                  </a>
                 </h3>
                 <div className="mt-1 flex justify-between gap-x-4">
                   <p className="text-sm text-gray-500 truncate">
