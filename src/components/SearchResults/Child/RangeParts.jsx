@@ -34,8 +34,6 @@ const RangeParts = ({ searchObj, handleChange }) => {
       handleChange("rangeParts", event);
     };
 
-    console.log("range")
-
     slider?.addEventListener("change", onChange);
     return () => {
       slider?.removeEventListener("change", onChange);

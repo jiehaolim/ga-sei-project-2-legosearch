@@ -20,7 +20,7 @@ const RangeYears = ({ searchObj, handleChange }) => {
     return () => {
       slider?.removeEventListener("change", onChange);
     };
-  }, [searchObj]);
+  }, []);
 
   return (
     <>

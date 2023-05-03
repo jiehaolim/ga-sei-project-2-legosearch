@@ -44,7 +44,6 @@ const SortGrp = () => {
       sortOrder: searchParams.get("sortOrder") ?? "",
       pageSize: searchParams.get("pageSize") ?? 20,
     });
-    console.log("sort", searchParams.toString())
   }, [searchParams.toString()]);
 
   return (

@@ -16,17 +16,23 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
   const [searchAdvObj, setSearchAdvObj] = useState({
     term: "",
     theme: "",
+  });
+
+  const [searchPartObj, setSearchPartObj] = useState({
     minParts: 0,
     maxParts: 15000, // largest lego set so far is 11695 parts
+  });
+
+  const [searchYearObj, setSearchYearObj] = useState({
     minYear: 1949, // year lego started
     maxYear: maxYear, // current year
   });
 
   const handleChange = (key, event) => {
     if (key === "rangeParts") {
-      setSearchAdvObj({ ...searchAdvObj, "minParts": event.target.value1, "maxParts": event.target.value2 });
+      setSearchPartObj({ ...searchPartObj, "minParts": event.target.value1, "maxParts": event.target.value2 });
     } else if (key === "rangeYears"){
-      setSearchAdvObj({ ...searchAdvObj, "minYear": event.target.value1, "maxYear": event.target.value2 });
+      setSearchYearObj({ ...searchYearObj, "minYear": event.target.value1, "maxYear": event.target.value2 });
     } else {
       setSearchAdvObj({ ...searchAdvObj, [key]: event.target.value });
     }
@@ -34,7 +40,15 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSearchParams(searchAdvObj);
+    const finalSearchObject = {
+      term: searchAdvObj.term,
+      theme: searchAdvObj.theme,
+      minParts: searchPartObj.minParts,
+      maxParts: searchPartObj.maxParts,
+      minYear: searchYearObj.minYear,
+      maxYear: searchYearObj.maxYear,
+    }
+    setSearchParams(finalSearchObject);
   };
 
   useEffect(() => {
@@ -42,15 +56,17 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
       ...searchAdvObj,
       term: searchParams.get("term") ?? "",
       theme: searchParams.get("theme") ?? "",
+    });
+    setSearchPartObj({
       minParts: searchParams.get("minParts") ?? 0,
       maxParts: searchParams.get("maxParts") ?? 15000, // largest lego set so far is 11695 parts
+    })
+    setSearchYearObj({
       minYear: searchParams.get("minYear") ?? 1949, // year lego started
       maxYear: searchParams.get("maxYear") ?? maxYear, // current year
-    });
-    console.log("adv", searchParams.toString())
+    })
+    console.log(searchParams.toString())
   }, [searchParams.toString()]);
-
-  
 
   return (
     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -99,11 +115,11 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
           </div>
 
           <div className="sm:col-span-3 mt-1 p-2">
-            <RangeParts searchObj={searchAdvObj} handleChange={handleChange}  />
+            <RangeParts searchObj={searchPartObj} handleChange={handleChange}  />
           </div>
 
           <div className="sm:col-span-3 mt-1 p-2">
-            <RangeYears searchObj={searchAdvObj} handleChange={handleChange} />
+            <RangeYears searchObj={searchYearObj} handleChange={handleChange} />
           </div>
           <div className="sm:col-start-5 sm:col-span-2 mt-3 mb-1">
             <button

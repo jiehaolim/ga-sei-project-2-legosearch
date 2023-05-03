@@ -73,7 +73,6 @@ const HomeSearchResults = ({ themes }) => {
       setResultsObj(dataSets);
     };
     fetchData();
-    console.log("home", searchParams.toString())
   }, [searchParams.toString()]);
 
   const handleSearchType = (boolean) => {
