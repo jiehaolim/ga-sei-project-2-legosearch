@@ -31,7 +31,7 @@ const Results = ({ resultsObj }) => {
               </div>
               <div className="pb-4 pt-4">
                 <h3 className="text-sm font-medium text-gray-900 truncate">
-                  <a href={result[productURL]}>
+                  <a href={result[productURL]} target="_blank">
                     <span aria-hidden="true" className="absolute inset-0" />
                     {result[productTitle]}
                   </a>
