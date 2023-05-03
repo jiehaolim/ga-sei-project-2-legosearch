@@ -14,7 +14,7 @@ const RangeYears = ({ searchObj, handleChange }) => {
     const slider = sliderRef.current;
 
     const onChange = (event) => {
-      handleChange("rangeYears", event.target.value1, event.target.value2);
+      handleChange("rangeYears", event);
     };
     slider?.addEventListener("change", onChange);
     return () => {
@@ -40,7 +40,7 @@ const RangeYears = ({ searchObj, handleChange }) => {
         value2-label=".yearvalue-2"
         slider-width="100%"
         slider-height="8px"
-        slider-bg-fill="rgb(79 70 229)"
+        slider-bg-fill="rgb(37 99 235)"
       ></tc-range-slider>
     </>
   );

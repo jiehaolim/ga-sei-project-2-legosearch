@@ -4,21 +4,24 @@ import legoSearchLogo from "../../img/legosearchlogo.png";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 const Search = () => {
-  const location = useLocation()
-  const navigate = useNavigate()
-  const [query, setQuery] = useState("")
-  const [searchParams, setSearchParams] = useSearchParams()
-  const searchTitle = location.pathname === "/" ? "sets" : "minifigures"
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [query, setQuery] = useState("");
+  const [searchParams] = useSearchParams();
+  const searchTitle = location.pathname === "/" ? "sets" : "minifigures";
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    searchParams.set("term", query)
-    if (location.pathname.startsWith("/minifigure")) {
-      navigate({ pathname: "/minifigures/search", search: "?" + searchParams.toString() });
+    event.preventDefault();
+    searchParams.set("term", query);
+    if (location.pathname.startsWith("/minifigures")) {
+      navigate({
+        pathname: "/minifigures/search",
+        search: "?" + searchParams.toString(),
+      });
     } else {
       navigate({ pathname: "/search", search: "?" + searchParams.toString() });
     }
-  }
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -33,7 +36,11 @@ const Search = () => {
               />
             </div>
           </div>
-          <form className="mt-6 sm:flex sm:items-center" action="#" onSubmit={handleSubmit}>
+          <form
+            className="mt-6 sm:flex sm:items-center"
+            action="#"
+            onSubmit={handleSubmit}
+          >
             <label htmlFor="search" className="sr-only">
               Search
             </label>
@@ -49,9 +56,11 @@ const Search = () => {
                   type="text"
                   name="search"
                   id="search"
-                  className="block w-full rounded-md border-0 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                   placeholder={"Search for LEGO " + searchTitle}
-                  onChange={() => {setQuery(event.target.value)}}
+                  onChange={(event) => {
+                    setQuery(event.target.value);
+                  }}
                 />
               </div>
             </div>

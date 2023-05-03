@@ -1,6 +1,15 @@
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import SelectMenu from "./Child/SelectMenu";
 
-const SortGrp = ({ searchObj, handleChange }) => {
+const SortGrp = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [sortObj, setSortObj] = useState({
+    sortBy: "set_num", // name, set_num, year, num_parts
+    sortOrder: "", // asc is "", dsc is -
+    pageSize: 20,
+  });
+
   const sortByObj = {
     sortBy: [
       { name: "Set No", id: "set_num" },
@@ -22,6 +31,22 @@ const SortGrp = ({ searchObj, handleChange }) => {
     ],
   };
 
+  const handleChange = (key, event) => {
+    setSortObj({ ...sortObj, [key]: event.target.value });
+    searchParams.set(key, event.target.value)
+    setSearchParams(searchParams)
+  };
+
+  useEffect(() => {
+    setSortObj({
+      ...sortObj,
+      sortBy: searchParams.get("sortBy") ?? "set_num",
+      sortOrder: searchParams.get("sortOrder") ?? "",
+      pageSize: searchParams.get("pageSize") ?? 20,
+    });
+    console.log("sort", searchParams.toString())
+  }, [searchParams.toString()]);
+
   return (
     <div className="mt-2 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div className="grid grid-cols-3 gap-x-2 gap-y-2 md:grid-cols-5 lg:grid-cols-8">
@@ -32,7 +57,11 @@ const SortGrp = ({ searchObj, handleChange }) => {
           >
             Sort by
           </label>
-          <SelectMenu selectObj={sortByObj} stateObj={searchObj} handleChange={handleChange} />
+          <SelectMenu
+            selectObj={sortByObj}
+            stateObj={sortObj}
+            handleChange={handleChange}
+          />
         </div>
         <div className="col-span-1 md:col-start-2 sm:col-start-2">
           <label
@@ -41,7 +70,11 @@ const SortGrp = ({ searchObj, handleChange }) => {
           >
             Sort Order
           </label>
-          <SelectMenu selectObj={sortOrderObj} stateObj={searchObj} handleChange={handleChange} />
+          <SelectMenu
+            selectObj={sortOrderObj}
+            stateObj={sortObj}
+            handleChange={handleChange}
+          />
         </div>
         <div className="col-span-1 md:col-start-5 lg:col-start-8 lg:col-span-2">
           <label
@@ -50,7 +83,11 @@ const SortGrp = ({ searchObj, handleChange }) => {
           >
             Results per page
           </label>
-          <SelectMenu selectObj={pageSizeObj} stateObj={searchObj} handleChange={handleChange} />
+          <SelectMenu
+            selectObj={pageSizeObj}
+            stateObj={sortObj}
+            handleChange={handleChange}
+          />
         </div>
       </div>
     </div>

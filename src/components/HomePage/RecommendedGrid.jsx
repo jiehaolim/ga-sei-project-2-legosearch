@@ -3,14 +3,17 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 const RecommendedGrid = ({ recommendedThemes }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const handleSubmit = (key, value) => {
     searchParams.set(key, value);
-    if (location.pathname === "/") {
-      navigate({ pathname: "/search", search: "?" + searchParams.toString() });
+    if (location.pathname === "/minifigures") {
+      navigate({
+        pathname: "/minifigures/search",
+        search: "?" + searchParams.toString(),
+      });
     } else {
-      navigate({ pathname: "/minifigures/search", search: "?" + searchParams.toString() });
+      navigate({ pathname: "/search", search: "?" + searchParams.toString() });
     }
   };
 
@@ -24,13 +27,13 @@ const RecommendedGrid = ({ recommendedThemes }) => {
             </h3>
             <ul
               role="list"
-              className="mt-4 mb-4 grid grid-cols-2 gap-4 sm:grid-cols-3"
+              className="mt-6 mb-4 grid grid-cols-2 gap-4 sm:grid-cols-3"
             >
               {recommendedThemes.map((themes, themesIdx) => (
                 <li key={themesIdx}>
                   <button
                     type="button"
-                    className="bg-white group flex w-full items-center justify-between space-x-3 rounded-lg border border-gray-300 p-2 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="bg-white group flex w-full items-center justify-between space-x-3 rounded-lg border border-gray-300 p-2 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     onClick={() => {
                       handleSubmit("theme", themes.id);
                     }}

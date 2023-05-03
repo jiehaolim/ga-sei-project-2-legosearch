@@ -1,7 +1,5 @@
 const MinifigsSearchResults = () => {
-  return (
-    <div>Minifigs Search Results</div>
-  )
+  return <div>Minifigs Search Results</div>;
 };
 
-export default MinifigsSearchResults
+export default MinifigsSearchResults;

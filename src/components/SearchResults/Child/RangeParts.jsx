@@ -25,18 +25,22 @@ const RangeParts = ({ searchObj, handleChange }) => {
     parts.max = 15000;
     // step
     parts.step = 100;
-  } 
+  }
 
   useEffect(() => {
     const slider = sliderRef.current;
 
     const onChange = (event) => {
-      handleChange("rangeParts", event.target.value1, event.target.value2);
+      handleChange("rangeParts", event);
     };
 
+    console.log("range")
+
     slider?.addEventListener("change", onChange);
-    return () => {slider?.removeEventListener("change", onChange)};
-  }, [searchObj]);
+    return () => {
+      slider?.removeEventListener("change", onChange);
+    };
+  }, []);
 
   return (
     <>
@@ -44,21 +48,21 @@ const RangeParts = ({ searchObj, handleChange }) => {
         Number of Parts from <span className="partsvalue-1"></span> :{" "}
         <span className="partsvalue-2"></span>
       </p>
-        <tc-range-slider
-          min={parts.min}
-          max={parts.max}
-          value1={searchObj.minParts}
-          value2={searchObj.maxParts}
-          ref={sliderRef}
-          round="0"
-          step={parts.step}
-          generate-labels="false"
-          value1-label=".partsvalue-1"
-          value2-label=".partsvalue-2"
-          slider-width="100%"
-          slider-height="8px"
-          slider-bg-fill="rgb(79 70 229)"
-        ></tc-range-slider>
+      <tc-range-slider
+        min={parts.min}
+        max={parts.max}
+        value1={searchObj.minParts}
+        value2={searchObj.maxParts}
+        ref={sliderRef}
+        round="0"
+        step={parts.step}
+        generate-labels="false"
+        value1-label=".partsvalue-1"
+        value2-label=".partsvalue-2"
+        slider-width="100%"
+        slider-height="8px"
+        slider-bg-fill="rgb(37 99 235)"
+      ></tc-range-slider>
     </>
   );
 };
