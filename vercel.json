@@ -2,8 +2,8 @@
   "redirects": [
     {
       "source": "/*",
-      "destination": "/",
-      "permanent": false
+      "destination": "/index.html",
+      "permanent": true
     }
   ]
 }
