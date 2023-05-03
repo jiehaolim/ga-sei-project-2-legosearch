@@ -1,8 +1,8 @@
 {
   "redirects": [
     {
-      "source": "/search",
-      "destination": "/",
+      "source": "/",
+      "destination": "/search",
       "permanent": true
     }
   ]
