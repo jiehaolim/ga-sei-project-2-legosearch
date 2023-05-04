@@ -3,7 +3,7 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import SelectMenu from "./Child/SelectMenu";
 import { MagnifyingGlassIcon, ArrowDownIcon } from "@heroicons/react/20/solid";
 
-const SearchGrpBasic = ({ themes, handleSearchType, currentSearchParams }) => {
+const SearchGrpBasic = ({ themes, handleSearchType }) => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchTitle =

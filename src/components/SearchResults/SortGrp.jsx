@@ -33,8 +33,8 @@ const SortGrp = () => {
 
   const handleChange = (key, event) => {
     setSortObj({ ...sortObj, [key]: event.target.value });
-    searchParams.set(key, event.target.value)
-    setSearchParams(searchParams)
+    searchParams.set(key, event.target.value);
+    setSearchParams(searchParams);
   };
 
   useEffect(() => {

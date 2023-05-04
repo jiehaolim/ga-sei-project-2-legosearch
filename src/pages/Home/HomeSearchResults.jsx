@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import SearchGrpBasic from "../../components/SearchResults/SearchGrpBasic";
 import SearchGrpAdv from "../../components/SearchResults/SearchGrpAdv";
 import SortGrp from "../../components/SearchResults/SortGrp";
@@ -9,9 +9,7 @@ import Pagination from "../../components/SearchResults/Pagination";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const HomeSearchResults = ({ themes }) => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [advSearch, setAdvSearch] = useState(false);
   // current year
   const date = new Date();
@@ -50,11 +48,12 @@ const HomeSearchResults = ({ themes }) => {
   useEffect(() => {
     // check if what search mode is on
     if (searchParams.has("minParts")) {
-      setAdvSearch(true)
+      setAdvSearch(true);
     } else {
-      setAdvSearch(false)
+      setAdvSearch(false);
     }
-  
+
+    // fetch data
     const fetchData = async () => {
       // fetch set data
       const responseSets = await fetch(
@@ -81,9 +80,17 @@ const HomeSearchResults = ({ themes }) => {
 
   return (
     <>
-      {advSearch ? (<SearchGrpAdv themes={themes} handleSearchType={handleSearchType} />) : (<SearchGrpBasic themes={themes} handleSearchType={handleSearchType} />)}
+      {advSearch ? (
+        <SearchGrpAdv themes={themes} handleSearchType={handleSearchType} />
+      ) : (
+        <SearchGrpBasic themes={themes} handleSearchType={handleSearchType} />
+      )}
       <SortGrp />
-      {resultsObj.count ? (<Results resultsObj={resultsObj} />) : resultsObj.count === 0 ? (<NoResults />) : null}
+      {resultsObj.count ? (
+        <Results resultsObj={resultsObj} />
+      ) : resultsObj.count === 0 ? (
+        <NoResults />
+      ) : null}
       {/* {resultsObj.count ? <Pagination /> : null} */}
     </>
   );

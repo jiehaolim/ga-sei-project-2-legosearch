@@ -65,7 +65,6 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
       minYear: searchParams.get("minYear") ?? 1949, // year lego started
       maxYear: searchParams.get("maxYear") ?? maxYear, // current year
     })
-    console.log(searchParams.toString())
   }, [searchParams.toString()]);
 
   return (
