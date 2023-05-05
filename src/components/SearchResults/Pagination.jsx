@@ -228,7 +228,7 @@ const Pagination = ({ resultsObj }) => {
                     <span className="sr-only">Previous</span>
                     <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
                   </button>
-                  {pageNumArray.map((pageNum) => (
+                  {pageNumArray.map((pageNum, index) => (
                     <button
                       key={index}
                       type="button"
