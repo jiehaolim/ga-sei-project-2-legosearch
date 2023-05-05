@@ -57,7 +57,7 @@ const Results = ({ resultsObj }) => {
                   <p className="text-sm text-gray-500 truncate">
                     {result[productNo]}
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 truncate">
                     {result[productParts].toLocaleString()}{" "}
                     {result[productParts] <= 1 ? "part" : "parts"}
                   </p>
@@ -66,7 +66,9 @@ const Results = ({ resultsObj }) => {
                   <p className="text-sm text-gray-500 truncate">
                     {result[productTheme]}
                   </p>
-                  <p className="text-sm text-gray-500">{result[productYear]}</p>
+                  <p className="text-sm text-gray-500 truncate">
+                    {result[productYear]}
+                  </p>
                 </div>
               </div>
             </div>
