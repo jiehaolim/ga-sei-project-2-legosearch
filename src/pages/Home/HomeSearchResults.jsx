@@ -8,7 +8,7 @@ import NoResults from "../../components/SearchResults/NoResults";
 import Pagination from "../../components/SearchResults/Pagination";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const HomeSearchResults = ({ themes }) => {
+const HomeSearchResults = ({ setThemesToState, themes }) => {
   const [searchParams] = useSearchParams();
   const [advSearch, setAdvSearch] = useState(false);
   // current year
@@ -45,7 +45,13 @@ const HomeSearchResults = ({ themes }) => {
     ],
   });
 
+  const handleSearchType = (boolean) => {
+    setAdvSearch(boolean);
+  };
+
   useEffect(() => {
+    // Load page at the top
+    window.scrollTo({ top: 0, left: 0 });
     // check if what search mode is on
     if (searchParams.has("minParts")) {
       setAdvSearch(true);
@@ -55,6 +61,14 @@ const HomeSearchResults = ({ themes }) => {
 
     // fetch data
     const fetchData = async () => {
+      // fetch theme data
+      // max data pull is 1000 but lego only have < 500 themes as now 3-April-23
+      const pageSize = 1000;
+      const responseThemes = await fetch(
+        `https://rebrickable.com/api/v3/lego/themes/?key=${API_KEY}&page_size=${pageSize}`
+      );
+      const dataThemes = await responseThemes.json();
+
       // fetch set data
       const responseSets = await fetch(
         `https://rebrickable.com/api/v3/lego/sets/?key=${API_KEY}&search=${currentSearchParams.term}&theme_id=${currentSearchParams.theme}&min_year=${currentSearchParams.minYear}&max_year=${currentSearchParams.maxYear}&min_parts=${currentSearchParams.minParts}&max_parts=${currentSearchParams.maxParts}&ordering=
@@ -62,9 +76,31 @@ const HomeSearchResults = ({ themes }) => {
       );
       const dataSets = await responseSets.json();
 
+      // to show parent theme name with sub theme name
+      const mainThemes = [];
+      for (const theme of dataThemes.results) {
+        // no parent theme just push into array
+        if (theme.parent_id === null) {
+          mainThemes.push({ id: theme.id, name: theme.name });
+        } else {
+          // with parent theme, find parent theme name and put together wiith subtheme name
+          const parentTheme = dataThemes.results.find(
+            (element) => element.id === theme.parent_id
+          );
+          mainThemes.push({
+            id: theme.id,
+            name: `${parentTheme.name} > ${theme.name}`,
+          });
+        }
+      }
+      // sort themes in alphabetically order
+      mainThemes.sort((a, b) => (a.name > b.name ? 1 : -1));
+      // set state in app.jsx
+      setThemesToState(mainThemes);
+
       // add theme to data set
       for (const sets of dataSets.results) {
-        const themeForSets = themes.theme.find(
+        const themeForSets = mainThemes.find(
           (element) => element.id === sets.theme_id
         );
         sets.theme = themeForSets?.name;
@@ -73,10 +109,6 @@ const HomeSearchResults = ({ themes }) => {
     };
     fetchData();
   }, [searchParams.toString()]);
-
-  const handleSearchType = (boolean) => {
-    setAdvSearch(boolean);
-  };
 
   return (
     <>
@@ -91,7 +123,7 @@ const HomeSearchResults = ({ themes }) => {
       ) : resultsObj.count === 0 ? (
         <NoResults />
       ) : null}
-      {/* {resultsObj.count ? <Pagination /> : null} */}
+      <Pagination resultsObj={resultsObj} />
     </>
   );
 };
