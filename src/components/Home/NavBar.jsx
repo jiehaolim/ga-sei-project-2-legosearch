@@ -6,7 +6,7 @@ import smileyLogo from "../../img/smileylogo.png";
 const navigation = [
   { name: "Home", to: "/" },
   { name: "Minifigures", to: "/minifigures" },
-  { name: "My Collection", to: "/mycollection" },
+  { name: "Collection", to: "/collection" },
 ];
 
 const NavBar = () => {

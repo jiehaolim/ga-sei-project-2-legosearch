@@ -8,7 +8,7 @@ import HomeSingleResult from "./pages/Home/HomeSingleResult";
 import MinifigsHomePage from "./pages/Minifigs/MinifigsHomePage";
 import MinifigsSearchResults from "./pages/Minifigs/MinifigsSearchResults";
 import MinifigsSingleResult from "./pages/Minifigs/MinifigsSingleResult";
-import MyCollection from "./pages/MyCollection/MyCollection";
+import Collection from "./pages/Collection/Collection";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
             <Route path="minifigures/result/:setnum" element={<MinifigsSingleResult />} />
 
             {/* My Collection */}
-            <Route path="mycollection" element={<MyCollection />} />
+            <Route path="collection" element={<Collection />} />
           </Route>
         </Routes>
       </BrowserRouter>
