@@ -1,4 +1,5 @@
 import { Link, useSearchParams } from "react-router-dom";
+import noImageAvailable from "../../img/noImageAvail.png"
 
 const Results = ({ resultsObj }) => {
   const [searchParams] = useSearchParams()
@@ -34,7 +35,7 @@ const Results = ({ resultsObj }) => {
             <div className="group relative">
               <div className="w-full h-48 sm:h-64 lg:h-64 xl:h-72 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
                 <img
-                  src={result[productIMG]}
+                  src={result[productIMG] ?? noImageAvailable}
                   alt={result[productTitle]}
                   className="h-full w-full object-cover object-center"
                 />
