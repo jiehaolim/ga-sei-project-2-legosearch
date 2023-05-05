@@ -8,8 +8,12 @@ const Pagination = ({ resultsObj }) => {
   const lastPageNo = Math.ceil(resultsObj?.count / pageSize).toString();
 
   // computation of number of results
-  const startNumResults = pageNo === "1" ? 1 : 1 + parseInt(pageSize) * (parseInt(pageNo) - 1);
-  const endNumResults = lastPageNo === pageNo ? resultsObj?.count : resultsObj?.results.length * parseInt(pageNo);
+  const startNumResults =
+    pageNo === "1" ? 1 : 1 + parseInt(pageSize) * (parseInt(pageNo) - 1);
+  const endNumResults =
+    lastPageNo === pageNo
+      ? resultsObj?.count
+      : resultsObj?.results.length * parseInt(pageNo);
 
   // computation of the page number array
   const paginationButtonLength = 7;
@@ -163,6 +167,7 @@ const Pagination = ({ resultsObj }) => {
                 <>
                   {pageNumArray.map((pageNum, index) => (
                     <button
+                      key={index}
                       type="button"
                       onClick={() => handleChange(pageNum)}
                       className={
@@ -197,6 +202,7 @@ const Pagination = ({ resultsObj }) => {
                   </button>
                   {pageNumArray.map((pageNum, index) => (
                     <button
+                      key={index}
                       type="button"
                       onClick={() => handleChange(pageNum)}
                       className={
@@ -224,6 +230,7 @@ const Pagination = ({ resultsObj }) => {
                   </button>
                   {pageNumArray.map((pageNum) => (
                     <button
+                      key={index}
                       type="button"
                       onClick={() => handleChange(pageNum)}
                       className={

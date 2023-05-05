@@ -119,11 +119,13 @@ const HomeSearchResults = ({ setThemesToState, themes }) => {
       )}
       <SortGrp />
       {resultsObj.count ? (
-        <Results resultsObj={resultsObj} />
+        <>
+          <Results resultsObj={resultsObj} />
+          <Pagination resultsObj={resultsObj} />
+        </>
       ) : resultsObj.count === 0 ? (
         <NoResults />
       ) : null}
-      <Pagination resultsObj={resultsObj} />
     </>
   );
 };
