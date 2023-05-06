@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import SearchGrpBasic from "../../components/SearchResults/SearchGrpBasic";
 import SearchGrpAdv from "../../components/SearchResults/SearchGrpAdv";
 import SortGrp from "../../components/SearchResults/SortGrp";
 import Results from "../../components/SearchResults/Results";
 import NoResults from "../../components/SearchResults/NoResults";
 import Pagination from "../../components/SearchResults/Pagination";
+import InvalidPage from "../../components/SearchResults/InvalidPage";
+import InvalidParam from "../../components/SearchResults/InvalidParam";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const HomeSearchResults = ({ setThemesToState, themes }) => {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [advSearch, setAdvSearch] = useState(false);
   // current year
@@ -61,51 +64,67 @@ const HomeSearchResults = ({ setThemesToState, themes }) => {
 
     // fetch data
     const fetchData = async () => {
-      // fetch theme data
-      // max data pull is 1000 but lego only have < 500 themes as now 3-April-23
-      const pageSize = 1000;
-      const responseThemes = await fetch(
-        `https://rebrickable.com/api/v3/lego/themes/?key=${API_KEY}&page_size=${pageSize}`
-      );
-      const dataThemes = await responseThemes.json();
+      try {
+        // fetch theme data
+        // max data pull is 1000 but lego only have < 500 themes as now 3-April-23
+        const pageSize = 1000;
+        const responseThemes = await fetch(
+          `https://rebrickable.com/api/v3/lego/themes/?key=${API_KEY}&page_size=${pageSize}`
+        );
+        const dataThemes = await responseThemes.json();
 
-      // fetch set data
-      const responseSets = await fetch(
-        `https://rebrickable.com/api/v3/lego/sets/?key=${API_KEY}&search=${currentSearchParams.term}&theme_id=${currentSearchParams.theme}&min_year=${currentSearchParams.minYear}&max_year=${currentSearchParams.maxYear}&min_parts=${currentSearchParams.minParts}&max_parts=${currentSearchParams.maxParts}&ordering=
+        // fetch set data
+        const responseSets = await fetch(
+          `https://rebrickable.com/api/v3/lego/sets/?key=${API_KEY}&search=${currentSearchParams.term}&theme_id=${currentSearchParams.theme}&min_year=${currentSearchParams.minYear}&max_year=${currentSearchParams.maxYear}&min_parts=${currentSearchParams.minParts}&max_parts=${currentSearchParams.maxParts}&ordering=
           ${currentSearchParams.sortOrder}${currentSearchParams.sortBy}&page_size=${currentSearchParams.pageSize}&page=${currentSearchParams.pageNo}`
-      );
-      const dataSets = await responseSets.json();
+        );
+        const dataSets = await responseSets.json();
 
-      // to show parent theme name with sub theme name
-      const mainThemes = [];
-      for (const theme of dataThemes.results) {
-        // no parent theme just push into array
-        if (theme.parent_id === null) {
-          mainThemes.push({ id: theme.id, name: theme.name });
-        } else {
-          // with parent theme, find parent theme name and put together wiith subtheme name
-          const parentTheme = dataThemes.results.find(
-            (element) => element.id === theme.parent_id
+        // error handling
+        // error scenario 1 - API throttled too fast 429 for themes
+        if (!responseThemes.ok) throw responseThemes.status;
+
+        // to show parent theme name with sub theme name
+        const mainThemes = [];
+        for (const theme of dataThemes.results) {
+          // no parent theme just push into array
+          if (theme.parent_id === null) {
+            mainThemes.push({ id: theme.id, name: theme.name });
+          } else {
+            // with parent theme, find parent theme name and put together wiith subtheme name
+            const parentTheme = dataThemes.results.find(
+              (element) => element.id === theme.parent_id
+            );
+            mainThemes.push({
+              id: theme.id,
+              name: `${parentTheme.name} > ${theme.name}`,
+            });
+          }
+        }
+        // sort themes in alphabetically order
+        mainThemes.sort((a, b) => (a.name > b.name ? 1 : -1));
+        // set state in app.jsx
+        setThemesToState(mainThemes);
+
+        // error scenario 2 - 400 for wrong params 404 for invalid page if user change URL on URL Bar
+        if (!responseSets.ok) throw responseSets.status;
+        // add theme to data set
+        for (const sets of dataSets.results) {
+          const themeForSets = mainThemes.find(
+            (element) => element.id === sets.theme_id
           );
-          mainThemes.push({
-            id: theme.id,
-            name: `${parentTheme.name} > ${theme.name}`,
-          });
+          sets.theme = themeForSets?.name;
+        }
+        setResultsObj(dataSets);
+      } catch (error) {
+        if (error === 400) {
+          setResultsObj({ ...resultsObj, count: "wrongparams" });
+        } else if (error === 404) {
+          setResultsObj({ ...resultsObj, count: "invalid" });
+        } else if (error === 429) {
+          navigate("../error");
         }
       }
-      // sort themes in alphabetically order
-      mainThemes.sort((a, b) => (a.name > b.name ? 1 : -1));
-      // set state in app.jsx
-      setThemesToState(mainThemes);
-
-      // add theme to data set
-      for (const sets of dataSets.results) {
-        const themeForSets = mainThemes.find(
-          (element) => element.id === sets.theme_id
-        );
-        sets.theme = themeForSets?.name;
-      }
-      setResultsObj(dataSets);
     };
     fetchData();
   }, [searchParams.toString()]);
@@ -118,13 +137,17 @@ const HomeSearchResults = ({ setThemesToState, themes }) => {
         <SearchGrpBasic themes={themes} handleSearchType={handleSearchType} />
       )}
       <SortGrp />
-      {resultsObj.count ? (
+      {resultsObj.count > 0 ? (
         <>
           <Results resultsObj={resultsObj} />
           <Pagination resultsObj={resultsObj} />
         </>
       ) : resultsObj.count === 0 ? (
         <NoResults />
+      ) : resultsObj.count === "wrongparams" ? (
+        <InvalidParam />
+      ) : resultsObj.count === "invalid" ? (
+        <InvalidPage />
       ) : null}
     </>
   );

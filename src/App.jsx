@@ -9,6 +9,7 @@ import MinifigsHomePage from "./pages/Minifigs/MinifigsHomePage";
 import MinifigsSearchResults from "./pages/Minifigs/MinifigsSearchResults";
 import MinifigsSingleResult from "./pages/Minifigs/MinifigsSingleResult";
 import Collection from "./pages/Collection/Collection";
+import Error from "./pages/Error/Error"
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 function App() {
@@ -34,8 +35,12 @@ function App() {
             <Route path="minifigures/search" element={<MinifigsSearchResults themes={themes} />} />
             <Route path="minifigures/result/:setnum" element={<MinifigsSingleResult />} />
 
-            {/* My Collection */}
+            {/* Collection */}
             <Route path="collection" element={<Collection />} />
+
+            {/* 429 Error */}
+            <Route path="error" element={<Error />} />
+            
           </Route>
         </Routes>
       </BrowserRouter>
