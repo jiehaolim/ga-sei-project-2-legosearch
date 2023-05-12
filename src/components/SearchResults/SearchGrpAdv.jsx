@@ -30,9 +30,17 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
 
   const handleChange = (key, event) => {
     if (key === "rangeParts") {
-      setSearchPartObj({ ...searchPartObj, "minParts": event.target.value1, "maxParts": event.target.value2 });
-    } else if (key === "rangeYears"){
-      setSearchYearObj({ ...searchYearObj, "minYear": event.target.value1, "maxYear": event.target.value2 });
+      setSearchPartObj({
+        ...searchPartObj,
+        minParts: event.target.value1,
+        maxParts: event.target.value2,
+      });
+    } else if (key === "rangeYears") {
+      setSearchYearObj({
+        ...searchYearObj,
+        minYear: event.target.value1,
+        maxYear: event.target.value2,
+      });
     } else {
       setSearchAdvObj({ ...searchAdvObj, [key]: event.target.value });
     }
@@ -47,7 +55,7 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
       maxParts: searchPartObj.maxParts,
       minYear: searchYearObj.minYear,
       maxYear: searchYearObj.maxYear,
-    }
+    };
     setSearchParams(finalSearchObject);
   };
 
@@ -60,11 +68,11 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
     setSearchPartObj({
       minParts: searchParams.get("minParts") ?? 0,
       maxParts: searchParams.get("maxParts") ?? 15000, // largest lego set so far is 11695 parts
-    })
+    });
     setSearchYearObj({
       minYear: searchParams.get("minYear") ?? 1949, // year lego started
       maxYear: searchParams.get("maxYear") ?? maxYear, // current year
-    })
+    });
   }, [searchParams.toString()]);
 
   return (
@@ -114,7 +122,7 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
           </div>
 
           <div className="sm:col-span-3 mt-1 p-2">
-            <RangeParts searchObj={searchPartObj} handleChange={handleChange}  />
+            <RangeParts searchObj={searchPartObj} handleChange={handleChange} />
           </div>
 
           <div className="sm:col-span-3 mt-1 p-2">

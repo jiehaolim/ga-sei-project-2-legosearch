@@ -19,37 +19,39 @@ const Pagination = ({ resultsObj }) => {
   const paginationButtonLength = 7;
   const pageNumArray = [];
   // function to generate page no
-  const generatePageNo = (startingPageNum, arrayLength) => {
-    for (let i = 0; i < arrayLength; i++) {
-      pageNumArray.push(i + startingPageNum);
+  const generatePageNo = () => {
+    let startingNum = 0;
+    let endingNum = 0;
+    // pages > 7
+    if (parseInt(lastPageNo) > paginationButtonLength) {
+      // current page number starts at the middle
+      if (
+        parseInt(pageNo) - 3 > 0 &&
+        parseInt(pageNo) + 3 < parseInt(lastPageNo)
+      ) {
+        startingNum = parseInt(pageNo) - 3;
+        endingNum = paginationButtonLength;
+        // current page going to reach the end
+      } else if (parseInt(pageNo) + 3 >= parseInt(lastPageNo)) {
+        startingNum = parseInt(lastPageNo) - 6;
+        endingNum = paginationButtonLength;
+      } else {
+        // current page at the start
+        startingNum = 1;
+        endingNum = paginationButtonLength;
+      }
+      // page < 7
+    } else {
+      startingNum = 1;
+      endingNum = parseInt(lastPageNo);
+    }
+    // generate based on the above scenarios
+    for (let i = 0; i < endingNum; i++) {
+      pageNumArray.push(i + startingNum);
     }
   };
-  let startingNum = 0;
-  let endingNum = 0;
-  // pages > 7
-  if (parseInt(lastPageNo) > 7) {
-    // current page number starts at the middle
-    if (
-      parseInt(pageNo) - 3 > 0 &&
-      parseInt(pageNo) + 3 < parseInt(lastPageNo)
-    ) {
-      startingNum = parseInt(pageNo) - 3;
-      endingNum = paginationButtonLength;
-      // current page going to reach the end
-    } else if (parseInt(pageNo) + 3 >= parseInt(lastPageNo)) {
-      startingNum = parseInt(lastPageNo) - 6;
-      endingNum = paginationButtonLength;
-    } else {
-      // current page at the start
-      startingNum = 1;
-      endingNum = paginationButtonLength;
-    }
-    // page < 7
-  } else {
-    startingNum = 1;
-    endingNum = parseInt(lastPageNo);
-  }
-  generatePageNo(startingNum, endingNum);
+
+  generatePageNo();
 
   // handlePageChange
   const handleChange = (value) => {

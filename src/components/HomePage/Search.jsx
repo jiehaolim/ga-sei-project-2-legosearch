@@ -12,14 +12,19 @@ const Search = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    searchParams.set("term", query);
-    if (location.pathname.startsWith("/minifigures")) {
-      navigate({
-        pathname: "/minifigures/search",
-        search: "?" + searchParams.toString(),
-      });
-    } else {
-      navigate({ pathname: "/search", search: "?" + searchParams.toString() });
+    if (query.trim() !== "") {
+      searchParams.set("term", query.trim());
+      if (location.pathname.startsWith("/minifigures")) {
+        navigate({
+          pathname: "/minifigures/search",
+          search: "?" + searchParams.toString(),
+        });
+      } else {
+        navigate({
+          pathname: "/search",
+          search: "?" + searchParams.toString(),
+        });
+      }
     }
   };
 

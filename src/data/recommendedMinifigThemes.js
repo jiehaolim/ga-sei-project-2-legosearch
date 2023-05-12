@@ -11,7 +11,6 @@ import starwarsImg from "../img/themes/minifigs/starwars.png";
 import superheroesdcImg from "../img/themes/minifigs/superheroesdc.png";
 import superheroesmarvelImg from "../img/themes/minifigs/superheroesmarvel.png";
 
-
 const recommendedMinifigThemes = [
   {
     name: "Castle",

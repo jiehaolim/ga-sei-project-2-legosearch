@@ -35,7 +35,7 @@ const SortGrp = () => {
     setSortObj({ ...sortObj, [key]: event.target.value });
     searchParams.set(key, event.target.value);
     // go back page 1
-    searchParams.delete("pageNo")
+    searchParams.delete("pageNo");
     setSearchParams(searchParams);
   };
 

@@ -9,7 +9,7 @@ import MinifigsHomePage from "./pages/Minifigs/MinifigsHomePage";
 import MinifigsSearchResults from "./pages/Minifigs/MinifigsSearchResults";
 import MinifigsSingleResult from "./pages/Minifigs/MinifigsSingleResult";
 import Collection from "./pages/Collection/Collection";
-import Error from "./pages/Error/Error"
+import ErrorPage from "./pages/Error/ErrorPage"
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 function App() {
@@ -38,8 +38,8 @@ function App() {
             {/* Collection */}
             <Route path="collection" element={<Collection />} />
 
-            {/* 429 Error */}
-            <Route path="error" element={<Error />} />
+            {/* Error */}
+            <Route path="error/:id" element={<ErrorPage />} />
             
           </Route>
         </Routes>

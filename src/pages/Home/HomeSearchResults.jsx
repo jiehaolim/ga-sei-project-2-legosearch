@@ -6,8 +6,6 @@ import SortGrp from "../../components/SearchResults/SortGrp";
 import Results from "../../components/SearchResults/Results";
 import NoResults from "../../components/SearchResults/NoResults";
 import Pagination from "../../components/SearchResults/Pagination";
-import InvalidPage from "../../components/SearchResults/InvalidPage";
-import InvalidParam from "../../components/SearchResults/InvalidParam";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const HomeSearchResults = ({ setThemesToState, themes }) => {
@@ -117,13 +115,7 @@ const HomeSearchResults = ({ setThemesToState, themes }) => {
         }
         setResultsObj(dataSets);
       } catch (error) {
-        if (error === 400) {
-          setResultsObj({ ...resultsObj, count: "wrongparams" });
-        } else if (error === 404) {
-          setResultsObj({ ...resultsObj, count: "invalid" });
-        } else if (error === 429) {
-          navigate("../error");
-        }
+        navigate(`../error/${error}`);
       }
     };
     fetchData();
@@ -144,10 +136,6 @@ const HomeSearchResults = ({ setThemesToState, themes }) => {
         </>
       ) : resultsObj.count === 0 ? (
         <NoResults />
-      ) : resultsObj.count === "wrongparams" ? (
-        <InvalidParam />
-      ) : resultsObj.count === "invalid" ? (
-        <InvalidPage />
       ) : null}
     </>
   );
