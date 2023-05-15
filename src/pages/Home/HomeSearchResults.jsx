@@ -50,6 +50,65 @@ const HomeSearchResults = ({ setThemesToState, themes }) => {
     setAdvSearch(boolean);
   };
 
+  // fetch data
+  const fetchData = async () => {
+    try {
+      // fetch theme data
+      // max data pull is 1000 but lego only have < 500 themes as now 3-April-23
+      const pageSize = 1000;
+      const responseThemes = await fetch(
+        `https://rebrickable.com/api/v3/lego/themes/?key=${API_KEY}&page_size=${pageSize}`
+      );
+      const dataThemes = await responseThemes.json();
+
+      // fetch set data
+      const responseSets = await fetch(
+        `https://rebrickable.com/api/v3/lego/sets/?key=${API_KEY}&search=${currentSearchParams.term}&theme_id=${currentSearchParams.theme}&min_year=${currentSearchParams.minYear}&max_year=${currentSearchParams.maxYear}&min_parts=${currentSearchParams.minParts}&max_parts=${currentSearchParams.maxParts}&ordering=
+        ${currentSearchParams.sortOrder}${currentSearchParams.sortBy}&page_size=${currentSearchParams.pageSize}&page=${currentSearchParams.pageNo}`
+      );
+      const dataSets = await responseSets.json();
+
+      // error handling
+      // error scenario 1 - API throttled too fast 429 for themes
+      if (!responseThemes.ok) throw responseThemes.status;
+
+      // to show parent theme name with sub theme name
+      const mainThemes = [];
+      for (const theme of dataThemes.results) {
+        // no parent theme just push into array
+        if (theme.parent_id === null) {
+          mainThemes.push({ id: theme.id, name: theme.name });
+        } else {
+          // with parent theme, find parent theme name and put together wiith subtheme name
+          const parentTheme = dataThemes.results.find(
+            (element) => element.id === theme.parent_id
+          );
+          mainThemes.push({
+            id: theme.id,
+            name: `${parentTheme.name} > ${theme.name}`,
+          });
+        }
+      }
+      // sort themes in alphabetically order
+      mainThemes.sort((a, b) => (a.name > b.name ? 1 : -1));
+      // set state in app.jsx
+      setThemesToState(mainThemes);
+
+      // error scenario 2 - 400 for wrong params 404 for invalid page if user change URL on URL Bar
+      if (!responseSets.ok) throw responseSets.status;
+      // add theme to data set
+      for (const sets of dataSets.results) {
+        const themeForSets = mainThemes.find(
+          (element) => element.id === sets.theme_id
+        );
+        sets.theme = themeForSets?.name;
+      }
+      setResultsObj(dataSets);
+    } catch (error) {
+      navigate(`../error/${error}`);
+    }
+  };
+
   useEffect(() => {
     // Load page at the top
     window.scrollTo({ top: 0, left: 0 });
@@ -59,65 +118,6 @@ const HomeSearchResults = ({ setThemesToState, themes }) => {
     } else {
       setAdvSearch(false);
     }
-
-    // fetch data
-    const fetchData = async () => {
-      try {
-        // fetch theme data
-        // max data pull is 1000 but lego only have < 500 themes as now 3-April-23
-        const pageSize = 1000;
-        const responseThemes = await fetch(
-          `https://rebrickable.com/api/v3/lego/themes/?key=${API_KEY}&page_size=${pageSize}`
-        );
-        const dataThemes = await responseThemes.json();
-
-        // fetch set data
-        const responseSets = await fetch(
-          `https://rebrickable.com/api/v3/lego/sets/?key=${API_KEY}&search=${currentSearchParams.term}&theme_id=${currentSearchParams.theme}&min_year=${currentSearchParams.minYear}&max_year=${currentSearchParams.maxYear}&min_parts=${currentSearchParams.minParts}&max_parts=${currentSearchParams.maxParts}&ordering=
-          ${currentSearchParams.sortOrder}${currentSearchParams.sortBy}&page_size=${currentSearchParams.pageSize}&page=${currentSearchParams.pageNo}`
-        );
-        const dataSets = await responseSets.json();
-
-        // error handling
-        // error scenario 1 - API throttled too fast 429 for themes
-        if (!responseThemes.ok) throw responseThemes.status;
-
-        // to show parent theme name with sub theme name
-        const mainThemes = [];
-        for (const theme of dataThemes.results) {
-          // no parent theme just push into array
-          if (theme.parent_id === null) {
-            mainThemes.push({ id: theme.id, name: theme.name });
-          } else {
-            // with parent theme, find parent theme name and put together wiith subtheme name
-            const parentTheme = dataThemes.results.find(
-              (element) => element.id === theme.parent_id
-            );
-            mainThemes.push({
-              id: theme.id,
-              name: `${parentTheme.name} > ${theme.name}`,
-            });
-          }
-        }
-        // sort themes in alphabetically order
-        mainThemes.sort((a, b) => (a.name > b.name ? 1 : -1));
-        // set state in app.jsx
-        setThemesToState(mainThemes);
-
-        // error scenario 2 - 400 for wrong params 404 for invalid page if user change URL on URL Bar
-        if (!responseSets.ok) throw responseSets.status;
-        // add theme to data set
-        for (const sets of dataSets.results) {
-          const themeForSets = mainThemes.find(
-            (element) => element.id === sets.theme_id
-          );
-          sets.theme = themeForSets?.name;
-        }
-        setResultsObj(dataSets);
-      } catch (error) {
-        navigate(`../error/${error}`);
-      }
-    };
     fetchData();
   }, [searchParams.toString()]);
 

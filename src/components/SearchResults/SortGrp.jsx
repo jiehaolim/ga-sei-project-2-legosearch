@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import SelectMenu from "./Child/SelectMenu";
 
 const SortGrp = () => {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortObj, setSortObj] = useState({
     sortBy: "set_num", // name, set_num, year, num_parts
@@ -40,12 +41,16 @@ const SortGrp = () => {
   };
 
   useEffect(() => {
-    setSortObj({
-      ...sortObj,
-      sortBy: searchParams.get("sortBy") ?? "set_num",
-      sortOrder: searchParams.get("sortOrder") ?? "",
-      pageSize: searchParams.get("pageSize") ?? 20,
-    });
+    if (isNaN(searchParams.get("pageSize"))) {
+      navigate("/error/400");
+    } else {
+      setSortObj({
+        ...sortObj,
+        sortBy: searchParams.get("sortBy") ?? "set_num",
+        sortOrder: searchParams.get("sortOrder") ?? "",
+        pageSize: searchParams.get("pageSize") ?? 20,
+      });
+    }
   }, [searchParams.toString()]);
 
   return (

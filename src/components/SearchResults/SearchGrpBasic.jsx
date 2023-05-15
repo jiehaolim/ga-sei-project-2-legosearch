@@ -19,7 +19,11 @@ const SearchGrpBasic = ({ themes, handleSearchType }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSearchParams(searchObj);
+    if (searchObj.term.trim() === "" && searchObj.theme === "") {
+      return;
+    } else {
+      setSearchParams({ term: searchObj.term.trim(), theme: searchObj.theme });
+    }
   };
 
   useEffect(() => {

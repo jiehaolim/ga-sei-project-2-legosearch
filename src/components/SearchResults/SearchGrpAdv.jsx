@@ -48,15 +48,19 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const finalSearchObject = {
-      term: searchAdvObj.term,
-      theme: searchAdvObj.theme,
-      minParts: searchPartObj.minParts,
-      maxParts: searchPartObj.maxParts,
-      minYear: searchYearObj.minYear,
-      maxYear: searchYearObj.maxYear,
-    };
-    setSearchParams(finalSearchObject);
+    if (searchAdvObj.term.trim() === "" && searchAdvObj.theme === "") {
+      return;
+    } else {
+      const finalSearchObject = {
+        term: searchAdvObj.term.trim(),
+        theme: searchAdvObj.theme,
+        minParts: searchPartObj.minParts,
+        maxParts: searchPartObj.maxParts,
+        minYear: searchYearObj.minYear,
+        maxYear: searchYearObj.maxYear,
+      };
+      setSearchParams(finalSearchObject);
+    }
   };
 
   useEffect(() => {
