@@ -41,7 +41,8 @@ const SortGrp = () => {
   };
 
   useEffect(() => {
-    if (isNaN(searchParams.get("pageSize"))) {
+    const pageSizeNum = searchParams.get("pageSize")
+    if (isNaN(pageSizeNum) || parseInt(pageSizeNum) < 0) {
       navigate("/error/400");
     } else {
       setSortObj({
