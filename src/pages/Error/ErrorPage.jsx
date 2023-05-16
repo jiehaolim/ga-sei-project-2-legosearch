@@ -36,8 +36,6 @@ const ErrorPage = () => {
     },
   };
 
-  console.log(id);
-
   return (
     <main className="mt-8 mx-auto max-w-md sm:mt-16 sm:max-w-3xl">
       <div className="text-center">
@@ -57,10 +55,10 @@ const ErrorPage = () => {
         <p className="mt-6 text-base leading-7 text-gray-600">
           {errorObj[id].p}
         </p>
-        <div class="mt-6 flex items-center justify-center gap-x-6">
+        <div className="mt-6 flex items-center justify-center gap-x-6">
           <Link
             to={"/"}
-            class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           >
             Go back to Home <span aria-hidden="true">&rarr;</span>
           </Link>

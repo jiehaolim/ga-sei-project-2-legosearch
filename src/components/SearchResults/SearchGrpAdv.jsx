@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import SelectMenu from "./Child/SelectMenu";
 import RangeParts from "./Child/RangeParts";
 import RangeYears from "./Child/RangeYears";
@@ -7,6 +7,7 @@ import { MagnifyingGlassIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
 
 const SearchGrpAdv = ({ themes, handleSearchType }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchTitle =
     location.pathname.startsWith() === "/minifigures" ? "minifigures" : "sets";
@@ -64,19 +65,39 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
   };
 
   useEffect(() => {
-    setSearchAdvObj({
-      ...searchAdvObj,
-      term: searchParams.get("term") ?? "",
-      theme: searchParams.get("theme") ?? "",
-    });
-    setSearchPartObj({
-      minParts: searchParams.get("minParts") ?? 0,
-      maxParts: searchParams.get("maxParts") ?? 15000, // largest lego set so far is 11695 parts
-    });
-    setSearchYearObj({
-      minYear: searchParams.get("minYear") ?? 1949, // year lego started
-      maxYear: searchParams.get("maxYear") ?? maxYear, // current year
-    });
+    const minPartsNum = searchParams.get("minParts");
+    const maxPartsNum = searchParams.get("maxParts");
+    const minYearNum = searchParams.get("minYear");
+    const maxYearNum = searchParams.get("maxYear");
+    if (
+      isNaN(minPartsNum) ||
+      isNaN(maxPartsNum) ||
+      isNaN(minYearNum) ||
+      isNaN(maxYearNum)
+    ) {
+      navigate("/error/400");
+    } else if (
+      parseInt(minPartsNum) < 0 ||
+      parseInt(maxPartsNum) < 0 ||
+      parseInt(minYearNum) < 0 ||
+      parseInt(maxYearNum) < 0
+    ) {
+      navigate("/error/400");
+    } else {
+      setSearchAdvObj({
+        ...searchAdvObj,
+        term: searchParams.get("term") ?? "",
+        theme: searchParams.get("theme") ?? "",
+      });
+      setSearchPartObj({
+        minParts: searchParams.get("minParts") ?? 0,
+        maxParts: searchParams.get("maxParts") ?? 15000, // largest lego set so far is 11695 parts
+      });
+      setSearchYearObj({
+        minYear: searchParams.get("minYear") ?? 1949, // year lego started
+        maxYear: searchParams.get("maxYear") ?? maxYear, // current year
+      });
+    }
   }, [searchParams.toString()]);
 
   return (
