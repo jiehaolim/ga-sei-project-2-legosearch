@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import noImageAvailable from "../../img/noImageAvail.png";
 
 const ResultFooter = ({ results }) => {
   const location = useLocation();
@@ -8,7 +9,7 @@ const ResultFooter = ({ results }) => {
   // splice is ok in the scenario as it splices the current product in the array -> ownself splice ownself
   for (const result of results.results) {
     if (result.set_num.indexOf("-") !== result.set_num.lastIndexOf("-")) {
-      results.results.splice(results.results.indexOf(result),1)
+      results.results.splice(results.results.indexOf(result), 1);
     }
   }
 
@@ -35,7 +36,9 @@ const ResultFooter = ({ results }) => {
           <div key={element.set_num} className="group relative">
             <div className="mt-4 h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80">
               <img
-                src={element.set_img_url}
+                src={
+                  element.set_img_url ? element.set_img_url : noImageAvailable
+                }
                 alt={element.set_name}
                 className="h-full w-full object-contain bg-white object-center"
               />
@@ -48,7 +51,7 @@ const ResultFooter = ({ results }) => {
                 </Link>
               </h3>
             ) : (
-              <h3 className="mt-4 text-sm text-gray-700">
+              <h3 className="mt-4 text-sm font-medium text-gray-900">
                 <Link to={`/minifigures/result/${element.set_num}`}>
                   <span className="absolute inset-0" />
                   {element.set_name}
@@ -57,7 +60,7 @@ const ResultFooter = ({ results }) => {
             )}
             <p className="mt-1 text-sm text-gray-500">{element.set_num}</p>
             {location.pathname.startsWith("/minifigures") ? null : (
-              <p className="mt-1 text-sm font-medium text-gray-900">
+              <p className="mt-1 text-sm font-medium text-gray-700">
                 {"Quantity: " + element.quantity}
               </p>
             )}

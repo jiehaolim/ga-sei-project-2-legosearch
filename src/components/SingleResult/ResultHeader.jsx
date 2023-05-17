@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import noImageAvailable from "../../img/noImageAvail.png";
 
 const ResultHeader = ({ result }) => {
   const location = useLocation();
@@ -41,7 +42,7 @@ const ResultHeader = ({ result }) => {
       <div className="mt-8 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
         <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
           <img
-            src={result.set_img_url}
+            src={result.set_img_url ? result.set_img_url : noImageAvailable}
             alt={result.name}
             className="h-full w-full object-contain bg-white object-center"
           />
