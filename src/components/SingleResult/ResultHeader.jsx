@@ -31,7 +31,7 @@ const ResultHeader = ({ result }) => {
       </div>
 
       {/* LEGO image */}
-      <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
+      <div className="mt-8 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
         <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
           <img
             src={result.set_img_url}
@@ -47,8 +47,8 @@ const ResultHeader = ({ result }) => {
           <h2 id="options-heading" className="sr-only">
             LEGO options
           </h2>
-          <div className="grid grid-col-2 gap-x-2 auto-cols-fr">
-            <div className="col-start-1 col-span-1">
+          <div className="grid sm:grid-col-2 gap-y-4 gap-x-2 auto-cols-fr grid-cols-1">
+            <div className="sm:col-start-1 sm:col-span-1">
               <form>
                 <button
                   type="submit"
@@ -58,9 +58,11 @@ const ResultHeader = ({ result }) => {
                 </button>
               </form>
             </div>
-            <div className="col-start-2 col-span-1 col-end-2">
+            <div className="sm:col-start-2 sm:col-span-1 sm:col-end-2">
               <form>
-                <a href={result.set_url}
+                <a
+                  href={result.set_url}
+                  target="_blank"
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-3 text-base font-medium text-white hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                 >
                   View on Rebrickable
