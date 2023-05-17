@@ -1,9 +1,14 @@
+import { useLocation } from "react-router-dom";
+
 const ResultHeader = ({ result }) => {
+  const location = useLocation();
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-12 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
       {/* LEGO details */}
       <div className="lg:max-w-lg lg:self-end">
-        <div className="font-medium text-gray-500">Theme: {result.theme}</div>
+        {location.pathname.startsWith("/minifigures") ? null : (
+          <div className="font-medium text-gray-500">Theme: {result.theme}</div>
+        )}
         <div className="mt-4">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             {result.set_num + " " + result.name}
@@ -15,11 +20,13 @@ const ResultHeader = ({ result }) => {
             Lego set information
           </h2>
 
-          <div className="flex items-center">
-            <p className="text-lg text-gray-900 sm:text-xl">
-              Year released: {result.year}
-            </p>
-          </div>
+          {location.pathname.startsWith("/minifigures") ? null : (
+            <div className="flex items-center">
+              <p className="text-lg text-gray-900 sm:text-xl">
+                Year released: {result.year}
+              </p>
+            </div>
+          )}
 
           <div className="mt-4 space-y-6">
             <p className="text-base text-gray-500">

@@ -99,9 +99,6 @@ const HomeSingleResult = () => {
     fetchData();
   }, [setnum]);
 
-  console.log(result.set);
-  console.log(result.minifigs);
-
   return (
     <>
       {result.set.name ? <ResultHeader result={result.set} /> : null}
