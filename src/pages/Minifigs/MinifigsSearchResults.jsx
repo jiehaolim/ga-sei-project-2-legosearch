@@ -25,7 +25,7 @@ const MinifigsSearchResults = () => {
   const [advSearch, setAdvSearch] = useState(false);
   const [resultsObj, setResultsObj] = useState({
     count: null,
-    next: "",
+    next: null,
     previous: null,
     results: [
       {
@@ -60,8 +60,7 @@ const MinifigsSearchResults = () => {
       );
       const dataMinifigs = await responseMinifigs.json();
 
-      // error handling
-      // error scenario 1 - API throttled too fast 429 for themes
+      // error handling for themes
       if (!responseThemes.ok) throw responseThemes.status;
 
       // to show parent theme name with sub theme name
@@ -86,7 +85,7 @@ const MinifigsSearchResults = () => {
       // set state
       setThemes({ theme: [...themes.theme, ...mainThemes] });
 
-      // error scenario 2 - 400 for wrong params 404 for invalid page if user change URL on URL Bar
+      // error handling for minifigs
       if (!responseMinifigs.ok) throw responseMinifigs.status;
 
       setResultsObj(dataMinifigs);
