@@ -48,7 +48,13 @@ const Results = ({ resultsObj }) => {
               </div>
               <div className="pb-4 pt-4">
                 <h3 className="text-sm font-medium text-gray-900 truncate">
-                  <Link to={"/result/" + result[productNo]}>
+                  <Link
+                    to={
+                      location.pathname.startsWith("/minifigures")
+                        ? "/minifigures/result/" + result[productNo]
+                        : "/result/" + result[productNo]
+                    }
+                  >
                     <span aria-hidden="true" className="absolute inset-0" />
                     {result[productTitle]}
                   </Link>
