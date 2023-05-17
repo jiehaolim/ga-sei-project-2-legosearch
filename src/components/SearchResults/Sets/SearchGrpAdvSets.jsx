@@ -15,12 +15,10 @@ const SearchGrpAdvSets = ({ themes, handleSearchType }) => {
     term: "",
     theme: "",
   });
-
   const [searchPartObj, setSearchPartObj] = useState({
     minParts: 0,
     maxParts: 15000, // largest lego set so far is 11695 parts
   });
-
   const [searchYearObj, setSearchYearObj] = useState({
     minYear: 1949, // year lego started
     maxYear: maxYear, // current year

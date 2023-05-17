@@ -11,10 +11,9 @@ const SearchGrpAdvSets = ({ themes, handleSearchType }) => {
     term: "",
     theme: "",
   });
-
   const [searchPartObj, setSearchPartObj] = useState({
     minParts: 0,
-    maxParts: 15000, // largest lego set so far is 11695 parts
+    maxParts: 250, // largest lego minfigures so far is 148 parts
   });
 
   const handleChange = (key, event) => {

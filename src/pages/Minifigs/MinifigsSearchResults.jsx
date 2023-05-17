@@ -15,8 +15,8 @@ const MinifigsSearchResults = () => {
     term: searchParams.get("term") ?? "",
     theme: searchParams.get("theme") ?? "",
     minParts: searchParams.get("minParts") ?? 0,
-    maxParts: searchParams.get("maxParts") ?? 15000, // largest lego set so far is 11695 parts
-    sortBy: searchParams.get("sortBy") ?? "set_num", // name, set_num, year, num_parts
+    maxParts: searchParams.get("maxParts") ?? 250, // largest lego minfigures so far is 148 parts
+    sortBy: searchParams.get("sortBy") ?? "set_num", // name, set_num, num_parts
     sortOrder: searchParams.get("sortOrder") ?? "", // asc is "", dsc is -
     pageSize: searchParams.get("pageSize") ?? 20,
     pageNo: searchParams.get("pageNo") ?? 1,
