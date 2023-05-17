@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import SelectMenu from "./Child/SelectMenu";
 
 const SortGrp = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortObj, setSortObj] = useState({
@@ -10,15 +11,18 @@ const SortGrp = () => {
     sortOrder: "", // asc is "", dsc is -
     pageSize: 20,
   });
-
   const sortByObj = {
     sortBy: [
       { name: "Set No", id: "set_num" },
       { name: "Name", id: "name" },
-      { name: "Year", id: "year" },
       { name: "No of Parts", id: "num_parts" },
+      { name: "Year", id: "year" },
     ],
   };
+  // remove year if the sort group is in minifigure search
+  if (location.pathname.startsWith("/minifigures")) {
+    sortByObj.sortBy.pop();
+  }
   const sortOrderObj = {
     sortOrder: [
       { name: "Ascending", id: "" },

@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import SelectMenu from "./Child/SelectMenu";
-import RangeParts from "./Child/RangeParts";
-import RangeYears from "./Child/RangeYears";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import SelectMenu from "../Child/SelectMenu";
+import RangeParts from "../Child/RangeParts";
+import RangeYears from "../Child/RangeYears";
 import { MagnifyingGlassIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
 
-const SearchGrpAdv = ({ themes, handleSearchType }) => {
-  const location = useLocation();
+const SearchGrpAdvSets = ({ themes, handleSearchType }) => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchTitle =
-    location.pathname.startsWith() === "/minifigures" ? "minifigures" : "sets";
   // current year
   const date = new Date();
   const maxYear = date.getFullYear();
@@ -109,7 +106,7 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
               htmlFor="search"
               className="block text-sm font-medium leading-6 text-gray-900 sr-only"
             >
-              {"Search for LEGO " + searchTitle}
+              {"Search for LEGO sets"}
             </label>
             <div className="relative flex flex-grow items-stretch focus-within:z-10">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -123,7 +120,7 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
                 name="search"
                 id="search"
                 className="block w-full rounded-md border-0 py-1.5 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                placeholder={"Search for LEGO " + searchTitle}
+                placeholder={"Search for LEGO sets"}
                 value={searchAdvObj.term}
                 onChange={(event) => {
                   handleChange("term", event);
@@ -182,4 +179,4 @@ const SearchGrpAdv = ({ themes, handleSearchType }) => {
   );
 };
 
-export default SearchGrpAdv;
+export default SearchGrpAdvSets;

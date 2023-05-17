@@ -1,7 +1,8 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import noImageAvailable from "../../img/noImageAvail.png";
 
 const Results = ({ resultsObj }) => {
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const pageNo = searchParams.get("pageNo") ?? "1";
   const pageSize = searchParams.get("pageSize") ?? "20";
@@ -61,14 +62,16 @@ const Results = ({ resultsObj }) => {
                     {result[productParts] <= 1 ? "part" : "parts"}
                   </p>
                 </div>
-                <div className="mt-1 flex justify-between gap-x-4">
-                  <p className="text-sm text-gray-500 truncate">
-                    {result[productTheme]}
-                  </p>
-                  <p className="text-sm text-gray-500 truncate">
-                    {result[productYear]}
-                  </p>
-                </div>
+                {location.pathname.startsWith("/minifigures") ? null : (
+                  <div className="mt-1 flex justify-between gap-x-4">
+                    <p className="text-sm text-gray-500 truncate">
+                      {result[productTheme]}
+                    </p>
+                    <p className="text-sm text-gray-500 truncate">
+                      {result[productYear]}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
             <button

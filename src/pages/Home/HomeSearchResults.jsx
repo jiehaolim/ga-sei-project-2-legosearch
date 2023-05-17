@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import SearchGrpBasic from "../../components/SearchResults/SearchGrpBasic";
-import SearchGrpAdv from "../../components/SearchResults/SearchGrpAdv";
+import SearchGrpAdvSets from "../../components/SearchResults/Sets/SearchGrpAdvSets";
 import SortGrp from "../../components/SearchResults/SortGrp";
 import Results from "../../components/SearchResults/Results";
 import NoResults from "../../components/SearchResults/NoResults";
@@ -125,7 +125,7 @@ const HomeSearchResults = () => {
   return (
     <>
       {advSearch ? (
-        <SearchGrpAdv themes={themes} handleSearchType={handleSearchType} />
+        <SearchGrpAdvSets themes={themes} handleSearchType={handleSearchType} />
       ) : (
         <SearchGrpBasic themes={themes} handleSearchType={handleSearchType} />
       )}

@@ -6,8 +6,9 @@ import { MagnifyingGlassIcon, ArrowDownIcon } from "@heroicons/react/20/solid";
 const SearchGrpBasic = ({ themes, handleSearchType }) => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchTitle =
-    location.pathname.startsWith() === "/minifigures" ? "minifigures" : "sets";
+  const searchTitle = location.pathname.startsWith("/minifigures")
+    ? "minifigures"
+    : "sets";
   const [searchObj, setSearchObj] = useState({
     term: "",
     theme: "",
