@@ -105,7 +105,7 @@ const HomeSingleResult = () => {
   return (
     <>
       {result.set.name ? <ResultHeader result={result.set} /> : null}
-      {result.minifigs.count ? <ResultFooter result={result.minifigs} /> : null}
+      {result.minifigs.count ? <ResultFooter results={result.minifigs} /> : null}
     </>
   );
 };
