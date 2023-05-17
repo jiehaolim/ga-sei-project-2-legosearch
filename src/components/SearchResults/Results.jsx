@@ -43,7 +43,7 @@ const Results = ({ resultsObj }) => {
                 <img
                   src={result[productIMG] ?? noImageAvailable}
                   alt={result[productTitle]}
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full object-contain bg-white object-center"
                 />
               </div>
               <div className="pb-4 pt-4">

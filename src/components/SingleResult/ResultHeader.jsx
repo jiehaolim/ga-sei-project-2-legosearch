@@ -36,7 +36,7 @@ const ResultHeader = ({ result }) => {
           <img
             src={result.set_img_url}
             alt={result.name}
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full object-contain bg-white object-center"
           />
         </div>
       </div>
