@@ -22,7 +22,6 @@ const Results = ({ resultsObj }) => {
   const productParts = "num_parts";
   const productTheme = "theme";
   const productYear = "year";
-  const productURL = "set_url";
 
   return (
     <div className="mt-8 mx-auto max-w-7xl overflow-hidden px-2 sm:px-6 lg:px-8">
@@ -48,10 +47,10 @@ const Results = ({ resultsObj }) => {
               </div>
               <div className="pb-4 pt-4">
                 <h3 className="text-sm font-medium text-gray-900 truncate">
-                  <a href={result[productURL]} target="_blank">
+                  <Link to={"/result/" + result[productNo]}>
                     <span aria-hidden="true" className="absolute inset-0" />
                     {result[productTitle]}
-                  </a>
+                  </Link>
                 </h3>
                 <div className="mt-1 flex justify-between gap-x-4">
                   <p className="text-sm text-gray-500 truncate">

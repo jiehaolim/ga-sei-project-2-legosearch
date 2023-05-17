@@ -8,10 +8,9 @@ import NoResults from "../../components/SearchResults/NoResults";
 import Pagination from "../../components/SearchResults/Pagination";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const HomeSearchResults = ({ setThemesToState, themes }) => {
+const HomeSearchResults = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [advSearch, setAdvSearch] = useState(false);
   // current year
   const date = new Date();
   const maxYear = date.getFullYear();
@@ -27,6 +26,8 @@ const HomeSearchResults = ({ setThemesToState, themes }) => {
     pageSize: searchParams.get("pageSize") ?? 20,
     pageNo: searchParams.get("pageNo") ?? 1,
   };
+  const [themes, setThemes] = useState({ theme: [{ id: "", name: "Theme" }] });
+  const [advSearch, setAdvSearch] = useState(false);
   const [resultsObj, setResultsObj] = useState({
     count: null,
     next: "",
@@ -91,8 +92,8 @@ const HomeSearchResults = ({ setThemesToState, themes }) => {
       }
       // sort themes in alphabetically order
       mainThemes.sort((a, b) => (a.name > b.name ? 1 : -1));
-      // set state in app.jsx
-      setThemesToState(mainThemes);
+      // set state
+      setThemes({ theme: [...themes.theme, ...mainThemes] });
 
       // error scenario 2 - 400 for wrong params 404 for invalid page if user change URL on URL Bar
       if (!responseSets.ok) throw responseSets.status;
