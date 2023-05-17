@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 const ResultFooter = ({ results }) => {
   const location = useLocation();
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8">
+    <div className="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
       <div className="md:flex md:items-center md:justify-between">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           {results.count > 1
@@ -19,7 +19,7 @@ const ResultFooter = ({ results }) => {
               <img
                 src={element.set_img_url}
                 alt={element.set_name}
-                className="h-full w-full object-cover object-center"
+                className="h-full w-full object-contain bg-white object-center"
               />
             </div>
             <h3 className="mt-4 text-sm text-gray-700">
