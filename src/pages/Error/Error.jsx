@@ -5,7 +5,7 @@ import forbidden from "../../img/error/forbidden403.jpeg";
 import pagenotfound from "../../img/error/pagenotfound404.jpeg";
 import toomanyrequests from "../../img/error/toomanyrequests429.jpeg";
 
-const ErrorPage = () => {
+const Error = () => {
   const { id } = useParams();
 
   const errorObj = {
@@ -68,4 +68,4 @@ const ErrorPage = () => {
   );
 };
 
-export default ErrorPage;
+export default Error;

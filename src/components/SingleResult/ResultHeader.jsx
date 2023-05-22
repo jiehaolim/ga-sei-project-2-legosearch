@@ -4,7 +4,7 @@ import noImageAvailable from "../../img/noImageAvail.png";
 const ResultHeader = ({ result }) => {
   const location = useLocation();
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-12 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+    <div className="mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
       {/* LEGO details */}
       <div className="lg:max-w-lg lg:self-end">
         {location.pathname.startsWith("/minifigures") ? null : (

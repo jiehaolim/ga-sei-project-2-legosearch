@@ -14,7 +14,7 @@ const ResultFooter = ({ results }) => {
   }
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
+    <div className="mx-auto px-4 py-4 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
       {location.pathname.startsWith("/minifigures") ? (
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           {results.count > 1
