@@ -1,5 +1,6 @@
-import CollectionHeader from "../../components/Collection/CollectionHeader"
-import Tabs from "../../components/Collection/Tabs"
+import CollectionHeader from "../../components/Collection/CollectionHeader";
+import Tabs from "../../components/Collection/Tabs";
+import SortGrp from "../../components/Collection/SortGrp";
 import EmptyCollection from "../../components/Collection/EmptyCollection";
 import CollectionResult from "../../components/Collection/CollectionResult";
 
@@ -7,7 +8,8 @@ const Collection = () => {
   return (
     <>
       <CollectionHeader />
-      <Tabs />  
+      <Tabs />
+      <SortGrp />
       {/* <EmptyCollection /> */}
       <CollectionResult />
     </>

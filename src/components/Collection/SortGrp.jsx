@@ -63,7 +63,7 @@ const SortGrp = () => {
   }, [searchParams.toString()]);
 
   return (
-    <div className="mt-2 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div className="mt-4 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div className="grid grid-cols-3 gap-x-2 gap-y-2 md:grid-cols-5 lg:grid-cols-8">
         <div className="col-span-1 md:col-start-1 sm:col-start-1">
           <label
@@ -96,7 +96,7 @@ const SortGrp = () => {
             htmlFor="results-per-page"
             className="block text-sm font-medium leading-6 text-gray-900 pl-1"
           >
-            Results per page
+            Items per page
           </label>
           <SelectMenu
             selectObj={pageSizeObj}

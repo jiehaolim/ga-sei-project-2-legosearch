@@ -30,7 +30,7 @@ const MinifigsSingleResult = () => {
           last_modified_dt: null,
         },
       ],
-    }
+    },
   });
 
   // fetch data
@@ -41,7 +41,7 @@ const MinifigsSingleResult = () => {
         `https://rebrickable.com/api/v3/lego/minifigs/${setnum}/?key=${API_KEY}`
       );
       const dataMinifig = await responseMinifig.json();
-      
+
       // fetch set data
       const responseSets = await fetch(
         `https://rebrickable.com/api/v3/lego/minifigs/${setnum}/sets/?key=${API_KEY}`

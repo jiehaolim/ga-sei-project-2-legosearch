@@ -16,14 +16,6 @@ const Results = ({ resultsObj }) => {
       ? resultsObj?.count
       : resultsObj?.results.length * parseInt(pageNo);
 
-  // variables for resultsObj
-  const productIMG = "set_img_url";
-  const productTitle = "name";
-  const productNo = "set_num";
-  const productParts = "num_parts";
-  const productTheme = "theme";
-  const productYear = "year";
-
   return (
     <div className="mt-8 mx-auto max-w-7xl overflow-hidden px-2 sm:px-6 lg:px-8">
       <h2 className="text-2xl font-bold tracking-tight text-gray-900">
@@ -35,14 +27,14 @@ const Results = ({ resultsObj }) => {
       <div className="mt-8 mx-px grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {resultsObj?.results.map((result) => (
           <div
-            key={result[productNo]}
+            key={result.set_num}
             className="bg-white border border-gray-300 rounded-lg relative p-4"
           >
             <div className="group relative">
               <div className="w-full h-48 sm:h-64 lg:h-64 xl:h-72 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
                 <img
-                  src={result[productIMG] ?? noImageAvailable}
-                  alt={result[productTitle]}
+                  src={result.set_img_url ?? noImageAvailable}
+                  alt={result.name}
                   className="h-full w-full object-contain bg-white object-center"
                 />
               </div>
@@ -51,30 +43,30 @@ const Results = ({ resultsObj }) => {
                   <Link
                     to={
                       location.pathname.startsWith("/minifigures")
-                        ? "/minifigures/result/" + result[productNo]
-                        : "/result/" + result[productNo]
+                        ? "/minifigures/result/" + result.set_num
+                        : "/result/" + result.set_num
                     }
                   >
                     <span aria-hidden="true" className="absolute inset-0" />
-                    {result[productTitle]}
+                    {result.name}
                   </Link>
                 </h3>
                 <div className="mt-1 flex justify-between gap-x-4">
                   <p className="text-sm text-gray-500 truncate">
-                    {result[productNo]}
+                    {result.set_num}
                   </p>
                   <p className="text-sm text-gray-500 truncate">
-                    {result[productParts].toLocaleString()}{" "}
-                    {result[productParts] <= 1 ? "part" : "parts"}
+                    {result.num_parts.toLocaleString()}{" "}
+                    {result.num_parts <= 1 ? "part" : "parts"}
                   </p>
                 </div>
                 {location.pathname.startsWith("/minifigures") ? null : (
                   <div className="mt-1 flex justify-between gap-x-4">
                     <p className="text-sm text-gray-500 truncate">
-                      {result[productTheme]}
+                      {result.theme}
                     </p>
                     <p className="text-sm text-gray-500 truncate">
-                      {result[productYear]}
+                      {result.year}
                     </p>
                   </div>
                 )}

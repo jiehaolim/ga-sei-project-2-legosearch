@@ -39,7 +39,7 @@ function App() {
             <Route path="collection" element={<Collection />} />
 
             {/* Error */}
-            <Route path="error/:id" element={<Error/>} />
+            <Route path="error/:id" element={<Error />} />
           </Route>
         </Routes>
       </BrowserRouter>

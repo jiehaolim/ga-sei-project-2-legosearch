@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import SelectMenu from "../Child/SelectMenu";
+import SelectMenu from "../../Shared/SelectMenu";
 import RangeParts from "../Child/RangeParts";
 import { MagnifyingGlassIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
-import SelectMenu from "./Child/SelectMenu";
+import SelectMenu from "../Shared/SelectMenu";
 import { MagnifyingGlassIcon, ArrowDownIcon } from "@heroicons/react/20/solid";
 
 const SearchGrpBasic = ({ themes, handleSearchType }) => {
