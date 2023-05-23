@@ -7,8 +7,8 @@ const CollectionHeader = () => {
             Collection
           </h2>
           <p className="mt-2 text-base text-gray-500">
-            Get started by searching for LEGO sets or minifigures and add it to
-            collection. You can export the collated collection into Excel.
+            Get started by searching for LEGO sets or minifigures and add item
+            to collection. You can export the collated collection into Excel.
           </p>
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">

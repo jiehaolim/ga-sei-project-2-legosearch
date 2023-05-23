@@ -8,8 +8,7 @@ const tabs = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
-export default function Example() {
+const CollectionTabs = () => {
   return (
     <div className="mt-4 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div className="sm:hidden">
@@ -64,3 +63,5 @@ export default function Example() {
     </div>
   );
 }
+
+export default CollectionTabs
