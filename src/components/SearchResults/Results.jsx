@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import ModalSets from "../Shared/ModalSets";
+import ModalAddSets from "../Shared/ModalAddSets";
+import ModalAddSetsBuild from "../Shared/ModalAddSetsBuild";
 import ModalSuccess from "../Shared/ModalSuccess";
+import NotificationSuccess from "../Shared/NotificationSuccess";
 import noImageAvailable from "../../img/noImageAvail.png";
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 const Results = ({ resultsObj }) => {
   const location = useLocation();
@@ -20,7 +23,14 @@ const Results = ({ resultsObj }) => {
       : resultsObj?.results.length * parseInt(pageNo);
 
   // modal sets codes
-  const [modalSets, setModalSets] = useState({
+  const [modalAddSets, setModalAddSets] = useState({
+    viewModal: false,
+    information: {
+      name: null,
+      set_num: null,
+    },
+  });
+  const [modalAddSetsBuild, setModalAddSetsBuild] = useState({
     viewModal: false,
     information: {
       name: null,
@@ -28,18 +38,46 @@ const Results = ({ resultsObj }) => {
     },
   });
 
-  const handleModalSets = (key, boolean) => {
-    setModalSets({ ...modalSets, viewModal: boolean });;
-    console.log(key, modalSets.information);
-    setModalSuccess(true);
+  const turnOnModal = async (item) => {
+    const responseMinifig = await fetch(
+      `https://rebrickable.com/api/v3/lego/sets/${item.set_num}/minifigs/?key=${API_KEY}`
+    );
+    const dataMinifig = await responseMinifig.json();
+    if (dataMinifig.count === 0) {
+      setModalAddSets({ viewModal: true, information: item });
+    } else {
+      setModalAddSetsBuild({ viewModal: true, information: item });
+    }
   };
 
-  // modal success code
+  const handleModalAddSetsBuild = (key) => {
+    if (key === "cancelSets") {
+      setModalAddSets({
+        ...modalAddSets,
+        viewModal: false,
+      });
+    } else if (key === "cancelSetsBuild") {
+      setModalAddSetsBuild({
+        ...modalAddSetsBuild,
+        viewModal: false,
+      });
+    } else {
+      setTimeout(() => {
+        setModalSuccess(true);
+      }, 500);
+    }
+    console.log(key, modalAddSets.information);
+    
+  };
+
+  // modal success codes
   const [modalSuccess, setModalSuccess] = useState(false);
 
   const handleModalSuccess = (boolean) => {
     setModalSuccess(boolean);
   };
+
+  const [show, setShow] = useState(true)
 
   return (
     <>
@@ -102,7 +140,7 @@ const Results = ({ resultsObj }) => {
                 type="button"
                 className="w-full rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 onClick={() => {
-                  setModalSets({ viewModal: true, information: result });
+                  turnOnModal(result);
                 }}
               >
                 Add to Collection
@@ -111,11 +149,20 @@ const Results = ({ resultsObj }) => {
           ))}
         </div>
       </div>
-      <ModalSets modalSets={modalSets} handleModalSets={handleModalSets} />
+      <ModalAddSets
+        modalAddSets={modalAddSets}
+        handleModalAddSetsBuild={handleModalAddSetsBuild}
+      />
+      <ModalAddSetsBuild
+        modalAddSetsBuild={modalAddSetsBuild}
+        handleModalAddSetsBuild={handleModalAddSetsBuild}
+      />
       <ModalSuccess
         modalSuccess={modalSuccess}
         handleModalSuccess={handleModalSuccess}
       />
+      <NotificationSuccess show={show} />
+      <NotificationSuccess show={show} />
     </>
   );
 };
