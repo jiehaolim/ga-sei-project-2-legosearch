@@ -1,8 +1,10 @@
 import { Fragment } from "react";
+import { useLocation } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
 const ModalSuccess = ({ modalSuccess, handleModalSuccess }) => {
+  const location = useLocation()
   return (
     <Transition.Root show={modalSuccess} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={handleModalSuccess}>
@@ -42,8 +44,13 @@ const ModalSuccess = ({ modalSuccess, handleModalSuccess }) => {
                       as="h3"
                       className="text-base font-semibold leading-6 text-gray-900"
                     >
-                      Added to Collection
+                      Added to Collection successfully
                     </Dialog.Title>
+                    <div className="mt-2">
+                      <p className="text-sm text-gray-500">
+                        You can view your {location.pathname.startsWith("minifigures") ? "minifigure" : "set"} in the collection page.
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <div className="mt-5 sm:mt-5">

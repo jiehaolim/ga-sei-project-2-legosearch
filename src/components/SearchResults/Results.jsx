@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import ModalSets from "../Shared/ModalSets";
 import ModalSuccess from "../Shared/ModalSuccess";
 import noImageAvailable from "../../img/noImageAvail.png";
-const API_KEY = import.meta.env.VITE_API_KEY;
 
 const Results = ({ resultsObj }) => {
   const location = useLocation();
@@ -28,36 +27,20 @@ const Results = ({ resultsObj }) => {
       set_num: null,
     },
   });
-  const [minifigInfo, setMinifigInfo] = useState({
-    count: null,
-  });
 
   const handleModalSets = (key, boolean) => {
-    setMinifigInfo({ count: null });
-    setModalSets({ ...modalSets, viewModal: boolean });
+    setModalSets({ ...modalSets, viewModal: boolean });;
     console.log(key, modalSets.information);
-    setModalSuccess(true)
+    setModalSuccess(true);
   };
 
-  const fetchData = async () => {
-    const responseMinifigs = await fetch(
-      `https://rebrickable.com/api/v3/lego/sets/${modalSets.information.set_num}/minifigs/?key=${API_KEY}`
-    );
-    const dataResponse = await responseMinifigs.json();
-    setMinifigInfo({ count: dataResponse.count });
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [modalSets.information.set_num]);
-
-  // success modal code
+  // modal success code
   const [modalSuccess, setModalSuccess] = useState(false);
-  
+
   const handleModalSuccess = (boolean) => {
-    setModalSuccess(boolean)
+    setModalSuccess(boolean);
   };
-  
+
   return (
     <>
       <div className="mt-8 mx-auto max-w-7xl overflow-hidden px-2 sm:px-6 lg:px-8">
@@ -128,14 +111,11 @@ const Results = ({ resultsObj }) => {
           ))}
         </div>
       </div>
-      {minifigInfo.count === null ? null : (
-        <ModalSets
-          modalSets={modalSets}
-          handleModalSets={handleModalSets}
-          minifigInfo={minifigInfo}
-        />
-      )}
-      <ModalSuccess modalSuccess={modalSuccess} handleModalSuccess={handleModalSuccess} />
+      <ModalSets modalSets={modalSets} handleModalSets={handleModalSets} />
+      <ModalSuccess
+        modalSuccess={modalSuccess}
+        handleModalSuccess={handleModalSuccess}
+      />
     </>
   );
 };
