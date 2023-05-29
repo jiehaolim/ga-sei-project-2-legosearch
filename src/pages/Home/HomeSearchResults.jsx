@@ -6,7 +6,6 @@ import SortGrp from "../../components/SearchResults/SortGrp";
 import Results from "../../components/SearchResults/Results";
 import NoResults from "../../components/SearchResults/NoResults";
 import Pagination from "../../components/SearchResults/Pagination";
-import SetsModal from "../../components/Shared/SetsModal";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const HomeSearchResults = () => {
@@ -138,7 +137,6 @@ const HomeSearchResults = () => {
       ) : resultsObj.count === 0 ? (
         <NoResults />
       ) : null}
-      <SetsModal />
     </>
   );
 };
