@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import SetsModal from "../../components/Shared/SetsModal";
+import ModalSets from "../Shared/ModalSets";
+import ModalSuccess from "../Shared/modalSuccess";
 import noImageAvailable from "../../img/noImageAvail.png";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -19,8 +20,8 @@ const Results = ({ resultsObj }) => {
       ? resultsObj?.count
       : resultsObj?.results.length * parseInt(pageNo);
 
-  // modal code
-  const [modal, setModal] = useState({
+  // modal sets codes
+  const [modalSets, setModalSets] = useState({
     viewModal: false,
     information: {
       name: null,
@@ -31,15 +32,16 @@ const Results = ({ resultsObj }) => {
     count: null,
   });
 
-  const handleModal = (key, boolean) => {
+  const handleModalSets = (key, boolean) => {
     setMinifigInfo({ count: null });
-    setModal({ ...modal, viewModal: boolean });
-    console.log(key, modal.information)
+    setModalSets({ ...modalSets, viewModal: boolean });
+    console.log(key, modalSets.information);
+    setModalSuccess(true)
   };
 
   const fetchData = async () => {
     const responseMinifigs = await fetch(
-      `https://rebrickable.com/api/v3/lego/sets/${modal.information.set_num}/minifigs/?key=${API_KEY}`
+      `https://rebrickable.com/api/v3/lego/sets/${modalSets.information.set_num}/minifigs/?key=${API_KEY}`
     );
     const dataResponse = await responseMinifigs.json();
     setMinifigInfo({ count: dataResponse.count });
@@ -47,8 +49,15 @@ const Results = ({ resultsObj }) => {
 
   useEffect(() => {
     fetchData();
-  }, [modal.information.set_num]);
+  }, [modalSets.information.set_num]);
 
+  // success modal code
+  const [modalSuccess, setModalSuccess] = useState(false);
+  
+  const handleModalSuccess = (boolean) => {
+    setModalSuccess(boolean)
+  };
+  
   return (
     <>
       <div className="mt-8 mx-auto max-w-7xl overflow-hidden px-2 sm:px-6 lg:px-8">
@@ -110,7 +119,7 @@ const Results = ({ resultsObj }) => {
                 type="button"
                 className="w-full rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 onClick={() => {
-                  setModal({ viewModal: true, information: result });
+                  setModalSets({ viewModal: true, information: result });
                 }}
               >
                 Add to Collection
@@ -119,7 +128,14 @@ const Results = ({ resultsObj }) => {
           ))}
         </div>
       </div>
-      {minifigInfo.count === null ? null : <SetsModal modal={modal} handleModal={handleModal} minifigInfo={minifigInfo} />}
+      {minifigInfo.count === null ? null : (
+        <ModalSets
+          modalSets={modalSets}
+          handleModalSets={handleModalSets}
+          minifigInfo={minifigInfo}
+        />
+      )}
+      <ModalSuccess modalSuccess={modalSuccess} handleModalSuccess={handleModalSuccess} />
     </>
   );
 };

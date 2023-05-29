@@ -1,10 +1,10 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-const SetsModal = ({ modal, handleModal, minifigInfo }) => {
+const ModalSets = ({ modalSets, handleModalSets, minifigInfo }) => {
   return (
-    <Transition.Root show={modal.viewModal} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={handleModal}>
+    <Transition.Root show={modalSets.viewModal} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={handleModalSets}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -36,7 +36,7 @@ const SetsModal = ({ modal, handleModal, minifigInfo }) => {
                       className="text-base font-semibold leading-6 text-gray-900"
                     >
                       Add{" "}
-                      {modal.information.set_num + " " + modal.information.name}{" "}
+                      {modalSets.information.set_num + " " + modalSets.information.name}{" "}
                       to Collection?
                     </Dialog.Title>
                     {minifigInfo.count === 0 ? null : (
@@ -50,12 +50,12 @@ const SetsModal = ({ modal, handleModal, minifigInfo }) => {
                   </div>
                 </div>
                 {minifigInfo.count === 0 ? (
-                  <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
+                  <div className="mt-5 sm:mt-5 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                     <button
                       type="button"
                       className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 sm:col-start-1"
                       onClick={() => {
-                        handleModal("set", false);
+                        handleModalSets("set", false);
                       }}
                     >
                       Add
@@ -63,31 +63,31 @@ const SetsModal = ({ modal, handleModal, minifigInfo }) => {
                     <button
                       type="button"
                       className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-2 sm:mt-0"
-                      onClick={() => handleModal("cancel", false)}
+                      onClick={() => handleModalSets("cancel", false)}
                     >
                       Cancel
                     </button>
                   </div>
                 ) : (
-                  <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-3 sm:gap-3">
+                  <div className="mt-5 sm:mt-5 sm:grid sm:grid-flow-row-dense sm:grid-cols-3 sm:gap-3">
                     <button
                       type="button"
                       className="mt-3 inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 sm:col-start-1 sm:mt-0"
-                      onClick={() => handleModal("set", false)}
+                      onClick={() => handleModalSets("set", false)}
                     >
                       Complete Set
                     </button>
                     <button
                       type="button"
                       className="mt-3 inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2 sm:mt-0"
-                      onClick={() => handleModal("build", false)}
+                      onClick={() => handleModalSets("build", false)}
                     >
                       Build Only
                     </button>
                     <button
                       type="button"
                       className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-3 sm:mt-0"
-                      onClick={() => handleModal("cancel", false)}
+                      onClick={() => handleModalSets("cancel", false)}
                     >
                       Cancel
                     </button>
@@ -102,4 +102,4 @@ const SetsModal = ({ modal, handleModal, minifigInfo }) => {
   );
 };
 
-export default SetsModal;
+export default ModalSets;
