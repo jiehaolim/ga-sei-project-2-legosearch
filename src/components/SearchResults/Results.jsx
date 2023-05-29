@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import ModalSets from "../Shared/ModalSets";
-import ModalSuccess from "../Shared/modalSuccess";
+import ModalSuccess from "../Shared/ModalSuccess";
 import noImageAvailable from "../../img/noImageAvail.png";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
