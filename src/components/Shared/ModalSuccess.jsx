@@ -48,7 +48,7 @@ const ModalSuccess = ({ modalSuccess, handleModalSuccess }) => {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        You can view your {location.pathname.startsWith("minifigures") ? "minifigure" : "set"} in the collection page.
+                        You can view your {location.pathname.startsWith("/minifigures") ? "minifigure" : "set"} in the collection page.
                       </p>
                     </div>
                   </div>
