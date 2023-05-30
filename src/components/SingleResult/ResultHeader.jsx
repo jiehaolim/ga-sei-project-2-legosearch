@@ -44,9 +44,10 @@ const ResultHeader = ({ result, addToCollection }) => {
     if (dataMinifig.count === 0) {
       setModalAddSets({ viewModal: true, set: item });
     } else {
-      // add an related set to the related minfigures
+      // add an related set to the related minfigures and a original_quantity
       dataMinifig.results.forEach((element) => {
         element.related_set = item.set_num;
+        element.original_quantity = element.quantity;
       });
       setModalAddSetsBuild({
         viewModal: true,
@@ -57,43 +58,34 @@ const ResultHeader = ({ result, addToCollection }) => {
   };
 
   const handleModalAddSetsBuild = (key) => {
-    if (key === "set") {
-      // turn off modal
-      setModalAddSets({ ...modalAddSets, viewModal: false });
-      // add a quantity to the set
-      modalAddSets.set.quantity = 1;
-      // pass the information app.jsx
-      addToCollection(key, modalAddSets.set);
+    // turn off modal
+    modalAddSets.viewModal
+      ? setModalAddSets({ ...modalAddSets, viewModal: false })
+      : null;
+    modalAddSetsBuild.viewModal
+      ? setModalAddSetsBuild({ ...modalAddSetsBuild, viewModal: false })
+      : null;
+    if (key) {
+      if (key === "set") {
+        // add a quantity to the set
+        modalAddSets.set.quantity = 1;
+        // pass the information app.jsx
+        addToCollection(key, modalAddSets.set);
+      } else if (key === "setWithMinifigs") {
+        // add a quantity to the set
+        modalAddSetsBuild.set.quantity = 1;
+        // pass the information app.jsx
+        addToCollection(key, modalAddSetsBuild);
+      } else if (key === "build") {
+        // add a quantity to the set
+        modalAddSetsBuild.set.quantity = 1;
+        // pass the information app.jsx
+        addToCollection(key, modalAddSetsBuild.set);
+      }
       // turn on success modal after 0.5 seconds to avoid css transition clashing
       setTimeout(() => {
         setModalSuccess(true);
       }, 500);
-    } else if (key === "setWithMinifigs") {
-      // turn off modal
-      setModalAddSetsBuild({ ...modalAddSetsBuild, viewModal: false });
-      // add a quantity to the set
-      modalAddSetsBuild.set.quantity = 1;
-      // pass the information app.jsx
-      addToCollection(key, modalAddSetsBuild);
-      // turn on success modal after 0.5 seconds to avoid css transition clashing
-      setTimeout(() => {
-        setModalSuccess(true);
-      }, 500);
-    } else if (key === "build") {
-      // turn off modal
-      setModalAddSetsBuild({ ...modalAddSetsBuild, viewModal: false });
-      // add a quantity to the set
-      modalAddSetsBuild.set.quantity = 1;
-      // pass the information app.jsx
-      addToCollection(key, modalAddSetsBuild.set);
-      // turn on success modal after 0.5 seconds to avoid css transition clashing
-      setTimeout(() => {
-        setModalSuccess(true);
-      }, 500);
-    } else if (key === "cancel") {
-      // turn off modal
-      setModalAddSets({ ...modalAddSets, viewModal: false });
-      setModalAddSetsBuild({ ...modalAddSetsBuild, viewModal: false });
     }
   };
 

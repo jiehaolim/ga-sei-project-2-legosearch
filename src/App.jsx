@@ -10,7 +10,6 @@ import MinifigsSearchResults from "./pages/Minifigs/MinifigsSearchResults";
 import MinifigsSingleResult from "./pages/Minifigs/MinifigsSingleResult";
 import Collection from "./pages/Collection/Collection";
 import Error from "./pages/Error/Error";
-const API_KEY = import.meta.env.VITE_API_KEY;
 
 function App() {
   const [collection, setCollection] = useState({
@@ -20,15 +19,70 @@ function App() {
     minifig: [],
   });
 
-  const addToCollection = (key, item) => {
+  const addToCollection = (key, itemObj) => {
     if (key === "setWithMinifigs") {
-      setCollection({
-        ...collection,
-        set: [...collection.set, item.set],
-        setMinifig: [...collection.setMinifig, ...item.minifig],
-      });
+      // find if item exists
+      const index = collection["set"].findIndex(
+        (element) => element.set_num === itemObj["set"].set_num
+      );
+      // if exists
+      if (index >= 0) {
+        setCollection({
+          ...collection,
+          ["set"]: collection["set"].map((element) =>
+            element.set_num === itemObj["set"].set_num
+              ? {
+                  ...element,
+                  quantity: (element.quantity =
+                    element.quantity + itemObj["set"].quantity),
+                }
+              : element
+          ),
+          // match array against array
+          ["setMinifig"]: collection["setMinifig"].map((element) => {
+            const findItem = itemObj["minifig"].find(
+              (item) =>
+                item.related_set === element.related_set &&
+                item.set_num === element.set_num
+            );
+            return {
+              ...element,
+              quantity: (element.quantity =
+                element.quantity + findItem.quantity),
+            };
+          }),
+        });
+        // if it does not exist
+      } else {
+        setCollection({
+          ...collection,
+          ["set"]: [...collection["set"], itemObj["set"]],
+          ["setMinifig"]: [...collection["setMinifig"], ...itemObj["minifig"]],
+        });
+      }
     } else {
-      setCollection({ ...collection, [key]: [...collection[key], item] });
+      // find if item exists
+      const index = collection[key].findIndex(
+        (element) => element.set_num === itemObj.set_num
+      );
+      // if exists
+      if (index >= 0) {
+        setCollection({
+          ...collection,
+          [key]: collection[key].map((element) =>
+            element.set_num === itemObj.set_num
+              ? {
+                  ...element,
+                  quantity: (element.quantity =
+                    element.quantity + itemObj.quantity),
+                }
+              : element
+          ),
+        });
+        // if it does not exist
+      } else {
+        setCollection({ ...collection, [key]: [...collection[key], itemObj] });
+      }
     }
   };
 
