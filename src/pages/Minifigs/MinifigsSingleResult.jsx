@@ -4,7 +4,7 @@ import ResultHeader from "../../components/SingleResult/ResultHeader";
 import ResultFooter from "../../components/SingleResult/ResultFooter";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const MinifigsSingleResult = () => {
+const MinifigsSingleResult = ({ addToCollection }) => {
   const navigate = useNavigate();
   const { setnum } = useParams();
   const [result, setResult] = useState({
@@ -64,7 +64,12 @@ const MinifigsSingleResult = () => {
 
   return (
     <>
-      {result.minifig.name ? <ResultHeader result={result.minifig} /> : null}
+      {result.minifig.name ? (
+        <ResultHeader
+          result={result.minifig}
+          addToCollection={addToCollection}
+        />
+      ) : null}
       {result.sets.count ? <ResultFooter results={result.sets} /> : null}
     </>
   );

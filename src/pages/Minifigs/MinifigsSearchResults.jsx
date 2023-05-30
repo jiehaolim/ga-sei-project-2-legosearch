@@ -8,7 +8,7 @@ import NoResults from "../../components/SearchResults/NoResults";
 import Pagination from "../../components/SearchResults/Pagination";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const MinifigsSearchResults = () => {
+const MinifigsSearchResults = ({ addToCollection }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const currentSearchParams = {
@@ -119,7 +119,7 @@ const MinifigsSearchResults = () => {
       <SortGrp />
       {resultsObj.count > 0 ? (
         <>
-          <Results resultsObj={resultsObj} />
+          <Results resultsObj={resultsObj} addToCollection={addToCollection} />
           <Pagination resultsObj={resultsObj} />
         </>
       ) : resultsObj.count === 0 ? (

@@ -109,11 +109,11 @@ function App() {
             <Route path="minifigures" element={<MinifigsHomePage />} />
             <Route
               path="minifigures/search"
-              element={<MinifigsSearchResults />}
+              element={<MinifigsSearchResults addToCollection={addToCollection} />}
             />
             <Route
               path="minifigures/result/:setnum"
-              element={<MinifigsSingleResult />}
+              element={<MinifigsSingleResult addToCollection={addToCollection} />}
             />
 
             {/* Collection */}

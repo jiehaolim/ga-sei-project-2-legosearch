@@ -1,9 +1,13 @@
 import { Fragment } from "react";
+import { useLocation } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 
-const ModalSets = ({ modalAddSets, handleModalAddSetsBuild }) => {
+const ModalAdd = ({ modalAdd, handleModalAddSetsBuild }) => {
+  const location = useLocation();
+  const locationKey = location.pathname.startsWith("/minifigures") ? "minifig" : "set"
+  
   return (
-    <Transition.Root show={modalAddSets.viewModal} as={Fragment}>
+    <Transition.Root show={modalAdd.viewModal} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={handleModalAddSetsBuild}>
         <Transition.Child
           as={Fragment}
@@ -36,9 +40,9 @@ const ModalSets = ({ modalAddSets, handleModalAddSetsBuild }) => {
                       className="text-base font-semibold leading-6 text-gray-900"
                     >
                       Add{" "}
-                      {modalAddSets.set.set_num +
+                      {modalAdd[locationKey].set_num +
                         " " +
-                        modalAddSets.set.name}{" "}
+                        modalAdd[locationKey].name}{" "}
                       to Collection?
                     </Dialog.Title>
                   </div>
@@ -48,7 +52,7 @@ const ModalSets = ({ modalAddSets, handleModalAddSetsBuild }) => {
                     type="button"
                     className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 sm:col-start-1"
                     onClick={() => {
-                      handleModalAddSetsBuild("set");
+                      handleModalAddSetsBuild(locationKey);
                     }}
                   >
                     Add
@@ -70,4 +74,4 @@ const ModalSets = ({ modalAddSets, handleModalAddSetsBuild }) => {
   );
 };
 
-export default ModalSets;
+export default ModalAdd;
