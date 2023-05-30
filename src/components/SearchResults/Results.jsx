@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import ModalAdd from "../Shared/ModalAdd";
 import ModalAddSetsBuild from "../Shared/ModalAddSetsBuild";
 import ModalSuccess from "../Shared/ModalSuccess";
@@ -8,6 +13,7 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 
 const Results = ({ resultsObj, addToCollection }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const pageNo = searchParams.get("pageNo") ?? "1";
   const pageSize = searchParams.get("pageSize") ?? "20";
@@ -54,25 +60,31 @@ const Results = ({ resultsObj, addToCollection }) => {
     if (location.pathname.startsWith("/minifigures")) {
       setModalAdd({ viewModal: true, minifig: item });
     } else {
-      // fetch data
-      const responseMinifig = await fetch(
-        `https://rebrickable.com/api/v3/lego/sets/${item.set_num}/minifigs/?key=${API_KEY}`
-      );
-      const dataMinifig = await responseMinifig.json();
-      // check if sets contains minifigs or not and open the respective modal
-      if (dataMinifig.count === 0) {
-        setModalAdd({ viewModal: true, set: item });
-      } else {
-        // add an related set to the related minfigures and a original_quantity
-        dataMinifig.results.forEach((element) => {
-          element.related_set = item.set_num;
-          element.original_quantity = element.quantity;
-        });
-        setModalAddSetsBuild({
-          viewModal: true,
-          set: item,
-          minifig: dataMinifig.results,
-        });
+      try {
+        // fetch data
+        const responseMinifig = await fetch(
+          `https://rebrickable.com/api/v3/lego/sets/${item.set_num}/minifigs/?key=${API_KEY}`
+        );
+        const dataMinifig = await responseMinifig.json();
+        // error handling for minifigs
+        if (!responseMinifig.ok) throw responseMinifig.status;
+        // check if sets contains minifigs or not and open the respective modal
+        if (dataMinifig.count === 0) {
+          setModalAdd({ viewModal: true, set: item });
+        } else {
+          // add an related set to the related minfigures and a original_quantity
+          dataMinifig.results.forEach((element) => {
+            element.related_set = item.set_num;
+            element.original_quantity = element.quantity;
+          });
+          setModalAddSetsBuild({
+            viewModal: true,
+            set: item,
+            minifig: dataMinifig.results,
+          });
+        }
+      } catch (error) {
+        navigate(`../error/${error}`);
       }
     }
   };

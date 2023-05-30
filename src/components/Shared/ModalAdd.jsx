@@ -4,11 +4,17 @@ import { Dialog, Transition } from "@headlessui/react";
 
 const ModalAdd = ({ modalAdd, handleModalAddSetsBuild }) => {
   const location = useLocation();
-  const locationKey = location.pathname.startsWith("/minifigures") ? "minifig" : "set"
-  
+  const locationKey = location.pathname.startsWith("/minifigures")
+    ? "minifig"
+    : "set";
+
   return (
     <Transition.Root show={modalAdd.viewModal} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={handleModalAddSetsBuild}>
+      <Dialog
+        as="div"
+        className="relative z-10"
+        onClose={handleModalAddSetsBuild}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

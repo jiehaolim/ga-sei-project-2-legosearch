@@ -4,7 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
 const ModalSuccess = ({ modalSuccess, handleModalSuccess }) => {
-  const location = useLocation()
+  const location = useLocation();
   return (
     <Transition.Root show={modalSuccess} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={handleModalSuccess}>
@@ -48,7 +48,11 @@ const ModalSuccess = ({ modalSuccess, handleModalSuccess }) => {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        You can view your {location.pathname.startsWith("/minifigures") ? "minifigure" : "set"} in the collection page.
+                        You can view your{" "}
+                        {location.pathname.startsWith("/minifigures")
+                          ? "minifigure"
+                          : "set"}{" "}
+                        in the collection page.
                       </p>
                     </div>
                   </div>
@@ -71,4 +75,4 @@ const ModalSuccess = ({ modalSuccess, handleModalSuccess }) => {
   );
 };
 
-export default ModalSuccess
+export default ModalSuccess;
