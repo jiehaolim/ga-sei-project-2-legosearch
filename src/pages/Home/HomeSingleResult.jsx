@@ -4,7 +4,7 @@ import ResultHeader from "../../components/SingleResult/ResultHeader";
 import ResultFooter from "../../components/SingleResult/ResultFooter";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const HomeSingleResult = () => {
+const HomeSingleResult = ({ addToCollection }) => {
   const navigate = useNavigate();
   const { setnum } = useParams();
   const [result, setResult] = useState({
@@ -101,7 +101,9 @@ const HomeSingleResult = () => {
 
   return (
     <>
-      {result.set.name ? <ResultHeader result={result.set} /> : null}
+      {result.set.name ? (
+        <ResultHeader result={result.set} addToCollection={addToCollection} />
+      ) : null}
       {result.minifigs.count ? (
         <ResultFooter results={result.minifigs} />
       ) : null}

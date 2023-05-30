@@ -3,11 +3,10 @@ import { Link, useLocation, useSearchParams } from "react-router-dom";
 import ModalAddSets from "../Shared/ModalAddSets";
 import ModalAddSetsBuild from "../Shared/ModalAddSetsBuild";
 import ModalSuccess from "../Shared/ModalSuccess";
-import NotificationSuccess from "../Shared/NotificationSuccess";
 import noImageAvailable from "../../img/noImageAvail.png";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const Results = ({ resultsObj }) => {
+const Results = ({ resultsObj, addToCollection }) => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const pageNo = searchParams.get("pageNo") ?? "1";
@@ -25,49 +24,77 @@ const Results = ({ resultsObj }) => {
   // modal sets codes
   const [modalAddSets, setModalAddSets] = useState({
     viewModal: false,
-    information: {
+    set: {
       name: null,
       set_num: null,
     },
   });
   const [modalAddSetsBuild, setModalAddSetsBuild] = useState({
     viewModal: false,
-    information: {
+    set: {
       name: null,
       set_num: null,
     },
+    minifig: [{
+      id : null,
+      set_num : null,
+      set_name : null,
+      quantity : null,
+      set_img_url : null,
+    }]
   });
 
   const turnOnModal = async (item) => {
+    // fetch data
     const responseMinifig = await fetch(
       `https://rebrickable.com/api/v3/lego/sets/${item.set_num}/minifigs/?key=${API_KEY}`
     );
     const dataMinifig = await responseMinifig.json();
+    // check if sets contains minifigs or not and open the respective modal
     if (dataMinifig.count === 0) {
-      setModalAddSets({ viewModal: true, information: item });
+      setModalAddSets({ viewModal: true, set: item });
     } else {
-      setModalAddSetsBuild({ viewModal: true, information: item });
+      // add an related set to the related minfigures
+      dataMinifig.results.forEach(element => {
+        element.related_set = item.set_num
+      });
+      setModalAddSetsBuild({ viewModal: true, set: item, minifig: dataMinifig.results });
     }
   };
 
   const handleModalAddSetsBuild = (key) => {
-    if (key === "cancelSets") {
-      setModalAddSets({
-        ...modalAddSets,
-        viewModal: false,
-      });
-    } else if (key === "cancelSetsBuild") {
-      setModalAddSetsBuild({
-        ...modalAddSetsBuild,
-        viewModal: false,
-      });
-    } else {
-      setTimeout(() => {
-        setModalSuccess(true);
-      }, 500);
+    if (key === "set") {
+      // turn off modal
+      setModalAddSets({...modalAddSets, viewModal : false})
+      // add a quantity to the set
+      modalAddSets.set.quantity = 1
+      // pass the information app.jsx
+      addToCollection(key, modalAddSets.set)
+      // turn on success modal after 0.5 seconds to avoid css transition clashing
+      setTimeout(() => {setModalSuccess(true)}, 500)
+    } else if (key === "setWithMinifigs") {
+      // turn off modal
+      setModalAddSetsBuild({...modalAddSetsBuild, viewModal : false})
+      // add a quantity to the set
+      modalAddSetsBuild.set.quantity = 1
+      // pass the information app.jsx
+      addToCollection(key, modalAddSetsBuild)
+      // turn on success modal after 0.5 seconds to avoid css transition clashing
+      setTimeout(() => {setModalSuccess(true)}, 500)
+    } else if (key === "build") {
+      // turn off modal
+      setModalAddSetsBuild({...modalAddSetsBuild, viewModal : false})
+      // add a quantity to the set
+      modalAddSetsBuild.set.quantity = 1
+      // pass the information app.jsx
+      addToCollection(key, modalAddSetsBuild.set)
+      // turn on success modal after 0.5 seconds to avoid css transition clashing
+      setTimeout(() => {setModalSuccess(true)}, 500)
+    } else if (key === "cancel") {
+      // turn off modal
+      setModalAddSets({...modalAddSets, viewModal : false})
+      setModalAddSetsBuild({...modalAddSetsBuild, viewModal : false})
     }
-    console.log(key, modalAddSets.information);
-    
   };
 
   // modal success codes
@@ -76,8 +103,6 @@ const Results = ({ resultsObj }) => {
   const handleModalSuccess = (boolean) => {
     setModalSuccess(boolean);
   };
-
-  const [show, setShow] = useState(true)
 
   return (
     <>
@@ -161,8 +186,6 @@ const Results = ({ resultsObj }) => {
         modalSuccess={modalSuccess}
         handleModalSuccess={handleModalSuccess}
       />
-      <NotificationSuccess show={show} />
-      <NotificationSuccess show={show} />
     </>
   );
 };

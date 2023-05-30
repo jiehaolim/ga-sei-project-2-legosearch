@@ -13,6 +13,27 @@ import Error from "./pages/Error/Error";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 function App() {
+  const [collection, setCollection] = useState({
+    set: [],
+    setMinifig: [],
+    build: [],
+    minifig: [],
+  });
+
+  const addToCollection = (key, item) => {
+    if (key === "setWithMinifigs") {
+      setCollection({
+        ...collection,
+        set: [...collection.set, item.set],
+        setMinifig: [...collection.setMinifig, ...item.minifig],
+      });
+    } else {
+      setCollection({ ...collection, [key]: [...collection[key], item] });
+    }
+  };
+
+  console.log(collection);
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -21,8 +42,14 @@ function App() {
           <Route path="/" element={<HomeNavBar />}>
             {/* Home */}
             <Route path="/" element={<HomePage />} />
-            <Route path="search" element={<HomeSearchResults />} />
-            <Route path="result/:setnum" element={<HomeSingleResult />} />
+            <Route
+              path="search"
+              element={<HomeSearchResults addToCollection={addToCollection} />}
+            />
+            <Route
+              path="result/:setnum"
+              element={<HomeSingleResult addToCollection={addToCollection} />}
+            />
 
             {/* Minifigs */}
             <Route path="minifigures" element={<MinifigsHomePage />} />

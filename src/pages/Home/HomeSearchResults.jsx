@@ -8,7 +8,7 @@ import NoResults from "../../components/SearchResults/NoResults";
 import Pagination from "../../components/SearchResults/Pagination";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const HomeSearchResults = () => {
+const HomeSearchResults = ({ addToCollection }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   // current year
@@ -131,7 +131,7 @@ const HomeSearchResults = () => {
       <SortGrp />
       {resultsObj.count > 0 ? (
         <>
-          <Results resultsObj={resultsObj} />
+          <Results resultsObj={resultsObj} addToCollection={addToCollection} />
           <Pagination resultsObj={resultsObj} />
         </>
       ) : resultsObj.count === 0 ? (
