@@ -31,15 +31,22 @@ const Collection = ({ collection, handleAdd, handleRemove }) => {
   };
 
   const handleExport = () => {
-    const workbook = XLSX.utils.book_new();
-    Object.keys(collection).forEach((sheetName) => {
-      if (collection[sheetName].length > 0) {
-        const worksheetData = collection[sheetName];
-        const worksheet = XLSX.utils.json_to_sheet(worksheetData);
-        XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
-      }
-    });
-    XLSX.writeFile(workbook, "lego_collection.xlsx");
+    const initialValue = 0;
+    const collectionEmpty = Object.values(collectionCount).reduce(
+      (accumulator, currentValue) => accumulator + currentValue.quantity,
+      initialValue
+    );
+    if (collectionEmpty !== 0) {
+      const workbook = XLSX.utils.book_new();
+      Object.keys(collection).forEach((sheetName) => {
+        if (collection[sheetName].length > 0) {
+          const worksheetData = collection[sheetName];
+          const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+          XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+        }
+      });
+      XLSX.writeFile(workbook, "lego_collection.xlsx");
+    }
   };
 
   return (

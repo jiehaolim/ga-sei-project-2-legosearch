@@ -78,24 +78,28 @@ const CollectionResult = ({ collection, handleAdd, handleRemove }) => {
               </div>
             </div>
             {currentTab === "setMinifig" ? null : (
-              <div className="grid grid-cols-3 gap-x-4 gap-y-4 sm:grid-cols-3 rounded-md ring-1 shadow-sm ring-blue-600">
-                <button
-                  type="button"
-                  className="col-start-1 flex py-2 items-center justify-center rounded-md text-white hover:bg-green-500 bg-blue-600"
-                  onClick={() => handleAdd(currentTab, result)}
-                >
-                  <PlusIcon className="w-5 h-5" aria-hidden="true" />
-                </button>
-                <div className="col-start-2 flex py-2 items-center justify-center rounded-md text-black-500">
+              <div className="grid grid-cols-3 gap-x-4 gap-y-4 sm:grid-cols-3 rounded-md ring-1 shadow-sm ring-slate-400">
+                <div className="col-start-1">
+                  <button
+                    type="button"
+                    className="flex items-center justify-center rounded-l-md text-white hover:bg-red-500 bg-slate-400 w-10 h-10"
+                    onClick={() => handleRemove(currentTab, result)}
+                  >
+                    <MinusIcon className="w-5 h-5" aria-hidden="true" />
+                  </button>
+                </div>
+                <div className="col-start-2 flex items-center justify-center text-black-500">
                   {result.quantity}
                 </div>
-                <button
-                  type="button"
-                  className="col-start-3 flex py-2 items-center justify-center rounded-md text-white hover:bg-red-500 bg-blue-600"
-                  onClick={() => handleRemove(currentTab, result)}
-                >
-                  <MinusIcon className="w-5 h-5" aria-hidden="true" />
-                </button>
+                <div className="col-start-3 flex justify-end">
+                  <button
+                    type="button"
+                    className="flex py-2 items-center justify-center rounded-r-md text-white hover:bg-green-500 bg-slate-400 w-10 h-10"
+                    onClick={() => handleAdd(currentTab, result)}
+                  >
+                    <PlusIcon className="w-5 h-5" aria-hidden="true" />
+                  </button>
+                </div>
               </div>
             )}
           </div>
