@@ -1,4 +1,11 @@
-const CollectionHeader = ({ handleExport }) => {
+const CollectionHeader = ({ collectionCount, handleExport }) => {
+  // check if collection is empty ? to render export to excel button away
+  const initialValue = 0;
+  const collectionEmpty = Object.values(collectionCount).reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initialValue
+  );
+
   return (
     <div className="mt-8 mx-auto max-w-7xl overflow-hidden px-2 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -11,17 +18,19 @@ const CollectionHeader = ({ handleExport }) => {
             to collection. You can export the collated collection into Excel.
           </p>
         </div>
-        <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-          <button
-            type="button"
-            className="block rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            onClick={() => {
-              handleExport();
-            }}
-          >
-            Export into Excel
-          </button>
-        </div>
+        {collectionEmpty ? (
+          <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+            <button
+              type="button"
+              className="block rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              onClick={() => {
+                handleExport();
+              }}
+            >
+              Export into Excel
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );
