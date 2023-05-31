@@ -86,6 +86,80 @@ function App() {
     }
   };
 
+  const handleAdd = (key, item) => {
+    if (key === "set") {
+      setCollection({
+        ...collection,
+        [key]: collection[key].map((element) =>
+          element.set_num === item.set_num
+            ? {
+                ...element,
+                quantity: (element.quantity = element.quantity + 1),
+              }
+            : element
+        ),
+        ["setMinifig"]: collection["setMinifig"].map((element) =>
+          element.related_set === item.set_num
+            ? {
+                ...element,
+                quantity: (element.quantity =
+                  element.quantity + element.quantity_per_related_set),
+              }
+            : element
+        ),
+      });
+    } else {
+      setCollection({
+        ...collection,
+        [key]: collection[key].map((element) =>
+          element.set_num === item.set_num
+            ? {
+                ...element,
+                quantity: (element.quantity = element.quantity + 1),
+              }
+            : element
+        ),
+      });
+    }
+  };
+
+  const handleRemove = (key, item) => {
+    if (key === "set") {
+      setCollection({
+        ...collection,
+        [key]: collection[key].map((element) =>
+          element.set_num === item.set_num
+            ? {
+                ...element,
+                quantity: (element.quantity = element.quantity - 1),
+              }
+            : element
+        ),
+        ["setMinifig"]: collection["setMinifig"].map((element) =>
+          element.related_set === item.set_num
+            ? {
+                ...element,
+                quantity: (element.quantity =
+                  element.quantity - element.quantity_per_related_set),
+              }
+            : element
+        ),
+      });
+    } else {
+      setCollection({
+        ...collection,
+        [key]: collection[key].map((element) =>
+          element.set_num === item.set_num
+            ? {
+                ...element,
+                quantity: (element.quantity = element.quantity - 1),
+              }
+            : element
+        ),
+      });
+    }
+  };
+
   console.log(collection);
 
   return (
@@ -121,7 +195,16 @@ function App() {
             />
 
             {/* Collection */}
-            <Route path="collection" element={<Collection />} />
+            <Route
+              path="collection"
+              element={
+                <Collection
+                  collection={collection}
+                  handleAdd={handleAdd}
+                  handleRemove={handleRemove}
+                />
+              }
+            />
 
             {/* Error */}
             <Route path="error/:id" element={<Error />} />

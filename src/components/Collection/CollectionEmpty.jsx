@@ -1,4 +1,20 @@
-const EmptyCollection = () => {
+import { useSearchParams } from "react-router-dom";
+
+const CollectionEmpty = () => {
+  const [searchParams] = useSearchParams();
+  const currentTab = searchParams.get("tab") ?? "set";
+
+  let title = "";
+  if (currentTab === "set") {
+    title = "set";
+  } else if (currentTab === "setMinifig") {
+    title = "minifigures";
+  } else if (currentTab === "minifig") {
+    title = "loose minifigures";
+  } else if (currentTab === "build") {
+    title = "loose build";
+  }
+
   return (
     <div className="mt-32 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div className="text-center">
@@ -18,11 +34,11 @@ const EmptyCollection = () => {
           />
         </svg>
         <h3 className="mt-2 text-sm font-semibold text-gray-900">
-          No LEGO sets or minifigures in collection.
+          {"No LEGO " + title + " in collection."}
         </h3>
       </div>
     </div>
   );
 };
 
-export default EmptyCollection;
+export default CollectionEmpty;

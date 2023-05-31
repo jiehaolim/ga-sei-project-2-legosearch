@@ -75,7 +75,7 @@ const Results = ({ resultsObj, addToCollection }) => {
           // add an related set to the related minfigures and a original_quantity
           dataMinifig.results.forEach((element) => {
             element.related_set = item.set_num;
-            element.original_quantity = element.quantity;
+            element.quantity_per_related_set = element.quantity;
           });
           setModalAddSetsBuild({
             viewModal: true,
