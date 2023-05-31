@@ -1,10 +1,11 @@
 import { Fragment } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
 const ModalSuccess = ({ modalSuccess, handleModalSuccess }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   return (
     <Transition.Root show={modalSuccess} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={handleModalSuccess}>
@@ -57,10 +58,19 @@ const ModalSuccess = ({ modalSuccess, handleModalSuccess }) => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-5 sm:mt-5">
+                <div className="mt-5 sm:mt-5 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                    className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 sm:col-start-1"
+                    onClick={() => {
+                      navigate("../collection");
+                    }}
+                  >
+                    View Collection
+                  </button>
+                  <button
+                    type="button"
+                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-2 sm:mt-0"
                     onClick={() => handleModalSuccess(false)}
                   >
                     Close
