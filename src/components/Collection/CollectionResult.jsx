@@ -12,7 +12,11 @@ const CollectionResult = ({ collection, handleAdd, handleRemove }) => {
       <div className="mt-4 mx-px grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {collection.map((result) => (
           <div
-            key={result.set_num}
+            key={
+              currentTab === "setMinifig"
+                ? result.set_num + result.related_set
+                : result.set_num
+            }
             className="bg-white border border-gray-300 rounded-lg relative p-4"
           >
             <div className="group relative">
