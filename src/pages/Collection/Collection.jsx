@@ -37,7 +37,11 @@ const Collection = ({ collection, handleAdd, handleRemove }) => {
       {collectionCount[currentTab] === 0 ? (
         <CollectionEmpty />
       ) : (
-        <CollectionResult collection={collection[currentTab]} handleAdd={handleAdd} handleRemove={handleRemove} />
+        <CollectionResult
+          collection={collection[currentTab]}
+          handleAdd={handleAdd}
+          handleRemove={handleRemove}
+        />
       )}
     </>
   );
