@@ -91,19 +91,6 @@ const SortGrp = () => {
             handleChange={handleChange}
           />
         </div>
-        <div className="col-span-1 md:col-start-5 lg:col-start-8 lg:col-span-1">
-          <label
-            htmlFor="results-per-page"
-            className="block text-sm font-medium leading-6 text-gray-900 pl-1"
-          >
-            Items per page
-          </label>
-          <SelectMenu
-            selectObj={pageSizeObj}
-            stateObj={sortObj}
-            handleChange={handleChange}
-          />
-        </div>
       </div>
     </div>
   );
