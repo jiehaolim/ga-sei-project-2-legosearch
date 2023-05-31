@@ -124,39 +124,64 @@ function App() {
   };
 
   const handleRemove = (key, item) => {
+    console.log(key, item);
     if (key === "set") {
-      setCollection({
-        ...collection,
-        [key]: collection[key].map((element) =>
-          element.set_num === item.set_num
-            ? {
-                ...element,
-                quantity: (element.quantity = element.quantity - 1),
-              }
-            : element
-        ),
-        ["setMinifig"]: collection["setMinifig"].map((element) =>
-          element.related_set === item.set_num
-            ? {
-                ...element,
-                quantity: (element.quantity =
-                  element.quantity - element.quantity_per_related_set),
-              }
-            : element
-        ),
-      });
+      if (item.quantity === 1) {
+        const filteredSets = collection[key].filter(
+          (element) => element.set_num !== item.set_num
+        );
+        const filteredMinifig = collection["setMinifig"].filter(
+          (element) => element.related_set !== item.set_num
+        );
+        setCollection({
+          ...collection,
+          [key]: filteredSets,
+          ["setMinifig"]: filteredMinifig,
+        });
+      } else {
+        setCollection({
+          ...collection,
+          [key]: collection[key].map((element) =>
+            element.set_num === item.set_num
+              ? {
+                  ...element,
+                  quantity: (element.quantity = element.quantity - 1),
+                }
+              : element
+          ),
+          ["setMinifig"]: collection["setMinifig"].map((element) =>
+            element.related_set === item.set_num
+              ? {
+                  ...element,
+                  quantity: (element.quantity =
+                    element.quantity - element.quantity_per_related_set),
+                }
+              : element
+          ),
+        });
+      }
     } else {
-      setCollection({
-        ...collection,
-        [key]: collection[key].map((element) =>
-          element.set_num === item.set_num
-            ? {
-                ...element,
-                quantity: (element.quantity = element.quantity - 1),
-              }
-            : element
-        ),
-      });
+      if (item.quantity === 1) {
+        const filteredItem = collection[key].filter(
+          (element) => element.set_num !== item.set_num
+        );
+        setCollection({
+          ...collection,
+          [key]: filteredItem,
+        });
+      } else {
+        setCollection({
+          ...collection,
+          [key]: collection[key].map((element) =>
+            element.set_num === item.set_num
+              ? {
+                  ...element,
+                  quantity: (element.quantity = element.quantity - 1),
+                }
+              : element
+          ),
+        });
+      }
     }
   };
 
