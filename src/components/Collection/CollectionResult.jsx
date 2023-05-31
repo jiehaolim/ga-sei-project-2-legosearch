@@ -8,7 +8,7 @@ const CollectionResult = ({ collection, handleAdd, handleRemove }) => {
   const currentTab = searchParams.get("tab") ?? "set";
 
   return (
-    <div className="mt-4 mx-auto max-w-7xl overflow-hidden px-2 sm:px-6 lg:px-8">
+    <div className="mt-4 mb-8 mx-auto max-w-7xl overflow-hidden px-2 sm:px-6 lg:px-8">
       <div className="mt-4 mx-px grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {collection.map((result) => (
           <div
