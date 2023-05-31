@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const CollectionTabs = ({ collectionCount }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentTab = searchParams.get("tab") ?? "set";
-
+  const [tabState, setTabState] = useState(currentTab)
   const tabs = [
     { name: "Complete Set", count: collectionCount.set, id: "set" },
     {
@@ -19,6 +20,11 @@ const CollectionTabs = ({ collectionCount }) => {
     },
   ];
 
+  const handleChange = (id) => {
+    setTabState(id)
+    setSearchParams({ tab : id })
+  }
+
   return (
     <div className="mt-4 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div className="sm:hidden">
@@ -29,8 +35,8 @@ const CollectionTabs = ({ collectionCount }) => {
           id="tabs"
           name="tabs"
           className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-          value={currentTab}
-          onChange={() => setSearchParams({ tab: tab.id })}
+          value={tabState}
+          onChange={(event) => handleChange(event.target.value)}
         >
           {tabs.map((tab) => (
             <option key={tab.id} value={tab.id}>
@@ -45,7 +51,7 @@ const CollectionTabs = ({ collectionCount }) => {
             {tabs.map((tab) => (
               <button
                 key={tab.name}
-                onClick={() => setSearchParams({ tab: tab.id })}
+                onClick={() => handleChange(tab.id)}
                 className={
                   tab.id === currentTab
                     ? "border-indigo-500 text-indigo-600 flex whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium"
