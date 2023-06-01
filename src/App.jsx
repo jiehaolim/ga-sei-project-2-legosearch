@@ -128,7 +128,6 @@ function App() {
   };
 
   const handleRemove = (key, item) => {
-    console.log(key, item);
     if (key === "set") {
       if (item.quantity === 1) {
         const filteredSets = collection[key].filter(
@@ -188,8 +187,6 @@ function App() {
       }
     }
   };
-
-  console.log(collection);
 
   return (
     <div className="App">
