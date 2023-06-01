@@ -45,11 +45,15 @@ function App() {
                 item.related_set === element.related_set &&
                 item.set_num === element.set_num
             );
-            return {
-              ...element,
-              quantity: (element.quantity =
-                element.quantity + findItem.quantity),
-            };
+            if (findItem) {
+              return {
+                ...element,
+                quantity: (element.quantity =
+                  element.quantity + findItem.quantity),
+              };
+            } else {
+              return element;
+            }
           }),
         });
         // if it does not exist
