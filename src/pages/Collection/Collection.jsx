@@ -10,24 +10,35 @@ const Collection = ({ collection, handleAdd, handleRemove }) => {
   const [searchParams] = useSearchParams();
   const currentTab = searchParams.get("tab") ?? "set";
 
-  const initialValue = 0;
-  const collectionCount = {
-    set: collection["set"].reduce(
-      (accumulator, currentValue) => accumulator + currentValue.quantity,
-      initialValue
-    ),
-    setMinifig: collection["setMinifig"].reduce(
-      (accumulator, currentValue) => accumulator + currentValue.quantity,
-      initialValue
-    ),
-    build: collection["build"].reduce(
-      (accumulator, currentValue) => accumulator + currentValue.quantity,
-      initialValue
-    ),
-    minifig: collection["minifig"].reduce(
-      (accumulator, currentValue) => accumulator + currentValue.quantity,
-      initialValue
-    ),
+  const collectionObj = {
+    set: {
+      title: "set",
+      count: collection["set"].reduce(
+        (accumulator, currentValue) => accumulator + currentValue.quantity,
+        0
+      ),
+    },
+    setMinifig: {
+      title: "minifigures",
+      count: collection["setMinifig"].reduce(
+        (accumulator, currentValue) => accumulator + currentValue.quantity,
+        0
+      ),
+    },
+    build: {
+      title: "loose build",
+      count: collection["build"].reduce(
+        (accumulator, currentValue) => accumulator + currentValue.quantity,
+        0
+      ),
+    },
+    minifig: {
+      title: "loose minifigures",
+      count: collection["minifig"].reduce(
+        (accumulator, currentValue) => accumulator + currentValue.quantity,
+        0
+      ),
+    },
   };
 
   const handleExport = () => {
@@ -45,13 +56,13 @@ const Collection = ({ collection, handleAdd, handleRemove }) => {
   return (
     <>
       <CollectionHeader
+        collectionObj={collectionObj}
         handleExport={handleExport}
-        collectionCount={collectionCount}
       />
-      <CollectionTabs collectionCount={collectionCount} />
+      <CollectionTabs collectionObj={collectionObj} />
       {/* <SortGrp /> */}
-      {collectionCount[currentTab] === 0 ? (
-        <CollectionEmpty />
+      {collectionObj[currentTab].count === 0 ? (
+        <CollectionEmpty collectionObj={collectionObj} />
       ) : (
         <CollectionResult
           collection={collection[currentTab]}

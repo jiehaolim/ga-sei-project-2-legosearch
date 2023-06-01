@@ -1,29 +1,29 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-const CollectionTabs = ({ collectionCount }) => {
+const CollectionTabs = ({ collectionObj }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentTab = searchParams.get("tab") ?? "set";
-  const [tabState, setTabState] = useState(currentTab)
+  const [tabState, setTabState] = useState(currentTab);
   const tabs = [
-    { name: "Complete Set", count: collectionCount.set, id: "set" },
+    { name: "Complete Set", count: collectionObj["set"].count, id: "set" },
     {
       name: "Minifigure from Set",
-      count: collectionCount.setMinifig,
+      count: collectionObj["setMinifig"].count,
       id: "setMinifig",
     },
-    { name: "Loose Build", count: collectionCount.build, id: "build" },
+    { name: "Loose Build", count: collectionObj["build"].count, id: "build" },
     {
       name: "Loose Minifigure",
-      count: collectionCount.minifig,
+      count: collectionObj["minifig"].count,
       id: "minifig",
     },
   ];
 
   const handleChange = (id) => {
-    setTabState(id)
-    setSearchParams({ tab : id })
-  }
+    setTabState(id);
+    setSearchParams({ tab: id });
+  };
 
   return (
     <div className="mt-4 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

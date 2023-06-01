@@ -1,9 +1,8 @@
-const CollectionHeader = ({ collectionCount, handleExport }) => {
+const CollectionHeader = ({ collectionObj, handleExport }) => {
   // check if collection is empty ? to render export to excel button away
-  const initialValue = 0;
-  const collectionEmpty = Object.values(collectionCount).reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    initialValue
+  const collectionEmpty = Object.values(collectionObj).reduce(
+    (accumulator, object) => accumulator + object.count,
+    0
   );
 
   return (

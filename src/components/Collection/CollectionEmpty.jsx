@@ -1,15 +1,8 @@
 import { useSearchParams } from "react-router-dom";
 
-const CollectionEmpty = () => {
+const CollectionEmpty = ({ collectionObj }) => {
   const [searchParams] = useSearchParams();
   const currentTab = searchParams.get("tab") ?? "set";
-
-  const collectionTitle = {
-    set: "set",
-    setMinifig: "minifigures",
-    minifig: "loose minifigures",
-    build: "loose build",
-  };
 
   return (
     <div className="mt-32 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -30,7 +23,7 @@ const CollectionEmpty = () => {
           />
         </svg>
         <h3 className="mt-2 text-sm font-semibold text-gray-900">
-          {"No LEGO " + collectionTitle[currentTab] + " in collection."}
+          {"No LEGO " + collectionObj[currentTab].title + " in collection."}
         </h3>
       </div>
     </div>
