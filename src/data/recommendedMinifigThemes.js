@@ -50,7 +50,7 @@ const recommendedMinifigThemes = [
   {
     name: "Pirates",
     imageUrl: piratesImg,
-    id: "147",
+    id: "148",
   },
   {
     name: "Space",
