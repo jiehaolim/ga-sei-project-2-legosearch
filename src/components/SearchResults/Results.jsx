@@ -118,7 +118,7 @@ const Results = ({ resultsObj, addToCollection }) => {
         addToCollection(key, modalAddSetsBuild.set);
       }
       // turn on success modal after 0.5 seconds to avoid css transition clashing
-      if (key === "setWithMinifg") {
+      if (key === "setWithMinifigs") {
         setTimeout(() => {
           setModalSuccess({ viewModal: true, tab: "set" });
         }, 500);
