@@ -7,7 +7,7 @@ const ModalSuccess = ({ modalSuccess, handleModalSuccess }) => {
   const location = useLocation();
   const navigate = useNavigate();
   return (
-    <Transition.Root show={modalSuccess} as={Fragment}>
+    <Transition.Root show={modalSuccess.viewModal} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={handleModalSuccess}>
         <Transition.Child
           as={Fragment}
@@ -63,7 +63,7 @@ const ModalSuccess = ({ modalSuccess, handleModalSuccess }) => {
                     type="button"
                     className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 sm:col-start-1"
                     onClick={() => {
-                      navigate("../collection");
+                      navigate(`../collection?tab=${modalSuccess.tab}`);
                     }}
                   >
                     View Collection

@@ -118,17 +118,26 @@ const Results = ({ resultsObj, addToCollection }) => {
         addToCollection(key, modalAddSetsBuild.set);
       }
       // turn on success modal after 0.5 seconds to avoid css transition clashing
-      setTimeout(() => {
-        setModalSuccess(true);
-      }, 500);
+      if (key === "setWithMinifg") {
+        setTimeout(() => {
+          setModalSuccess({ viewModal: true, tab: "set" });
+        }, 500);
+      } else {
+        setTimeout(() => {
+          setModalSuccess({ viewModal: true, tab: key });
+        }, 500);
+      }
     }
   };
 
   // modal success codes
-  const [modalSuccess, setModalSuccess] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState({
+    viewModal: false,
+    tab: null,
+  });
 
   const handleModalSuccess = (boolean) => {
-    setModalSuccess(boolean);
+    setModalSuccess({ ...modalSuccess, viewModal: boolean });
   };
 
   return (
