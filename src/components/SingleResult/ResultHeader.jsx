@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ModalAdd from "../Shared/ModalAdd";
 import ModalAddSetsBuild from "../Shared/ModalAddSetsBuild";
 import ModalSuccess from "../Shared/ModalSuccess";
@@ -9,6 +9,23 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 const ResultHeader = ({ result, addToCollection }) => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  // bread crumbs
+  const breadcrumbs = [
+    {
+      id: 1,
+      name: location.pathname.startsWith("/minifigures")
+        ? "Minifigures"
+        : "Home",
+      to: location.pathname.startsWith("/minifigures") ? "/minifigures" : "/",
+    },
+    {
+      id: 2,
+      name: "Results",
+      to: -1,
+    },
+  ];
+
   // modal sets codes
   const [modalAdd, setModalAdd] = useState({
     viewModal: false,
@@ -125,13 +142,36 @@ const ResultHeader = ({ result, addToCollection }) => {
   return (
     <>
       <div className="mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-        {/* LEGO details */}
         <div className="lg:max-w-lg lg:self-end">
-          {location.pathname.startsWith("/minifigures") ? null : (
-            <div className="font-medium text-gray-500">
-              Theme: {result.theme}
-            </div>
-          )}
+          {/* Breadcrumb */}
+          <nav aria-label="Breadcrumb">
+            <ol role="list" className="flex items-center space-x-2">
+              {breadcrumbs.map((breadcrumb, breadcrumbIdx) => (
+                <li key={breadcrumb.id}>
+                  <div className="flex items-center text-sm">
+                    <Link
+                      to={breadcrumb.to}
+                      className="font-medium text-gray-500 hover:text-gray-900"
+                    >
+                      {breadcrumb.name}
+                    </Link>
+                    {breadcrumbIdx !== breadcrumbs.length - 1 ? (
+                      <svg
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                        className="ml-2 h-5 w-5 flex-shrink-0 text-gray-300"
+                      >
+                        <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                      </svg>
+                    ) : null}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </nav>
+
+          {/* LEGO details */}
           <div className="mt-4">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               {result.set_num + " " + result.name}
@@ -148,6 +188,12 @@ const ResultHeader = ({ result, addToCollection }) => {
                 <p className="text-lg text-gray-900 sm:text-xl">
                   Year released: {result.year}
                 </p>
+              </div>
+            )}
+
+            {location.pathname.startsWith("/minifigures") ? null : (
+              <div className="mt-4 font-base text-gray-500">
+                Theme: {result.theme}
               </div>
             )}
 
