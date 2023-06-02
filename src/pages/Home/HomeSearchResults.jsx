@@ -21,7 +21,7 @@ const HomeSearchResults = ({ addToCollection }) => {
     maxParts: searchParams.get("maxParts") ?? 15000, // largest lego set so far is 11695 parts
     minYear: searchParams.get("minYear") ?? 1949, // year lego started
     maxYear: searchParams.get("maxYear") ?? maxYear, // current year
-    sortBy: searchParams.get("sortBy") ?? "set_num", // name, set_num, year, num_parts
+    sortBy: searchParams.get("sortBy") ?? "name", // name, set_num, num_parts, year
     sortOrder: searchParams.get("sortOrder") ?? "", // asc is "", dsc is -
     pageSize: searchParams.get("pageSize") ?? 20,
     pageNo: searchParams.get("pageNo") ?? 1,

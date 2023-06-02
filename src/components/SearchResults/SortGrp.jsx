@@ -7,21 +7,22 @@ const SortGrp = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortObj, setSortObj] = useState({
-    sortBy: "set_num", // name, set_num, year, num_parts
+    sortBy: "name", // name, set_num, num_parts, year
     sortOrder: "", // asc is "", dsc is -
     pageSize: 20,
   });
   const sortByObj = {
     sortBy: [
-      { name: "Set No", id: "set_num" },
       { name: "Name", id: "name" },
+      { name: "Set No", id: "set_num" },
       { name: "No of Parts", id: "num_parts" },
       { name: "Year", id: "year" },
     ],
   };
   // remove year if the sort group is in minifigure search
   if (location.pathname.startsWith("/minifigures")) {
-    sortByObj.sortBy.pop();
+    const findYear = sortByObj.sortBy.findIndex(obj => obj.id === "year")
+    sortByObj.sortBy.splice(findYear, 1)
   }
   const sortOrderObj = {
     sortOrder: [
@@ -55,7 +56,7 @@ const SortGrp = () => {
     } else {
       setSortObj({
         ...sortObj,
-        sortBy: searchParams.get("sortBy") ?? "set_num",
+        sortBy: searchParams.get("sortBy") ?? "name",
         sortOrder: searchParams.get("sortOrder") ?? "",
         pageSize: searchParams.get("pageSize") ?? 20,
       });

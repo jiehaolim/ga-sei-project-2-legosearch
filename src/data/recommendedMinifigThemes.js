@@ -48,9 +48,9 @@ const recommendedMinifigThemes = [
     id: "435",
   },
   {
-    name: "Pirates",
+    name: "Pirates of the Caribbean",
     imageUrl: piratesImg,
-    id: "148",
+    id: "263",
   },
   {
     name: "Space",

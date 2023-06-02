@@ -94,7 +94,7 @@ const CollectionResult = ({ collection, handleAdd, handleRemove }) => {
                 <div className="col-start-3 flex justify-end">
                   <button
                     type="button"
-                    className="flex py-2 items-center justify-center rounded-r-md text-white hover:bg-green-500 bg-slate-400 w-10 h-10"
+                    className="flex items-center justify-center rounded-r-md text-white hover:bg-green-500 bg-slate-400 w-10 h-10"
                     onClick={() => handleAdd(currentTab, result)}
                   >
                     <PlusIcon className="w-5 h-5" aria-hidden="true" />
