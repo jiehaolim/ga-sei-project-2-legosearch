@@ -1,30 +1,16 @@
-import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import noImageAvailable from "../../img/noImageAvail.png";
+import { Link } from "react-router-dom";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/solid";
 
 const CollectionResult = ({ collection, handleAdd, handleRemove }) => {
   const [searchParams] = useSearchParams();
   const currentTab = searchParams.get("tab") ?? "set";
-  const [viewLimit, setViewLimit] = useState(20);
-
-  // limit content to 20, press view more to increase by 20
-  const filteredCollection = collection.filter(
-    (result, index) => index < viewLimit
-  );
-
-  const handleViewMore = () => {
-    setViewLimit(viewLimit + 20);
-  };
-
-  useEffect(() => {
-    setViewLimit(20);
-  }, [currentTab]);
 
   return (
     <div className="mt-4 mb-8 mx-auto max-w-7xl overflow-hidden px-2 sm:px-6 lg:px-8">
       <div className="mt-4 mx-px grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {filteredCollection.map((result) => (
+        {collection.map((result) => (
           <div
             key={
               currentTab === "setMinifig"
@@ -119,17 +105,6 @@ const CollectionResult = ({ collection, handleAdd, handleRemove }) => {
           </div>
         ))}
       </div>
-      {viewLimit > collection.length ? null : (
-        <div className="mt-6 mb-8 flex items-center justify-center">
-          <button
-            type="button"
-            onClick={() => handleViewMore()}
-            className="rounded-md bg-slate-400 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600"
-          >
-            View more
-          </button>
-        </div>
-      )}
     </div>
   );
 };

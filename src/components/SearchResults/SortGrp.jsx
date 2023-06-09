@@ -21,8 +21,8 @@ const SortGrp = () => {
   };
   // remove year if the sort group is in minifigure search
   if (location.pathname.startsWith("/minifigures")) {
-    const findYear = sortByObj.sortBy.findIndex((obj) => obj.id === "year");
-    sortByObj.sortBy.splice(findYear, 1);
+    const findYear = sortByObj.sortBy.findIndex(obj => obj.id === "year")
+    sortByObj.sortBy.splice(findYear, 1)
   }
   const sortOrderObj = {
     sortOrder: [
@@ -65,7 +65,7 @@ const SortGrp = () => {
 
   return (
     <div className="mt-2 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-3 gap-x-4 gap-y-2 md:grid-cols-3 lg:grid-cols-8">
+      <div className="grid grid-cols-3 gap-x-2 gap-y-2 md:grid-cols-5 lg:grid-cols-8">
         <div className="col-span-1 md:col-start-1 sm:col-start-1">
           <label
             htmlFor="sort-by"
@@ -92,7 +92,7 @@ const SortGrp = () => {
             handleChange={handleChange}
           />
         </div>
-        <div className="col-span-1 md:col-start-3 lg:col-start-8 lg:col-span-1 lg:-ml-4">
+        <div className="col-span-1 md:col-start-5 lg:col-start-8 lg:col-span-1">
           <label
             htmlFor="results-per-page"
             className="block text-sm font-medium leading-6 text-gray-900 pl-1"
