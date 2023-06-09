@@ -22,7 +22,11 @@ const ResultHeader = ({ result, addToCollection }) => {
     {
       id: 2,
       name: location.state.prevPath.endsWith("/search")
-        ? "Results"
+        ? "Search Results"
+        : location.state.prevPath.startsWith("/result")
+        ? "Set Result"
+        : location.state.prevPath.startsWith("/minifigures/result")
+        ? "Minifigure Result"
         : "Collection",
       to: -1,
     },

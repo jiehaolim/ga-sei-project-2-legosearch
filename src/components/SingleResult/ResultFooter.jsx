@@ -45,14 +45,20 @@ const ResultFooter = ({ results }) => {
             </div>
             {location.pathname.startsWith("/minifigures") ? (
               <h3 className="mt-4 text-sm font-medium text-gray-900">
-                <Link to={`/result/${element.set_num}`}>
+                <Link
+                  to={`/result/${element.set_num}`}
+                  state={{ prevPath: location.pathname }}
+                >
                   <span className="absolute inset-0" />
                   {element.name}
                 </Link>
               </h3>
             ) : (
               <h3 className="mt-4 text-sm font-medium text-gray-900">
-                <Link to={`/minifigures/result/${element.set_num}`}>
+                <Link
+                  to={`/minifigures/result/${element.set_num}`}
+                  state={{ prevPath: location.pathname }}
+                >
                   <span className="absolute inset-0" />
                   {element.set_name}
                 </Link>
