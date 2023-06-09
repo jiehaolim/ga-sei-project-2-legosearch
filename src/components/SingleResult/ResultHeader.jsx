@@ -21,7 +21,7 @@ const ResultHeader = ({ result, addToCollection }) => {
     },
     {
       id: 2,
-      name: location.state.prevPath.startsWith("/search")
+      name: location.state.prevPath.endsWith("/search")
         ? "Results"
         : "Collection",
       to: -1,
