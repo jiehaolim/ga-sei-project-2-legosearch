@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import ResultHeader from "../../components/SingleResult/ResultHeader";
 import ResultFooter from "../../components/SingleResult/ResultFooter";
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -34,6 +34,7 @@ const HomeSingleResult = ({ addToCollection }) => {
       ],
     },
   });
+  const [contentLoaded, setContentLoaded] = useOutletContext();
 
   // fetch data
   const fetchData = async () => {
@@ -90,10 +91,15 @@ const HomeSingleResult = ({ addToCollection }) => {
       dataSet.theme = setThemeName.name;
 
       setResult({ set: dataSet, minifigs: dataMinifigs });
+      setContentLoaded(true);
     } catch (error) {
       navigate(`../error/${error}`);
     }
   };
+
+  useEffect(() => {
+    setContentLoaded(false);
+  }, []);
 
   useEffect(() => {
     fetchData();

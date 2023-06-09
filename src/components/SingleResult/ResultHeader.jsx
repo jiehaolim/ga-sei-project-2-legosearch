@@ -9,7 +9,7 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 const ResultHeader = ({ result, addToCollection }) => {
   const location = useLocation();
   const navigate = useNavigate();
-
+  
   // bread crumbs
   const breadcrumbs = [
     {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import ResultHeader from "../../components/SingleResult/ResultHeader";
 import ResultFooter from "../../components/SingleResult/ResultFooter";
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -32,6 +32,7 @@ const MinifigsSingleResult = ({ addToCollection }) => {
       ],
     },
   });
+  const [contentLoaded, setContentLoaded] = useOutletContext();
 
   // fetch data
   const fetchData = async () => {
@@ -53,10 +54,15 @@ const MinifigsSingleResult = ({ addToCollection }) => {
       if (!responseSets.ok) throw responseSets.status;
 
       setResult({ minifig: dataMinifig, sets: dataSets });
+      setContentLoaded(true);
     } catch (error) {
       navigate(`../error/${error}`);
     }
   };
+
+  useEffect(() => {
+    setContentLoaded(false);
+  }, []);
 
   useEffect(() => {
     fetchData();

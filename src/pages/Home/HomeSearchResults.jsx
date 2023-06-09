@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {
+  useNavigate,
+  useOutletContext,
+  useSearchParams,
+} from "react-router-dom";
 import SearchGrpBasic from "../../components/SearchResults/SearchGrpBasic";
 import SearchGrpAdvSets from "../../components/SearchResults/Sets/SearchGrpAdvSets";
 import SortGrp from "../../components/SearchResults/SortGrp";
@@ -46,6 +50,7 @@ const HomeSearchResults = ({ addToCollection }) => {
       },
     ],
   });
+  const [contentLoaded, setContentLoaded] = useOutletContext();
 
   const handleSearchType = (boolean) => {
     setAdvSearch(boolean);
@@ -104,10 +109,15 @@ const HomeSearchResults = ({ addToCollection }) => {
         sets.theme = themeForSets?.name;
       }
       setResultsObj(dataSets);
+      setContentLoaded(true);
     } catch (error) {
       navigate(`../error/${error}`);
     }
   };
+
+  useEffect(() => {
+    setContentLoaded(false);
+  }, []);
 
   useEffect(() => {
     // Load page at the top

@@ -1,4 +1,5 @@
-import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useOutletContext, useSearchParams } from "react-router-dom";
 import XLSX from "xlsx";
 import CollectionHeader from "../../components/Collection/CollectionHeader";
 import CollectionTabs from "../../components/Collection/CollectionTabs";
@@ -6,6 +7,7 @@ import CollectionEmpty from "../../components/Collection/CollectionEmpty";
 import CollectionResult from "../../components/Collection/CollectionResult";
 
 const Collection = ({ collection, handleAdd, handleRemove }) => {
+  const [contentLoaded, setContentLoaded] = useOutletContext()
   const [searchParams] = useSearchParams();
   const currentTab = searchParams.get("tab") ?? "set";
 
@@ -51,6 +53,10 @@ const Collection = ({ collection, handleAdd, handleRemove }) => {
     });
     XLSX.writeFile(workbook, "lego_collection.xlsx");
   };
+
+  useEffect(()=> {
+    setContentLoaded(true)
+  },[])
 
   return (
     <>
