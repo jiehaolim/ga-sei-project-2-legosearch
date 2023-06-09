@@ -171,6 +171,7 @@ const Results = ({ resultsObj, addToCollection }) => {
                           ? "/minifigures/result/" + result.set_num
                           : "/result/" + result.set_num
                       }
+                      state={{ prevPath: location.pathname }}
                     >
                       <span aria-hidden="true" className="absolute inset-0" />
                       {result.name}

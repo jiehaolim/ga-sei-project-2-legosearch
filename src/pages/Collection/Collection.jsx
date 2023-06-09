@@ -2,7 +2,6 @@ import { useSearchParams } from "react-router-dom";
 import XLSX from "xlsx";
 import CollectionHeader from "../../components/Collection/CollectionHeader";
 import CollectionTabs from "../../components/Collection/CollectionTabs";
-import SortGrp from "../../components/Collection/SortGrp";
 import CollectionEmpty from "../../components/Collection/CollectionEmpty";
 import CollectionResult from "../../components/Collection/CollectionResult";
 
@@ -60,7 +59,6 @@ const Collection = ({ collection, handleAdd, handleRemove }) => {
         handleExport={handleExport}
       />
       <CollectionTabs collectionObj={collectionObj} />
-      {/* <SortGrp /> */}
       {collectionObj[currentTab].count === 0 ? (
         <CollectionEmpty collectionObj={collectionObj} />
       ) : (
