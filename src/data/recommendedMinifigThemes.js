@@ -1,15 +1,15 @@
-import castleImg from "../img/themes/minifigs/castle.png";
-import cityImg from "../img/themes/minifigs/city.png";
-import disneyprincessImg from "../img/themes/minifigs/disneyprincess.png";
-import friendsImg from "../img/themes/minifigs/friends.png";
-import harrypotterImg from "../img/themes/minifigs/harrypotter.png";
-import minecraftImg from "../img/themes/minifigs/minecraft.png";
-import ninjagoImg from "../img/themes/minifigs/ninjago.png";
-import piratesImg from "../img/themes/minifigs/pirates.png";
-import spaceImg from "../img/themes/minifigs/space.png";
-import starwarsImg from "../img/themes/minifigs/starwars.png";
-import superheroesdcImg from "../img/themes/minifigs/superheroesdc.png";
-import superheroesmarvelImg from "../img/themes/minifigs/superheroesmarvel.png";
+import castleImg from "../img/themes/minifigs/castle.jpeg";
+import cityImg from "../img/themes/minifigs/city.jpeg";
+import disneyprincessImg from "../img/themes/minifigs/disneyprincess.jpeg";
+import friendsImg from "../img/themes/minifigs/friends.jpeg";
+import harrypotterImg from "../img/themes/minifigs/harrypotter.jpeg";
+import minecraftImg from "../img/themes/minifigs/minecraft.jpeg";
+import ninjagoImg from "../img/themes/minifigs/ninjago.jpeg";
+import piratesImg from "../img/themes/minifigs/pirates.jpeg";
+import scoobyImg from "../img/themes/minifigs/scooby.jpeg";
+import starwarsImg from "../img/themes/minifigs/starwars.jpeg";
+import superheroesdcImg from "../img/themes/minifigs/superheroesdc.jpeg";
+import superheroesmarvelImg from "../img/themes/minifigs/superheroesmarvel.jpeg";
 
 const recommendedMinifigThemes = [
   {
@@ -53,9 +53,9 @@ const recommendedMinifigThemes = [
     id: "263",
   },
   {
-    name: "Space",
-    imageUrl: spaceImg,
-    id: "126",
+    name: "Scooby-Doo",
+    imageUrl: scoobyImg,
+    id: "603",
   },
   {
     name: "Star Wars",

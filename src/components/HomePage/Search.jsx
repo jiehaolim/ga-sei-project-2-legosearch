@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import legoSearchLogo from "../../img/legosearchlogo.png";
+import legoSearchLogoSets from "../../img/legosearchlogosets.png";
+import legoSearchLogoMF from "../../img/legosearchlogomf.png";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 const Search = () => {
@@ -8,6 +9,9 @@ const Search = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [searchParams] = useSearchParams();
+  const logoSRC = location.pathname.startsWith("/minifigures")
+    ? legoSearchLogoMF
+    : legoSearchLogoSets;
   const searchTitle = location.pathname.startsWith("/minifigures")
     ? "minifigures"
     : "sets";
@@ -38,7 +42,7 @@ const Search = () => {
             <div className="flex flex-shrink-0 items-center">
               <img
                 className="mx-auto h-12 w-auto sm:h-20"
-                src={legoSearchLogo}
+                src={logoSRC}
                 alt="LEGO Search"
               />
             </div>
