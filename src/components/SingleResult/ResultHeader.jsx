@@ -9,7 +9,7 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 const ResultHeader = ({ result, addToCollection }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   // bread crumbs
   const breadcrumbs = [
     {
@@ -21,16 +21,20 @@ const ResultHeader = ({ result, addToCollection }) => {
     },
     {
       id: 2,
-      name: location.state.prevPath.endsWith("/search")
-        ? "Search Results"
-        : location.state.prevPath.startsWith("/result")
-        ? "Set Result"
-        : location.state.prevPath.startsWith("/minifigures/result")
-        ? "Minifigure Result"
-        : "Collection",
+      name: location.state
+        ? location.state.prevPath.endsWith("/search")
+          ? "Search Results"
+          : location.state.prevPath.startsWith("/result")
+          ? "Set Result"
+          : location.state.prevPath.startsWith("/minifigures/result")
+          ? "Minifigure Result"
+          : "Collection"
+        : null,
       to: -1,
     },
   ];
+  // delete name from breadcrumbs if name is null in the event user opens in the new tab
+  breadcrumbs[1].name ?? breadcrumbs.pop();
 
   // modal sets codes
   const [modalAdd, setModalAdd] = useState({
