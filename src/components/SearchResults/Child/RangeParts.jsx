@@ -18,7 +18,7 @@ const RangeParts = ({ searchObj, handleChange }) => {
     // largest lego set so far is 148 parts
     parts.max = 250;
     // step
-    parts.step = 50;
+    parts.step = 1;
   } else {
     parts.min = 0;
     // largest lego set so far is 11695 parts
