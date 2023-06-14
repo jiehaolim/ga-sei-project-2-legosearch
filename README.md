@@ -72,7 +72,7 @@ View [Rebrickable API.](https://rebrickable.com/api/)
 - useParams
 - useSearchParams
 
-## How LEGO Search's Main Search Function
+## Search Results Page Flowchart
 View [flowchart at Miro.](https://miro.com/app/board/uXjVM-kNemg=/?share_link_id=189162665912)
 
 <img src="./documentation/legosearch-flowchart.png"/>
@@ -98,4 +98,5 @@ View [flowchart at Miro.](https://miro.com/app/board/uXjVM-kNemg=/?share_link_id
 - [LEGO for the images](https://www.lego.com/en-sg)
 - [No image available image](https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png)
 - [LEGO Smiley Face image](https://www.pinterest.com/pin/lego-face-wallpaper--295548794274755120/)
+- [Search Engine Journal for the image]( https://www.searchenginejournal.com/wp-content/uploads/2021/08/great-search-engines-612f8f78d1f79-sej-1280x720.jpg)
 - [Google Search for the design inspiration](https://www.google.com)
