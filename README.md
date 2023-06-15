@@ -77,7 +77,7 @@ View [flowchart at Miro.](https://miro.com/app/board/uXjVM-kNemg=/?share_link_id
 
 <img src="./documentation/legosearch-flowchart.png"/>
 
-## Learning and Improvement Points
+## Learning Points
 1. Learned to use try, throw and catch statements.
 <p align="left"><img src="./documentation/errorhandling.jpg"/></p>
 
