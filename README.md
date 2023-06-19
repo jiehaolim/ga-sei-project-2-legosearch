@@ -47,6 +47,7 @@ View [Rebrickable API.](https://rebrickable.com/api/)
 <img src="./documentation/wireframe13.png"/>
 <img src="./documentation/wireframe14.png"/>
 <img src="./documentation/wireframe15.png"/>
+<img src="./documentation/wireframe16.png"/>
 
 # Code
 ## Technologies and Tools used
