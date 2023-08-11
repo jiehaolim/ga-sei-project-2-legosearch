@@ -21,8 +21,8 @@ const SortGrp = () => {
   };
   // remove year if the sort group is in minifigure search
   if (location.pathname.startsWith("/minifigures")) {
-    const findYear = sortByObj.sortBy.findIndex((obj) => obj.id === "year");
-    sortByObj.sortBy.splice(findYear, 1);
+    const findYear = sortByObj.sortBy.findIndex(obj => obj.id === "year")
+    sortByObj.sortBy.splice(findYear, 1)
   }
   const sortOrderObj = {
     sortOrder: [
@@ -46,10 +46,11 @@ const SortGrp = () => {
   };
 
   useEffect(() => {
-    const pageSizeNum = searchParams.get("pageSize") ?? 20;
+    const pageSizeNum = searchParams.get("pageSize");
     if (
       isNaN(pageSizeNum) ||
-      (parseInt(pageSizeNum) !== 20 && parseInt(pageSizeNum) !== 40)
+      parseInt(pageSizeNum) < 0 ||
+      parseInt(pageSizeNum) > 1000
     ) {
       navigate("/error/400");
     } else {
