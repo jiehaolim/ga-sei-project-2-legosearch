@@ -57,7 +57,7 @@ const SortGrp = () => {
         ...sortObj,
         sortBy: searchParams.get("sortBy") ?? "name",
         sortOrder: searchParams.get("sortOrder") ?? "",
-        pageSize: searchParams.get("pageSize") ?? 20,
+        pageSize: pageSizeNum,
       });
     }
   }, [searchParams.toString()]);
