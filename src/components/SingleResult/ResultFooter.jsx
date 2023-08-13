@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import noImageAvailable from "../../img/noImageAvail.png";
+import noImageAvailable from "../../img/shared/noImageAvail.png";
 
 const ResultFooter = ({ results }) => {
   const location = useLocation();

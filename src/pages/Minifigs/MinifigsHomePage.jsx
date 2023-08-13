@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import Search from "../../components/HomePage/Search";
 import RecommendedGrid from "../../components/HomePage/RecommendedGrid";
-import recommendedMinifigThemes from "../../data/recommendedMinifigThemes";
+import recommendedMinifigThemes from "../../data/recommendedThemes/recommendedMinifigThemes";
 
 const MinifigsHomePage = () => {
   const [contentLoaded, setContentLoaded] = useOutletContext();

@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import ModalAdd from "../Shared/ModalAdd";
 import ModalAddSetsBuild from "../Shared/ModalAddSetsBuild";
 import ModalSuccess from "../Shared/ModalSuccess";
-import noImageAvailable from "../../img/noImageAvail.png";
+import noImageAvailable from "../../img/shared/noImageAvail.png";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const ResultHeader = ({ result, addToCollection }) => {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import legoSearchLogoSets from "../../img/legosearchlogosets.png";
-import legoSearchLogoMF from "../../img/legosearchlogomf.png";
+import legoSearchLogoSets from "../../img/logos/legosearchlogosets.png";
+import legoSearchLogoMF from "../../img/logos/legosearchlogomf.png";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 const Search = () => {

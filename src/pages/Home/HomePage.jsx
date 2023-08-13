@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import Search from "../../components/HomePage/Search";
 import RecommendedGrid from "../../components/HomePage/RecommendedGrid";
-import recommendedSetThemes from "../../data/recommendedSetThemes";
+import recommendedSetThemes from "../../data/recommendedThemes/recommendedSetThemes";
 
 const HomePage = () => {
   const [contentLoaded, setContentLoaded] = useOutletContext();

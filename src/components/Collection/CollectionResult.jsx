@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import noImageAvailable from "../../img/noImageAvail.png";
+import noImageAvailable from "../../img/shared/noImageAvail.png";
 import { Link } from "react-router-dom";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/solid";
 

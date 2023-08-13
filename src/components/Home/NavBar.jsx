@@ -1,7 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import smileyLogo from "../../img/smileylogo.png";
+import smileyLogo from "../../img/logos/smileylogo.png";
 
 const navigation = [
   { name: "Home", to: "/" },

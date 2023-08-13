@@ -1,15 +1,15 @@
-import architectureImg from "../img/themes/sets/architecture.jpeg";
-import cityImg from "../img/themes/sets/city.jpeg";
-import classicImg from "../img/themes/sets/classic.jpeg";
-import creatorImg from "../img/themes/sets/creator.jpeg";
-import disneyImg from "../img/themes/sets/disney.jpeg";
-import friendsImg from "../img/themes/sets/friends.jpeg";
-import jurassicImg from "../img/themes/sets/jurassic.jpeg";
-import ninjagoImg from "../img/themes/sets/ninjago.jpeg";
-import starwarsImg from "../img/themes/sets/starwars.jpeg";
-import superheroesdcImg from "../img/themes/sets/superheroesdc.jpeg";
-import superheroesmarvelImg from "../img/themes/sets/superheroesmarvel.jpeg";
-import technicImg from "../img/themes/sets/technic.jpeg";
+import architectureImg from "../../img/themes/sets/architecture.jpeg";
+import cityImg from "../../img/themes/sets/city.jpeg";
+import classicImg from "../../img/themes/sets/classic.jpeg";
+import creatorImg from "../../img/themes/sets/creator.jpeg";
+import disneyImg from "../../img/themes/sets/disney.jpeg";
+import friendsImg from "../../img/themes/sets/friends.jpeg";
+import jurassicImg from "../../img/themes/sets/jurassic.jpeg";
+import ninjagoImg from "../../img/themes/sets/ninjago.jpeg";
+import starwarsImg from "../../img/themes/sets/starwars.jpeg";
+import superheroesdcImg from "../../img/themes/sets/superheroesdc.jpeg";
+import superheroesmarvelImg from "../../img/themes/sets/superheroesmarvel.jpeg";
+import technicImg from "../../img/themes/sets/technic.jpeg";
 
 const recommendedSetThemes = [
   {
