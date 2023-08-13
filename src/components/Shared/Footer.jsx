@@ -28,8 +28,8 @@ const Footer = () => {
             >
               <span className="sr-only">{item.name}</span>
               <item.icon className="h-6 w-6" aria-hidden="true" />
-              <p className="flex items-center justify-center text-center text-xs leading-5 text-gray-500 hover:text-gray-600">
-                By Lim Jie Hao
+              <p className="flex items-center justify-center text-center text-xs leading-5">
+                Lim Jie Hao
               </p>
             </a>
           ))}
